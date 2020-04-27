@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    public class Class1
+    public interface iPoco
     {
+        //Guid pocoID { get; set; }
     }
 }
