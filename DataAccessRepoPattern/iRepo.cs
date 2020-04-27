@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BookMeProject;
@@ -20,6 +21,9 @@ namespace DataAccessRepoPattern
 
 
         void delete(params pocoTypePlaceholder[] pocosTobeDeleted);
+        void delete<anotherPocoTypePlaceholder>(Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
+            where anotherPocoTypePlaceholder : class, iPoco;
+
 
         pocoTypePlaceholder GetSingle(Func<pocoTypePlaceholder, bool> where);
 

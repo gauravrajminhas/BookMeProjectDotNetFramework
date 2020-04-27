@@ -29,6 +29,9 @@ namespace testConsole
 
 
 
+            objRef.delete<customer>(pocp => pocp.customerName == "Test customer");
+
+
 
             //this is lazy loading !!! 
             IEnumerable customerList = objRef.GetAll<customer>();

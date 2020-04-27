@@ -46,6 +46,7 @@ namespace DataAccessEFGenericRepo
         }
 
         public virtual DbSet<customer> customerDBSetRecord { get; set; }
+        public virtual DbSet<center> centerDBSetRecord { get; set; }
 
     }
 }

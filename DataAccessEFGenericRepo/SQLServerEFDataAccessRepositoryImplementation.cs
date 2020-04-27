@@ -43,6 +43,24 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
+
+
+        public void delete<anotherPocoTypePlaceholder> (Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
+            where anotherPocoTypePlaceholder : class, iPoco
+        {
+            IEnumerable<anotherPocoTypePlaceholder> pocosTobeDeleted = _context.Set<anotherPocoTypePlaceholder>().Where(wherePredicate);
+
+            foreach (anotherPocoTypePlaceholder poco in pocosTobeDeleted)
+            {
+                _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
+            }
+            _context.SaveChanges();
+        }
+
+
+
+
+
         // this has a differen generic type Coz you can use it to get any Sort of poco 
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>() 
             where anotherPocoTypePlaceholder : class, iPoco
