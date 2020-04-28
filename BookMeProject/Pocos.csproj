@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="center.cs" />
+    <Compile Include="centerContactDetails.cs" />
     <Compile Include="customer.cs" />
     <Compile Include="iPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

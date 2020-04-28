@@ -15,8 +15,28 @@ namespace testConsole
         {
             SQLServerEFDataAccessRepositoryImplementation<iPoco> objRef = new SQLServerEFDataAccessRepositoryImplementation<iPoco>();
 
+            objRef.add(new center
+            {
+                centerID = Guid.NewGuid(),
+                centerName = "Bangalore Indiranagar",
+                centerContactDetailsNavigation = new centerContactDetails
+                {
+                    centerImage = new byte[0],
+                    centerAddress = "abc",
+                    centerPhone = 9000100
 
-            
+                }
+            });
+
+            List<center> centerList = objRef.GetAll<center>();
+            List<center> completedCenterList =  objRef.GetAllWithProp<center>(c=>c.centerContactDetailsNavigation);
+
+           
+
+            Console.WriteLine("\n\n\n --- Terminating --- ");
+            Console.Read();
+
+
 
             objRef.add(new customer {
                 customerID = Guid.NewGuid(),
@@ -30,6 +50,9 @@ namespace testConsole
 
 
             objRef.delete<customer>(pocp => pocp.customerName == "Test customer");
+            objRef.delete<center>(cent => cent.centerName == "abc");
+            objRef.delete((center c) => c.centerName == "abc" );
+
 
 
 

@@ -43,8 +43,6 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
-
-
         public void delete<anotherPocoTypePlaceholder> (Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
             where anotherPocoTypePlaceholder : class, iPoco
         {
@@ -57,6 +55,16 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
+        public void delete(Expression<Func<TypePlaceholder, bool>> wherePredicate)
+        {
+            IEnumerable<TypePlaceholder> pocosTobeDeleted = _context.Set<TypePlaceholder>().Where(wherePredicate);
+
+            foreach (TypePlaceholder poco in pocosTobeDeleted)
+            {
+                _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
+            }
+            _context.SaveChanges();
+        }
 
 
 
@@ -67,6 +75,23 @@ namespace DataAccessEFGenericRepo
         {
             return _context.Set<anotherPocoTypePlaceholder>().ToList<anotherPocoTypePlaceholder>();
         }
+
+
+        public List<anotherPocoTypePlaceholder> GetAllWithProp<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, iPoco>> navigationPropertyObject)
+          where anotherPocoTypePlaceholder : class, iPoco
+        {
+
+            //IQueryable<anotherPocoTypePlaceholder> dbset =  _context.Set<anotherPocoTypePlaceholder>();
+
+            return _context
+                .Set<anotherPocoTypePlaceholder>()
+                .Include<anotherPocoTypePlaceholder, iPoco>(navigationPropertyObject)
+                .ToList<anotherPocoTypePlaceholder>();
+        }
+
+
+
+
 
 
         public TypePlaceholder GetSingle(Func<TypePlaceholder, bool> where)

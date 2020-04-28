@@ -21,8 +21,10 @@ namespace DataAccessRepoPattern
 
 
         void delete(params pocoTypePlaceholder[] pocosTobeDeleted);
+        void delete(Expression<Func<pocoTypePlaceholder, bool>> wherePredicate);
         void delete<anotherPocoTypePlaceholder>(Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
             where anotherPocoTypePlaceholder : class, iPoco;
+
 
 
         pocoTypePlaceholder GetSingle(Func<pocoTypePlaceholder, bool> where);
@@ -31,7 +33,10 @@ namespace DataAccessRepoPattern
         // how come this is not throwing a unknowtype Issue ? 
         // difference Of ParametersInputTypes and function Type 
         List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>()
-            where anotherPocoTypePlaceholder: class, iPoco ;
+            where anotherPocoTypePlaceholder : class, iPoco;
+
+        List<anotherPocoTypePlaceholder> GetAllWithProp<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder,iPoco>> navigationObjectPath)
+                    where anotherPocoTypePlaceholder : class, iPoco;
 
 
 

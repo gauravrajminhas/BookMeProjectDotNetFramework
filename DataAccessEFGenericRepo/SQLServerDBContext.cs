@@ -18,6 +18,19 @@ namespace DataAccessEFGenericRepo
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<center>()
+                .HasKey(c=>c.centerID)
+                .ToTable("centers");
+
+            modelBuilder.Entity<centerContactDetails>()
+                .HasKey(ccd=>ccd.centerID)
+                .ToTable("centers");
+
+            modelBuilder.Entity<center>()
+                .HasRequired(cen => cen.centerContactDetailsNavigation)
+                .WithRequiredPrincipal(ccd =>ccd.centerNavigation);
+
+
             modelBuilder.Entity<customer>()
                 .Map( map => 
                     {
@@ -46,7 +59,7 @@ namespace DataAccessEFGenericRepo
         }
 
         public virtual DbSet<customer> customerDBSetRecord { get; set; }
-        public virtual DbSet<center> centerDBSetRecord { get; set; }
+        
 
     }
 }
