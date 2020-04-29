@@ -14,6 +14,8 @@ namespace DataAccessEFGenericRepo
         {
 
         }
+        
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -21,6 +23,7 @@ namespace DataAccessEFGenericRepo
             modelBuilder.Entity<center>()
                 .HasKey(c=>c.centerID)
                 .ToTable("centers");
+            
 
             modelBuilder.Entity<centerContactDetails>()
                 .HasKey(ccd=>ccd.centerID)
@@ -37,7 +40,8 @@ namespace DataAccessEFGenericRepo
                         map.Properties(
                             customerProperties => new {
                                 customerProperties.customerID,
-                                customerProperties.customerName
+                                customerProperties.customerName,
+                                customerProperties.isActive
                             });
                         map.ToTable("customer");
                     })
@@ -58,8 +62,11 @@ namespace DataAccessEFGenericRepo
             base.OnModelCreating(modelBuilder);
         }
 
+
+
         public virtual DbSet<customer> customerDBSetRecord { get; set; }
-        
+        public  DbSet<center> centerBDSetRecord { get; set; }
+
 
     }
 }

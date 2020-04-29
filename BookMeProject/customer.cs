@@ -10,7 +10,7 @@ namespace BookMeProject
     {
         public Guid customerID { get; set; }
         public string customerName { get; set; }
-        
+        public bool isActive { get; set; }
 
         //will try and entity split this via EF mapping 
         public string customerAddress { get; set; }

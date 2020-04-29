@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="iRepo.cs" />
+    <Compile Include="iRepoCommand.cs" />
+    <Compile Include="iRepoQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

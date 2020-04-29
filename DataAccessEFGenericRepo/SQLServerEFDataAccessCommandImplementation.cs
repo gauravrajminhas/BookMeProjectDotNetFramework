@@ -12,14 +12,14 @@ using System.Linq.Expressions;
 namespace DataAccessEFGenericRepo
 {
    
-    public class SQLServerEFDataAccessRepositoryImplementation<TypePlaceholder> : iRepo <TypePlaceholder>
+    public class SQLServerEFDataAccessCommandImplementation<TypePlaceholder> : iRepoCommand <TypePlaceholder>
         where TypePlaceholder : class, BookMeProject.iPoco
        
     {
 
         private SQLServerDBContext _context;
 
-        public SQLServerEFDataAccessRepositoryImplementation()
+        public SQLServerEFDataAccessCommandImplementation()
         {
             _context = new SQLServerDBContext();
             _context.Database.Log = Console.Write;
@@ -43,6 +43,9 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
+
+        // this will not work for entities with navigation Properties. 
+        // FIx this 
         public void delete<anotherPocoTypePlaceholder> (Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
             where anotherPocoTypePlaceholder : class, iPoco
         {
@@ -69,35 +72,7 @@ namespace DataAccessEFGenericRepo
 
 
 
-        // this has a differen generic type Coz you can use it to get any Sort of poco 
-        public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>() 
-            where anotherPocoTypePlaceholder : class, iPoco
-        {
-            return _context.Set<anotherPocoTypePlaceholder>().ToList<anotherPocoTypePlaceholder>();
-        }
 
-
-        public List<anotherPocoTypePlaceholder> GetAllWithProp<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, iPoco>> navigationPropertyObject)
-          where anotherPocoTypePlaceholder : class, iPoco
-        {
-
-            //IQueryable<anotherPocoTypePlaceholder> dbset =  _context.Set<anotherPocoTypePlaceholder>();
-
-            return _context
-                .Set<anotherPocoTypePlaceholder>()
-                .Include<anotherPocoTypePlaceholder, iPoco>(navigationPropertyObject)
-                .ToList<anotherPocoTypePlaceholder>();
-        }
-
-
-
-
-
-
-        public TypePlaceholder GetSingle(Func<TypePlaceholder, bool> where)
-        {
-            return _context.Set<TypePlaceholder>().FirstOrDefault(where);
-        }
 
 
         public void update(params TypePlaceholder[] pocosToBeUpdated)
