@@ -55,6 +55,7 @@
     <Compile Include="SQLServerDBContext.cs" />
     <Compile Include="SQLServerEFDataAccessCommandImplementation.cs" />
     <Compile Include="SQLServerEFDataAccessQueryImplementation.cs" />
+    <Compile Include="testClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

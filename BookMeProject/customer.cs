@@ -8,11 +8,14 @@ namespace BookMeProject
 {
     public class customer : iPoco
     {
+        // customer Entity has been split into tables 
+
+        //customer Tables 
         public Guid customerID { get; set; }
         public string customerName { get; set; }
         public bool isActive { get; set; }
 
-        //will try and entity split this via EF mapping 
+        //Customer contact details 
         public string customerAddress { get; set; }
         public int? phoneNumber { get; set; }
         public string emailAddress { get; set; }

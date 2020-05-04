@@ -8,6 +8,8 @@ namespace BookMeProject
 {
     public class centerContactDetails : iPoco
     {
+
+        //customer contact entity pointing to Customer table
         public Guid centerID { get; set; }
         public string  centerAddress { get; set; }
         public int? centerPhone { get; set; }

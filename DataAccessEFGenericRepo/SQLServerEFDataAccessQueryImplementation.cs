@@ -32,23 +32,36 @@ namespace DataAccessEFGenericRepo
         }
 
 
-        public List<anotherPocoTypePlaceholder> GetAllWithProp<anotherPocoTypePlaceholder>(System.Linq.Expressions.Expression<Func<anotherPocoTypePlaceholder, iPoco>> navigationPropertyObject)
+        public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
           where anotherPocoTypePlaceholder : class, iPoco
         {
 
             //IQueryable<anotherPocoTypePlaceholder> dbset =  _context.Set<anotherPocoTypePlaceholder>();
-
+            // a labda expressing the Path  i.e  (Student => student.CourseListNavigationProperty)
             return _context
                 .Set<anotherPocoTypePlaceholder>()
-                .Include<anotherPocoTypePlaceholder, iPoco>(navigationPropertyObject)
+                .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
                 .ToList<anotherPocoTypePlaceholder>();
         }
 
-
-        public TypePlaceholder GetSingle(Func<TypePlaceholder, bool> where)
+       
+        public anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate)
+            where anotherPocoTypePlaceholder : class, iPoco
         {
-            return _context.Set<TypePlaceholder>().FirstOrDefault(where);
+            return _context.Set<anotherPocoTypePlaceholder>().FirstOrDefault(wherePredicate);
         }
+
+
+        public anotherPocoTypePlaceholder GetSingle <anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
+            where anotherPocoTypePlaceholder : class, iPoco
+        {
+
+            return _context.Set<anotherPocoTypePlaceholder>()
+                .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
+                .FirstOrDefault(wherePredicate);
+        }
+
+
 
 
     }

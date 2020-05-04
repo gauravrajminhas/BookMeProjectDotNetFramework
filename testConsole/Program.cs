@@ -16,9 +16,21 @@ namespace testConsole
             SQLServerEFDataAccessCommandImplementation<iPoco> commandRepo = new SQLServerEFDataAccessCommandImplementation<iPoco>();
             SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
 
-            seedMockData.seedMore();
+            //seedMockData.seedMore();
+
+            new testClass().doSomething();
+
+
             
 
+
+
+            List<customer> customers = queryRepo.GetAll<customer>();
+            foreach (customer cust in customers)
+            {
+                Console.WriteLine(cust.customerName+"\t"+cust.emailAddress);
+            }
+            
 
 
             //objRef.delete<center>(c => c.centerName == "Bangalore Indiranagar");
@@ -30,7 +42,7 @@ namespace testConsole
             }
 
 
-            List<center> completedCenterList = queryRepo.GetAllWithProp<center>(c => c.centerContactDetailsNavigation);
+            List<center> completedCenterList = queryRepo.GetAll<center>(c => c.centerContactDetailsNavigation);
             foreach (center center in centerList)
             {
                 Console.WriteLine(center.centerID + "\t " + center.centerName + "\t "  + center.centerContactDetailsNavigation.centerAddress + "\t" + center.centerContactDetailsNavigation.centerPhone + "\t" + center.centerContactDetailsNavigation.centerImage);

@@ -8,27 +8,32 @@ using System.Threading.Tasks;
 
 namespace DataAccessRepoPattern
 {
+    // do not need PocoTypePlacolder here
     public interface iRepoQuery<pocoTypePlaceholder> : iRepo<pocoTypePlaceholder>
         where pocoTypePlaceholder : class, iPoco
     {
-
-
-        // how come this is not throwing a unknowtype Issue ?  Becuase i have just declared the type after function name 
-        // difference Of ParametersInputTypes and function Type 
-
-        
-
-
         // Lazy loding of the entity without Properties 
         List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>()
             where anotherPocoTypePlaceholder : class, iPoco;
 
         // loding of the entity with Properties 
-        List<anotherPocoTypePlaceholder> GetAllWithProp<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, iPoco>> navigationObjectPath)
+        // Func<anotherPocoTypePlaceholder, object> navigationObjectPath
+        // Important :- OUT has to be Object and not iPoco 
+        // coz for Many-to-Many  .Include <T, TEntityType> path     >> needs a Type that reflects a entity Navigation
+        // now that will be a Poco for 1-1 and List for 1-many 
+        // ref https://docs.microsoft.com/en-us/dotnet/api/system.data.entity.queryableextensions.include?view=entity-framework-6.2.0#System_Data_Entity_QueryableExtensions_Include__2_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0___1___
+
+        List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, object>> navigationObjectPath)
             where anotherPocoTypePlaceholder : class, iPoco;
 
-        pocoTypePlaceholder GetSingle(Func<pocoTypePlaceholder, bool> where);
 
+        // does not load the navigation properties 
+        anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder> (Func<anotherPocoTypePlaceholder, bool> wherePredicate)
+            where anotherPocoTypePlaceholder: class, iPoco;
+
+        // This GetSingle is to load navigation objects as well. 
+        anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder> (Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
+            where anotherPocoTypePlaceholder : class, iPoco;
 
     }
 }
