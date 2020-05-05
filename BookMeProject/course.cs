@@ -9,7 +9,7 @@ namespace BookMeProject
 {
     public class course : iPoco
     {
-        public int courseID { get; set; }
+        public Guid courseID { get; set; }
         public string courseName { get; set; }
 
         //navigatuions properties 

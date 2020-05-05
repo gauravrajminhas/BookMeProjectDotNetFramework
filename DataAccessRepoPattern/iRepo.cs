@@ -12,6 +12,10 @@ namespace DataAccessRepoPattern
 
     //Defination of the iRepo Interface ! 
     // dont have to define SourcePocoTypes rite now ! 
+    /// <summary>
+    /// changes May-4-2020 :- making this repo non Generic and but all the interface mentho
+    /// </summary>
+    // 
     public interface iRepo<pocoTypePlaceholder>
         where pocoTypePlaceholder : iPoco
     {

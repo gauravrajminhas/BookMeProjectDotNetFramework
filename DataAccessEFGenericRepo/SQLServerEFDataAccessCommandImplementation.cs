@@ -25,7 +25,8 @@ namespace DataAccessEFGenericRepo
             _context.Database.Log = Console.Write;
         }
 
-        public void add(params TypePlaceholder[] pocosToBeAdded)
+        public void add<TypePlaceholder>(params TypePlaceholder[] pocosToBeAdded)
+            where TypePlaceholder : class, BookMeProject.iPoco
         {
             foreach (TypePlaceholder poco in pocosToBeAdded)
             {
@@ -34,7 +35,8 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
-        public void delete(params TypePlaceholder[] pocosToBeDeleted)
+        public void delete<TypePlaceholder> (params TypePlaceholder[] pocosToBeDeleted)
+            where TypePlaceholder : class, BookMeProject.iPoco
         {
             foreach(TypePlaceholder poco in pocosToBeDeleted)
             {
@@ -58,26 +60,32 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
-        public void delete(Expression<Func<TypePlaceholder, bool>> wherePredicate)
-        {
-            IEnumerable<TypePlaceholder> pocosTobeDeleted = _context.Set<TypePlaceholder>().Where(wherePredicate);
+        //public void delete<TypePlaceholder>(Expression<Func<TypePlaceholder, bool>> wherePredicate)
+        //    where TypePlaceholder : class, BookMeProject.iPoco
+        //{
+        //    IEnumerable<TypePlaceholder> pocosTobeDeleted = _context.Set<TypePlaceholder>().Where(wherePredicate);
 
-            foreach (TypePlaceholder poco in pocosTobeDeleted)
+        //    foreach (TypePlaceholder poco in pocosTobeDeleted)
+        //    {
+        //        _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
+        //    }
+        //    _context.SaveChanges();
+        //}
+
+
+
+
+
+
+
+        public void update<TypePlaceholder>(params TypePlaceholder[] pocosToBeUpdated)
+            where TypePlaceholder : class, BookMeProject.iPoco
+        {
+            foreach(TypePlaceholder poco in pocosToBeUpdated)
             {
-                _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
+                _context.Entry<TypePlaceholder>(poco).State = EntityState.Modified;
             }
             _context.SaveChanges();
-        }
-
-
-
-
-
-
-
-        public void update(params TypePlaceholder[] pocosToBeUpdated)
-        {
-            throw new NotImplementedException();
         }
     }
 }

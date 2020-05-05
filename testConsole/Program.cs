@@ -18,40 +18,48 @@ namespace testConsole
 
             //seedMockData.seedMore();
 
-            new testClass().doSomething();
+            //new testClass().doSomething();
+
+            commandRepo.add<course>(new course { courseID=Guid.NewGuid(), courseName="Entity Framework" });
+            commandRepo.add<student>(new student { studentID = Guid.NewGuid(), studentName = "Test Client1" });
 
 
-            
+            student studentObject = queryRepo.GetSingle<student>(stu => stu.studentName == "Test Client1", stu => stu.courseListNavigation);
+            course courseObject = queryRepo.GetSingle<course>(cou => cou.courseName == "Entity Framework");
 
+            studentObject
+                .courseListNavigation.Add(courseObject);
 
-
-            List<customer> customers = queryRepo.GetAll<customer>();
-            foreach (customer cust in customers)
+            course pocoCourse = new course
             {
-                Console.WriteLine(cust.customerName+"\t"+cust.emailAddress);
-            }
-            
+                courseID = Guid.NewGuid(),
+                courseName = "new Test course"
+            };
 
-
-            //objRef.delete<center>(c => c.centerName == "Bangalore Indiranagar");
-
-            List<center> centerList = queryRepo.GetAll<center>();
-            foreach (center center in centerList)
+            student poco = new student
             {
-                Console.WriteLine(center.centerID + "\t " + center.centerName );
-            }
+                studentID = Guid.NewGuid(),
+                studentName = "new Test Student",
+                courseListNavigation = new List<course>()
+            };
+
+            poco.courseListNavigation.Add(pocoCourse);
+
+            commandRepo.add<student>(poco);
 
 
-            List<center> completedCenterList = queryRepo.GetAll<center>(c => c.centerContactDetailsNavigation);
-            foreach (center center in centerList)
-            {
-                Console.WriteLine(center.centerID + "\t " + center.centerName + "\t "  + center.centerContactDetailsNavigation.centerAddress + "\t" + center.centerContactDetailsNavigation.centerPhone + "\t" + center.centerContactDetailsNavigation.centerImage);
-            }
+           
+                
+                
+                
+                
+            //commandRepo.update<student>(studentObject);
 
 
 
-            
-            
+
+
+
 
 
             Console.WriteLine("\n\n\n --- Terminating --- ");

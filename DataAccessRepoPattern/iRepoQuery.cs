@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessRepoPattern
 {
+    /// <summary>
+    /// Chnages May-4-2020 :- all the methods have there own generic Type now; its longer deendent on the CType defined in the class
+    /// </summary>
     // do not need PocoTypePlacolder here
     public interface iRepoQuery<pocoTypePlaceholder> : iRepo<pocoTypePlaceholder>
         where pocoTypePlaceholder : class, iPoco

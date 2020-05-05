@@ -8,7 +8,7 @@ namespace BookMeProject
 {
     public class student : iPoco
     {
-        public int studentID { get; set; }
+        public Guid studentID { get; set; }
         public string studentName { get; set; }
 
 
