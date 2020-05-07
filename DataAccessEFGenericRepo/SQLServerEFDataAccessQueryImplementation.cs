@@ -52,15 +52,34 @@ namespace DataAccessEFGenericRepo
         }
 
 
-        public anotherPocoTypePlaceholder GetSingle <anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
+        //public anotherPocoTypePlaceholder GetSingle <anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
+        //    where anotherPocoTypePlaceholder : class, iPoco
+        //{
+
+        //    return _context.Set<anotherPocoTypePlaceholder>()
+        //        .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
+        //        .FirstOrDefault(wherePredicate);
+        //}
+
+        public anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
             where anotherPocoTypePlaceholder : class, iPoco
         {
 
-            return _context.Set<anotherPocoTypePlaceholder>()
-                .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
-                .FirstOrDefault(wherePredicate);
-        }
+            IQueryable<anotherPocoTypePlaceholder> queryBuilder = null; 
+            DbSet<anotherPocoTypePlaceholder> dbSet = _context.Set<anotherPocoTypePlaceholder>();
 
+            queryBuilder = dbSet;
+            foreach (Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject in navigationPropertyPathObjectList)
+            {
+                queryBuilder = queryBuilder.Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject);
+            }
+
+            //return _context.Set<anotherPocoTypePlaceholder>()
+            //    .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
+            //    .FirstOrDefault(wherePredicate);
+
+            return queryBuilder.FirstOrDefault(wherePredicate);
+        }
 
 
 

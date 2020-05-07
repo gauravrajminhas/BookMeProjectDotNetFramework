@@ -35,7 +35,7 @@ namespace DataAccessRepoPattern
             where anotherPocoTypePlaceholder: class, iPoco;
 
         // This GetSingle is to load navigation objects as well. 
-        anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder> (Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
+        anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder> (Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
             where anotherPocoTypePlaceholder : class, iPoco;
 
     }

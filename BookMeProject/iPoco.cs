@@ -8,6 +8,7 @@ namespace BookMeProject
 {
     public interface iPoco
     {
-        //Guid pocoID { get; set; }
+        //Guid? pocoID { get; set; }
+
     }
 }
