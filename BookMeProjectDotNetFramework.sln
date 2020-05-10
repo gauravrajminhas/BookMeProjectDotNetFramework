@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessEFGenericRepo", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testConsole", "testConsole\testConsole.csproj", "{AFD2C711-2717-4A67-A4AC-738A0363A502}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicPatterns", "BusinessLogicPatterns\BusinessLogicPatterns.csproj", "{EF2E3144-44D8-49C8-A532-24C44BB82375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

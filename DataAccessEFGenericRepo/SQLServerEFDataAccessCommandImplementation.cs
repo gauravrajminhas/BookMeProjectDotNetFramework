@@ -8,6 +8,12 @@ using DataAccessRepoPattern;
 using System.Data.Entity;
 using System.Linq.Expressions;
 
+/// <summary>
+/// Bug 1 :- this appraoch has introduced a new issue 
+/// Child objects are not being saved as they are retirived by QueryDBContext and saved by commandDBContext 
+/// https://stackoverflow.com/questions/18054798/entity-framework-not-saving-modified-children
+/// </summary>
+
 
 namespace DataAccessEFGenericRepo
 {
@@ -21,7 +27,8 @@ namespace DataAccessEFGenericRepo
 
         public SQLServerEFDataAccessCommandImplementation()
         {
-            _context = new SQLServerDBContext();
+            // DI IOC container will come here 
+            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
             _context.Database.Log = Console.Write;
         }
 
@@ -30,6 +37,7 @@ namespace DataAccessEFGenericRepo
         {
             foreach (TypePlaceholder poco in pocosToBeAdded)
             {
+                Console.WriteLine("current state of the Poco :- " + _context.Entry<TypePlaceholder>(poco).State);
                 _context.Entry<TypePlaceholder>(poco).State = System.Data.Entity.EntityState.Added;
             }
             _context.SaveChanges();
@@ -40,6 +48,7 @@ namespace DataAccessEFGenericRepo
         {
             foreach(TypePlaceholder poco in pocosToBeDeleted)
             {
+                Console.WriteLine("current state of the Poco :- " + _context.Entry<TypePlaceholder>(poco).State);
                 _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();
@@ -55,37 +64,40 @@ namespace DataAccessEFGenericRepo
 
             foreach (anotherPocoTypePlaceholder poco in pocosTobeDeleted)
             {
+                Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
                 _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();
         }
 
-        //public void delete<TypePlaceholder>(Expression<Func<TypePlaceholder, bool>> wherePredicate)
-        //    where TypePlaceholder : class, BookMeProject.iPoco
-        //{
-        //    IEnumerable<TypePlaceholder> pocosTobeDeleted = _context.Set<TypePlaceholder>().Where(wherePredicate);
-
-        //    foreach (TypePlaceholder poco in pocosTobeDeleted)
-        //    {
-        //        _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
-        //    }
-        //    _context.SaveChanges();
-        //}
-
-
-
-
-
-
-
+       
         public void update<TypePlaceholder>(params TypePlaceholder[] pocosToBeUpdated)
             where TypePlaceholder : class, BookMeProject.iPoco
         {
-            foreach(TypePlaceholder poco in pocosToBeUpdated)
-            {
+            //SQLServerDBContext _updateContext = null;
+
+            //doubt :-  Should this be per CRUD method or per request ? 
+            //using(_updateContext= new SQLServerDBContext())
+            //{
+                foreach (TypePlaceholder poco in pocosToBeUpdated)
+                {
+
+
+                    Console.WriteLine("current state of the Poco :- "+ _context.Entry<TypePlaceholder>(poco).State);
+                    _context.Entry<TypePlaceholder>(poco).State = EntityState.Added;
+
+                    foreach (var entity in _context.ChangeTracker.Entries())
+                    {
+                        Console.WriteLine("{0}: {1}", entity.Entity.GetType().Name, entity.State);
+                    }
+
+
                 _context.Entry<TypePlaceholder>(poco).State = EntityState.Modified;
-            }
-            _context.SaveChanges();
+                }
+                _context.SaveChanges();
+
+            //}
+            
         }
     }
 }

@@ -12,7 +12,17 @@ namespace DataAccessRepoPattern
     /// Chnages May-4-2020 :- all the methods have there own generic Type now; its longer deendent on the CType defined in the class
     /// </summary>
     /// <typeparam name="pocoTypePlaceholder"></typeparam>
-    
+
+    /// <summary>
+    /// Bug :- this appraoch has introduced a new issue 
+    /// Child objects are not being saved as they are retirived by QueryDBContext and saved by commandDBContext 
+    /// https://stackoverflow.com/questions/18054798/entity-framework-not-saving-modified-children
+    /// </summary>
+
+
+
+
+
     public interface iRepoCommand<pocoTypePlaceholder> : iRepo<pocoTypePlaceholder>
         where pocoTypePlaceholder : iPoco
     {

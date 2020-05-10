@@ -11,8 +11,7 @@ namespace BookMeProject
     public class userContactDetailsPoco :iPoco
     {
         //Forign Key attribute of the employee Table
-        [Key, ForeignKey("userNavigation")] 
-        public Guid userID { get; set; }
+        public Guid ecifID { get; set; }
 
         
         public DateTime? dateOfBirth { get; set; }
@@ -24,8 +23,9 @@ namespace BookMeProject
 
         
 
-        // is this required ? 
+        // Navigation  
         public userPoco userNavigation { get; set; }
+
 
     }
 }

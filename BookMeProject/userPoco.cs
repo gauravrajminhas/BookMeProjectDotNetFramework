@@ -10,16 +10,22 @@ namespace BookMeProject
 {
     public class userPoco : iPoco
     {
-        
-        public Guid userID { get; set; }
+        //Primark Key
+        public Guid ecifID { get; set; }
+
+        //Properties
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string emailAddress { get; set; }
+        public string ecifAlias { get; set; }
+        
+        //navigation
 
+        public virtual userContactDetailsPoco userContactDetailsNavigation { get; set; }
 
-        public userContactDetailsPoco userContactDetailsNavigation { get; set; }
-        public userCredentialsPoco userCredentailsNavigation { get; set; }
-
+        //one-to-many
+        public virtual ICollection <userCredentialsPoco> userCredentailsListNavigation { get; set; }
+        public virtual ICollection<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
 
     }
 }

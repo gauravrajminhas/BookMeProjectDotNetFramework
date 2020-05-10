@@ -8,6 +8,14 @@ using DataAccessRepoPattern;
 using System.Data.Entity;
 using System.Linq.Expressions;
 
+/// <summary>
+/// Bug 1 :- this appraoch has introduced a new issue 
+/// Child objects are not being saved as they are retirived by QueryDBContext and saved by commandDBContext 
+/// https://stackoverflow.com/questions/18054798/entity-framework-not-saving-modified-children
+/// </summary>
+
+
+
 
 namespace DataAccessEFGenericRepo
 {
@@ -19,7 +27,9 @@ namespace DataAccessEFGenericRepo
       
         public SQLServerEFDataAccessQueryImplementation()
         {
-            _context = new SQLServerDBContext();
+            // TODO - add dependency injection IOC controller here ! 
+
+            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
             _context.Database.Log = Console.Write;
         }
 
@@ -28,7 +38,17 @@ namespace DataAccessEFGenericRepo
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>()
             where anotherPocoTypePlaceholder : class, iPoco
         {
-            return _context.Set<anotherPocoTypePlaceholder>().ToList<anotherPocoTypePlaceholder>();
+            List<anotherPocoTypePlaceholder> pocoList = _context.Set<anotherPocoTypePlaceholder>()
+        //        .AsNoTracking()
+                .ToList<anotherPocoTypePlaceholder>();
+
+            foreach (anotherPocoTypePlaceholder poco in pocoList)
+            {
+                Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+            }
+            
+
+            return pocoList;
         }
 
 
@@ -38,28 +58,35 @@ namespace DataAccessEFGenericRepo
 
             //IQueryable<anotherPocoTypePlaceholder> dbset =  _context.Set<anotherPocoTypePlaceholder>();
             // a labda expressing the Path  i.e  (Student => student.CourseListNavigationProperty)
-            return _context
+            List<anotherPocoTypePlaceholder> pocoList = _context
                 .Set<anotherPocoTypePlaceholder>()
                 .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
+         //       .AsNoTracking()
                 .ToList<anotherPocoTypePlaceholder>();
+
+
+            foreach (anotherPocoTypePlaceholder poco in pocoList)
+            {
+                Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+            }
+
+
+            return pocoList;
+
         }
 
        
         public anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate)
             where anotherPocoTypePlaceholder : class, iPoco
         {
-            return _context.Set<anotherPocoTypePlaceholder>().FirstOrDefault(wherePredicate);
+            anotherPocoTypePlaceholder poco = _context.Set<anotherPocoTypePlaceholder>()
+         //       .AsNoTracking()
+                .FirstOrDefault(wherePredicate);
+
+            Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+            return poco;
         }
 
-
-        //public anotherPocoTypePlaceholder GetSingle <anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject)
-        //    where anotherPocoTypePlaceholder : class, iPoco
-        //{
-
-        //    return _context.Set<anotherPocoTypePlaceholder>()
-        //        .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
-        //        .FirstOrDefault(wherePredicate);
-        //}
 
         public anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
             where anotherPocoTypePlaceholder : class, iPoco
@@ -74,11 +101,12 @@ namespace DataAccessEFGenericRepo
                 queryBuilder = queryBuilder.Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject);
             }
 
-            //return _context.Set<anotherPocoTypePlaceholder>()
-            //    .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject)
-            //    .FirstOrDefault(wherePredicate);
+            anotherPocoTypePlaceholder poco = queryBuilder
+           //     .AsNoTracking()
+                .FirstOrDefault(wherePredicate);
 
-            return queryBuilder.FirstOrDefault(wherePredicate);
+            Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+            return poco;
         }
 
 

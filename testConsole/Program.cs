@@ -14,100 +14,75 @@ namespace testConsole
     {
         static void Main(string[] args)
         {
-            Console.Read();
+            
             SQLServerEFDataAccessCommandImplementation<iPoco> commandRepo = new SQLServerEFDataAccessCommandImplementation<iPoco>();
             SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
 
 
-            userPoco newTruncatedCustomerPoco = new userPoco {
-                userID = Guid.NewGuid(),
-                firstName = "rahul",
-                //userContactDetailsNavigation = new userContactDetailsPoco
-                //{
-                //    dateOfBirth = DateTime.Now,
-                //    emmergencyContactDetails = 9000102154,
-                //    gender = "male",
-                //    postalCode = "K2a1z5"
-                //},
-                userCredentailsNavigation = new userCredentialsPoco
-                {
-                    password = "TestPassword1"
-                }
-                
-                
-            };
-
-
-            //customerPoco newOptCustomerPoco = new customerPoco
+            //for (int i = 0; i < 10 ; i++)
             //{
-            //    customerID = Guid.NewGuid(),
-            //    firstName = "OptionLoginUser",
-            //    CustomerContactDetailsNavigation = new customerContactDetailsPoco
-            //    {
-            //        dateOfBirth = DateTime.Now,
-            //        emmergencyContactDetails = 23423412,
-            //        gender = "male",
-            //        postalCode = "500043"
-            //    }
+
+                userPoco newTruncatedCustomerPoco = new userPoco
+                {
+                    ecifID = Guid.NewGuid(),
+                    firstName = "Truncated Test User - No Contact Details",
+                    lastName ="minhas",
+                    ecifAlias = "login name",
+                    userCredentailsListNavigation = new List<userCredentialsPoco>(),
+                    medicalRecordsListNavigation = new List<medicalRecordsPoco>()
+                };
+
+                newTruncatedCustomerPoco.userCredentailsListNavigation
+                    .Add(new userCredentialsPoco {
+                        userID = Guid.NewGuid(),
+                        password = "TestPassword1",
+                        passwordSetDate = DateTime.Now,
+                        producID = Guid.NewGuid(),
+                        userNavigation = newTruncatedCustomerPoco,
+                        //ecifID = newTruncatedCustomerPoco.ecifID
+                    });
+
+                newTruncatedCustomerPoco.medicalRecordsListNavigation
+                    .Add(new medicalRecordsPoco {
+                        recordID = Guid.NewGuid(),
+                        documents = null,
+                        usersNavigation = newTruncatedCustomerPoco,
+                        //ecifID = newTruncatedCustomerPoco.ecifID
+                    });
+
+                commandRepo.add<userPoco>(newTruncatedCustomerPoco);
+
+
+
+
+
+                userPoco minhasUser = queryRepo.GetSingle<userPoco>(
+                    cus => cus.lastName == "minhas", 
+                    cus => cus.userCredentailsListNavigation, 
+                    cus => cus.userContactDetailsNavigation);
+
+
+
+            if (minhasUser.userContactDetailsNavigation != null)
+                minhasUser.userContactDetailsNavigation.emmergencyContactDetails = 000000000;
+            else
+                minhasUser.userContactDetailsNavigation = new userContactDetailsPoco
+                {
+                    mobile = 9999999999,
+                    gender = "male",
+                    postalCode = "Updated PostalCode",
+                    userNavigation = minhasUser,
+                    ecifID = minhasUser.ecifID
+                };
                 
 
-            //};
+            
+                //minhasUser.lastName = "changed";
+                commandRepo.update<userPoco>(minhasUser);
 
+            //}
 
-
-
-
-
-            commandRepo.add<userPoco>(newTruncatedCustomerPoco);
-            //commandRepo.add<customerPoco>(newOptCustomerPoco);
-            //customerPoco gauravTruncated = queryRepo.GetSingle<customerPoco>(cus => cus.firstName == "gaurav");
-            userPoco gauravTruncated = queryRepo.GetSingle<userPoco>(cus => cus.firstName == "rahul", cus => cus.userCredentailsNavigation,cus=>cus.userContactDetailsNavigation);
-
-            gauravTruncated.lastName = "minhas";
-            gauravTruncated.firstName = "minhas";
-            //gauravTruncated.CustomerContactDetailsNavigation.emmergencyContactDetails = 9966929340;
-            commandRepo.update<userPoco>(gauravTruncated);
-
-
-
-
-
-
-
-
-            userPoco newCustomerPoco = new userPoco
-            {
-                userID = Guid.NewGuid(),
-                firstName = "rahul",
-                userContactDetailsNavigation = new userContactDetailsPoco
-                {
-                    dateOfBirth = DateTime.Now,
-                    emmergencyContactDetails = 9000102154,
-                    gender = "male",
-                    postalCode = "K2a1z5"
-                },
-                userCredentailsNavigation = new userCredentialsPoco
-                {
-                    password = "TestPassword1"
-                }
-
-
-            };
-
-
-            commandRepo.add<userPoco>(newCustomerPoco);
-            //commandRepo.add<customerPoco>(newOptCustomerPoco);
-            //customerPoco gauravTruncated = queryRepo.GetSingle<customerPoco>(cus => cus.firstName == "gaurav");
-            userPoco gauravNonTruncated = queryRepo.GetSingle<userPoco>(cus => cus.firstName == "rahul", cus => cus.userCredentailsNavigation, cus => cus.userContactDetailsNavigation);
-
-            //gauravTruncated.lastName = "minhas";
-            gauravNonTruncated.userContactDetailsNavigation.emmergencyContactDetails = 9966929340;
-            commandRepo.update<userPoco>(gauravNonTruncated);
-            //seedMockData.seedMore();
-
-            //new testClass().doSomething();
-
-
+            Console.Read();
 
             Console.WriteLine("\n\n\n --- Terminating --- ");
             Console.Read();
