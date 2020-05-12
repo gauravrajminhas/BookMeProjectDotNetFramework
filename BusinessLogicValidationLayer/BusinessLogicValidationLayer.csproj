@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF2E3144-44D8-49C8-A532-24C44BB82375}</ProjectGuid>
+    <ProjectGuid>{A3876605-BECE-4601-9C62-35C5B980B466}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogicPatterns</RootNamespace>
-    <AssemblyName>BusinessLogicPatterns</AssemblyName>
+    <RootNamespace>BusinessLogicValidationLayer</RootNamespace>
+    <AssemblyName>BusinessLogicValidationLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -51,9 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="iBookable.cs" />
-    <Compile Include="iSchedulable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeedDataForTesting.cs" />
+    <Compile Include="users.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookMeProject\Pocos.csproj">
+      <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
+      <Name>Pocos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericRepo.csproj">
+      <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
+      <Name>DataAccessEFGenericRepo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

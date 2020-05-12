@@ -37,7 +37,7 @@ namespace DataAccessEFGenericRepo
         {
             foreach (TypePlaceholder poco in pocosToBeAdded)
             {
-                Console.WriteLine("current state of the Poco :- " + _context.Entry<TypePlaceholder>(poco).State);
+                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<TypePlaceholder>(poco).State);
                 _context.Entry<TypePlaceholder>(poco).State = System.Data.Entity.EntityState.Added;
             }
             _context.SaveChanges();
@@ -48,7 +48,7 @@ namespace DataAccessEFGenericRepo
         {
             foreach(TypePlaceholder poco in pocosToBeDeleted)
             {
-                Console.WriteLine("current state of the Poco :- " + _context.Entry<TypePlaceholder>(poco).State);
+                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<TypePlaceholder>(poco).State);
                 _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();
@@ -64,7 +64,7 @@ namespace DataAccessEFGenericRepo
 
             foreach (anotherPocoTypePlaceholder poco in pocosTobeDeleted)
             {
-                Console.WriteLine("current state of the Poco :- " + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
                 _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();
@@ -83,7 +83,7 @@ namespace DataAccessEFGenericRepo
                 {
 
 
-                    Console.WriteLine("current state of the Poco :- "+ _context.Entry<TypePlaceholder>(poco).State);
+                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n"+ _context.Entry<TypePlaceholder>(poco).State);
                     _context.Entry<TypePlaceholder>(poco).State = EntityState.Added;
 
                     foreach (var entity in _context.ChangeTracker.Entries())

@@ -16,6 +16,8 @@ namespace DataAccessEFGenericRepo
         private SQLServerDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 
+            //TODO: understand this circular referance isses here 
+            Configuration.ProxyCreationEnabled = false;
         }
 
 

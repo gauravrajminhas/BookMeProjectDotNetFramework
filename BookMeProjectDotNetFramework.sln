@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testConsole", "testConsole\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicPatterns", "BusinessLogicPatterns\BusinessLogicPatterns.csproj", "{EF2E3144-44D8-49C8-A532-24C44BB82375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicValidationLayer", "BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj", "{A3876605-BECE-4601-9C62-35C5B980B466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessServicesLayer", "BusinessLogicServicesLayer\BusinessServicesLayer.csproj", "{32B1C62C-D5E0-4EF7-8E27-3785D7076152}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3876605-BECE-4601-9C62-35C5B980B466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3876605-BECE-4601-9C62-35C5B980B466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3876605-BECE-4601-9C62-35C5B980B466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3876605-BECE-4601-9C62-35C5B980B466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B1C62C-D5E0-4EF7-8E27-3785D7076152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B1C62C-D5E0-4EF7-8E27-3785D7076152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B1C62C-D5E0-4EF7-8E27-3785D7076152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B1C62C-D5E0-4EF7-8E27-3785D7076152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
