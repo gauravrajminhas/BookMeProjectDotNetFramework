@@ -30,7 +30,7 @@ namespace BusinessLogicServicesLayer
 
         public void seedTestData()
         {
-            throw new NotImplementedException();
+            new SeedDataForTesting().seedData();
         }
     }
 }

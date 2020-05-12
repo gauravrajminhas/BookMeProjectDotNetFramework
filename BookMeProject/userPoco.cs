@@ -16,6 +16,7 @@ namespace BookMeProject
         //Properties
         public string firstName { get; set; }
         public string lastName { get; set; }
+        //this is a required unique Index Property 
         public string emailAddress { get; set; }
         public string ecifAlias { get; set; }
         
@@ -24,7 +25,7 @@ namespace BookMeProject
         public virtual userContactDetailsPoco userContactDetailsNavigation { get; set; }
 
         //one-to-many
-        public virtual ICollection <userCredentialsPoco> userCredentailsListNavigation { get; set; }
+        public virtual ICollection <userAccessPoco> userAccessListNavigation { get; set; }
         public virtual ICollection<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
 
     }

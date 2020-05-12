@@ -6,10 +6,11 @@ namespace BookMeProject
     {
 
         public Guid userID { get; set; }
-        public Guid StatusID { get; set; }
+        public Guid statusID { get; set; }
 
         // Navigation 
-        public userCredentialsPoco UserCredentialsNavigationPoco { get; set; }
+        public userAccessPoco userAccessNavigation { get; set; }
+        public statusPoco statusNavigation { get; set; }
 
     }
 }

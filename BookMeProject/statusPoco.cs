@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BookMeProject
 {
@@ -6,11 +7,12 @@ namespace BookMeProject
     {
         //public key 
         //foreign Key 
-        public Guid userID { get; set; }
-
+        public Guid statusID { get; set; }
 
         //properties 
         public string statusName {get;set;}
+
+        public List<userStatusPoco> userStatusNavigation { get; set; }
 
     }
 }

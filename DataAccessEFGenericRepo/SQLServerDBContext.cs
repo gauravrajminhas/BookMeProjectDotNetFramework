@@ -48,10 +48,6 @@ namespace DataAccessEFGenericRepo
                 .HasKey(user => user.ecifID)
                 .ToTable("users", "userSchema");
 
-            modelBuilder.Entity<userCredentialsPoco>()
-                .HasKey(userCredentials => userCredentials.userID)
-                .ToTable("credentials", "userSchema");
-
             modelBuilder.Entity<medicalRecordsPoco>()
                 .HasKey(mrp => mrp.recordID)
                 .ToTable("medicalRecords", "RecordSchema");
@@ -61,14 +57,31 @@ namespace DataAccessEFGenericRepo
                 .ToTable("contactDetails", "userSchema");
 
             modelBuilder.Entity<userStatusPoco>()
-                .HasKey(usp => new { usp.userID, usp.StatusID })
+                .HasKey(usp => usp.userID)
                 .ToTable("userStatus", "userSchema");
 
+            modelBuilder.Entity<userAccessPoco>()
+                .HasKey(userAccess => userAccess.userID)
+                .ToTable("userAccess", "userSchema");
 
+            modelBuilder.Entity<statusPoco>()
+                .HasKey(sp => sp.statusID)
+                .ToTable("status", "referenceDataSchema");
+
+            //Additional colomn Properties 
+            modelBuilder.Entity<userPoco>()
+                .Property(up => up.emailAddress)
+                .HasMaxLength(450);
+
+            modelBuilder.Entity<userPoco>()
+                .HasIndex(up => up.emailAddress)
+                .IsUnique();
+                
+               
 
             //Constraints decleration
             modelBuilder.Entity<userPoco>()
-                .HasMany(user => user.userCredentailsListNavigation)
+                .HasMany(user => user.userAccessListNavigation)
                 .WithRequired(credentails => credentails.userNavigation)
                 .HasForeignKey(ucl =>ucl.ecifID)
                 .WillCascadeOnDelete();
@@ -87,10 +100,16 @@ namespace DataAccessEFGenericRepo
                 .WillCascadeOnDelete();
 
 
-            modelBuilder.Entity<userCredentialsPoco>()
-                .HasOptional(ucp => ucp.statusNavigation)
-                .WithRequired(usp => usp.UserCredentialsNavigationPoco);
-               
+            modelBuilder.Entity<userStatusPoco>()
+                .HasRequired(usp => usp.userAccessNavigation)
+                .WithRequiredDependent(uap => uap.statusNavigation);
+                //.WithRequiredPrincipal(uap => uap.statusNavigation);
+
+
+            modelBuilder.Entity<statusPoco>()
+                .HasMany(sp => sp.userStatusNavigation)
+                .WithRequired(us => us.statusNavigation)
+                .HasForeignKey(us => us.statusID);
 
 
             base.OnModelCreating(modelBuilder);
@@ -99,7 +118,7 @@ namespace DataAccessEFGenericRepo
 
 
         public virtual DbSet<userPoco> userDBSetRecord { get; set; }
-        public virtual DbSet<userCredentialsPoco> userCredentialsDBSetRecord { get; set; }
+        public virtual DbSet<userAccessPoco> userCredentialsDBSetRecord { get; set; }
         
 
     }

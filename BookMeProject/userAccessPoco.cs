@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    public class userCredentialsPoco : iPoco
+    public class userAccessPoco : iPoco
     {
         // primary Key 
         public Guid userID { get; set; }

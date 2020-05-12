@@ -34,6 +34,7 @@ namespace DataAccessEFGenericRepo
 
         public void add<TypePlaceholder>(params TypePlaceholder[] pocosToBeAdded)
             where TypePlaceholder : class, BookMeProject.iPoco
+
         {
             foreach (TypePlaceholder poco in pocosToBeAdded)
             {
