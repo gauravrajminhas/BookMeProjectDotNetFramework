@@ -73,6 +73,10 @@
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
       <Name>BusinessLogicValidationLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FaultsAndExceptions\customFaultsAndExceptions.csproj">
+      <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
+      <Name>customFaultsAndExceptions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

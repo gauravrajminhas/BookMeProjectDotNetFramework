@@ -50,7 +50,10 @@ namespace BusinessLogicValidationLayer
         }
 
 
-        
+        public iPoco getUser(string emailID)
+        {
+            return queryObject.GetSingle<userPoco>(up => up.emailAddress == emailID);
+        }
 
     }
 }

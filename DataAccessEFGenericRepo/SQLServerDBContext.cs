@@ -12,7 +12,7 @@ namespace DataAccessEFGenericRepo
      class SQLServerDBContext : DbContext
     {
         
-
+        //TODO : have to add configration manager and include the connectionsString via configration Manager object
         private SQLServerDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 
@@ -68,6 +68,7 @@ namespace DataAccessEFGenericRepo
                 .HasKey(sp => sp.statusID)
                 .ToTable("status", "referenceDataSchema");
 
+
             //Additional colomn Properties 
             modelBuilder.Entity<userPoco>()
                 .Property(up => up.emailAddress)
@@ -76,8 +77,9 @@ namespace DataAccessEFGenericRepo
             modelBuilder.Entity<userPoco>()
                 .HasIndex(up => up.emailAddress)
                 .IsUnique();
-                
-               
+
+ 
+
 
             //Constraints decleration
             modelBuilder.Entity<userPoco>()
