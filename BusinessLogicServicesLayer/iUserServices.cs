@@ -13,7 +13,7 @@ namespace BusinessLogicServicesLayer
     interface IUserServices
     {
         
-        [OperationContract]
+        [OperationContract (IsOneWay = true)]
         void seedTestData();
 
         [FaultContract(typeof (userAlreadyExistsExceptionDetails))]
