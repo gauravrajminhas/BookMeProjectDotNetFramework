@@ -10,10 +10,10 @@ using System.Text;
 namespace BusinessLogicServicesLayer
 {
     [ServiceContract(Name = "BookMeUserServices", Namespace = "bookMeNameSpace")]
-    interface IUserServices
+    interface IuserServicesCommand
     {
         
-        [OperationContract (IsOneWay = true)]
+        [OperationContract]
         void seedTestData();
 
         [FaultContract(typeof (userAlreadyExistsExceptionDetails))]
@@ -21,13 +21,6 @@ namespace BusinessLogicServicesLayer
         [OperationContract]
         void addUser(string first, string last, string email);
 
-
-        [OperationContract]
-        bool doesUserExist(string first, string last, string email);
-
-        [OperationContract]
-        iPoco getClient(string emailAddress);
-        
 
     }
 }

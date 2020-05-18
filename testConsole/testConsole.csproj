@@ -76,9 +76,9 @@
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
       <Name>BusinessLogicValidationLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericRepo.csproj">
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
-      <Name>DataAccessEFGenericRepo</Name>
+      <Name>DataAccessEFGenericReppsitoryImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

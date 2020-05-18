@@ -17,6 +17,8 @@ namespace DataAccessEFGenericRepo
         {
 
             //TODO: understand this circular referance isses here 
+            //Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
+            //circular referance issues. 
             Configuration.ProxyCreationEnabled = false;
         }
 

@@ -49,11 +49,28 @@ namespace BusinessLogicValidationLayer
                 return true;
         }
 
+        public List<userPoco> getAllUser()
+        {
+            return queryObject.GetAll<userPoco>();
+        }
 
-        public iPoco getUser(string emailID)
+        public userPoco getUser(string emailID)
         {
             return queryObject.GetSingle<userPoco>(up => up.emailAddress == emailID);
         }
+
+
+        public userPoco getCompletUserProfile(string emailID)
+        {
+            return queryObject
+                .GetSingle<userPoco>(
+                    up => up.emailAddress == emailID, 
+                    up=> up.userContactDetailsNavigation,
+                    up=>up.medicalRecordsListNavigation,
+                    up=>up.userAccessListNavigation
+                    );
+        }
+
 
     }
 }

@@ -60,9 +60,9 @@
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericRepo.csproj">
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
-      <Name>DataAccessEFGenericRepo</Name>
+      <Name>DataAccessEFGenericReppsitoryImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
