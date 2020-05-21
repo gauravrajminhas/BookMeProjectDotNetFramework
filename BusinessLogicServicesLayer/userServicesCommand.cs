@@ -10,14 +10,15 @@ using FaultsAndExceptions;
 
 namespace BusinessLogicServicesLayer
 {
+    [ServiceBehavior(MaxItemsInObjectGraph = 2147483646)]
     class userServicesCommand : IuserServicesCommand
     {
-        users usersObject;
+        usersBusinessValidation usersObject;
 
         public userServicesCommand()
         {
             //TODO add CI/IOC  container here 
-            usersObject = new users();
+            usersObject = new usersBusinessValidation();
         }
 
         public void addUser(string first, string last, string email)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    [DataContract]
+    
     public class userPoco : iPoco
     {
 
@@ -19,25 +19,25 @@ namespace BookMeProject
         public Guid ecifID { get; set; }
 
         //Properties
-        [DataMember]
+        
         public string firstName { get; set; }
-        [DataMember]
+        
         public string lastName { get; set; }
         //this is a required unique Index Property 
         [DataMember(IsRequired =true)]
         public string emailAddress { get; set; }
-        [DataMember]
+        
         public string ecifAlias { get; set; }
 
         //navigation
-        [DataMember]
+        
         public virtual userContactDetailsPoco userContactDetailsNavigation { get; set; }
 
         //one-to-many
-        [DataMember]
-        public virtual ICollection<userAccessPoco> userAccessListNavigation { get; set; }
-        [DataMember]
-        public virtual ICollection<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
+        
+        public virtual List<userAccessPoco> userAccessListNavigation { get; set; }
+        
+        public virtual List<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
 
     }
 }

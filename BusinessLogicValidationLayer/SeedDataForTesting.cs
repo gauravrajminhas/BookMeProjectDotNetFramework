@@ -15,6 +15,88 @@ namespace BusinessLogicValidationLayer
             SQLServerEFDataAccessCommandImplementation<iPoco> commandRepo = new SQLServerEFDataAccessCommandImplementation<iPoco>();
             SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
 
+            // setup a complete test user
+            if (queryRepo.GetSingle<userPoco>(up => up.emailAddress == "completeUser@qa.com")==null)
+            {
+                commandRepo.add<userPoco>(
+                    new userPoco {
+                        ecifID=Guid.NewGuid(),
+                        ecifAlias= "Test QA User",
+                        emailAddress = "completeUser@qa.com",
+                        firstName = "firstName",
+                        lastName ="lastName",
+                        medicalRecordsListNavigation = null,
+                        userAccessListNavigation = null,
+                        userContactDetailsNavigation = null
+                    });
+
+
+                
+
+                userPoco updateTestUserPoco = queryRepo.GetSingle<userPoco>(up=>up.emailAddress== "completeUser@qa.com");
+
+                updateTestUserPoco.userContactDetailsNavigation = new userContactDetailsPoco {
+                    ecifID = updateTestUserPoco.ecifID,
+                    dateOfBirth = DateTime.Now,
+                    emmergencyContactDetails = 4167082644,
+                    gender = "male",
+                    image = new byte[3] { 1, 2, 3 },
+                    mobile = 8106504251,
+                    postalCode = "postalCode",
+                    userNavigation = updateTestUserPoco
+                };
+
+
+                updateTestUserPoco.userAccessListNavigation = new List<userAccessPoco>();
+                updateTestUserPoco.userAccessListNavigation.Add(new userAccessPoco {
+                    ecifID = updateTestUserPoco.ecifID,
+                    password= "password",
+                    passwordSetDate=DateTime.Now,
+                    producID = Guid.NewGuid(),
+                    status = "customer",
+                    userID = Guid.NewGuid(),
+                    userNavigation = updateTestUserPoco
+                });
+                updateTestUserPoco.userAccessListNavigation.Add(new userAccessPoco {
+                    ecifID = updateTestUserPoco.ecifID,
+                    password = "password",
+                    passwordSetDate = DateTime.Now,
+                    producID = Guid.NewGuid(),
+                    status = "customer",
+                    userID = Guid.NewGuid(),
+                    userNavigation = updateTestUserPoco
+                });
+
+
+                updateTestUserPoco.medicalRecordsListNavigation = new List<medicalRecordsPoco>();
+                updateTestUserPoco.medicalRecordsListNavigation.Add( new medicalRecordsPoco {
+                    documents= new byte[3] { 1, 2, 3 },
+                    ecifID = updateTestUserPoco.ecifID,
+                    recordID = Guid.NewGuid(),
+                    usersNavigation = updateTestUserPoco
+                });
+                updateTestUserPoco.medicalRecordsListNavigation.Add(new medicalRecordsPoco{
+                    documents = new byte[3] { 1, 2, 3 },
+                    ecifID = updateTestUserPoco.ecifID,
+                    recordID = Guid.NewGuid(),
+                    usersNavigation = updateTestUserPoco
+                });
+
+
+
+                commandRepo.update<userPoco>(updateTestUserPoco);
+
+
+
+
+            }
+
+
+
+
+                
+
+
 
             if (queryRepo.GetAll<statusPoco>()== null)
             {
@@ -42,7 +124,7 @@ namespace BusinessLogicValidationLayer
 
 
 
-            for (int i = 0; i < 10 ; i++)
+            for (int i = 0; i < 0 ; i++)
             {
 
                 userPoco newTruncatedCustomerPoco = new userPoco

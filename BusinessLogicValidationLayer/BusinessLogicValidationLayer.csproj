@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeedDataForTesting.cs" />
-    <Compile Include="users.cs" />
+    <Compile Include="usersBusinessValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
       <Name>DataAccessEFGenericReppsitoryImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FaultsAndExceptions\CustomFaultsAndExceptions.csproj">
+      <Project>{237815EE-94F3-41E3-8B74-3E3D0E9DE523}</Project>
+      <Name>CustomFaultsAndExceptions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

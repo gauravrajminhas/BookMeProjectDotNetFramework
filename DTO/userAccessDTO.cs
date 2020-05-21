@@ -5,37 +5,33 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookMeProject
+namespace DTO
 {
-    
-    public class userAccessPoco : iPoco
+    [DataContract]
+    public class userAccessDTO : iDTO
     {
         // primary Key 
-        
+        [DataMember]
         public Guid userID { get; set; }
 
         //properties 
-        
+        [DataMember]
         public Guid? producID { get; set; }
-        
+        [DataMember]
         public string password { get; set; }
-        
+        [DataMember]
         public DateTime? passwordSetDate { get; set; }
 
         //Foreign Keys 
-        
+        [DataMember]
         public Guid ecifID { get; set; }
-        
+        [DataMember]
         public string status { get; set; }
 
 
         //Navigation
-        
-        public userPoco userNavigation { get; set; }
-        
-        public userStatusPoco statusNavigation { get; set; }
-
-
+        //public userDTO userNavigation { get; set; }
+        //public userStatusDTO statusNavigation { get; set; }
 
     }
 }

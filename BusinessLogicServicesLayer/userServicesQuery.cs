@@ -1,21 +1,32 @@
 ﻿using BookMeProject;
 using BusinessLogicValidationLayer;
+using DTO;
+using DTOMappingLogic;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLogicServicesLayer
 {
+    [ServiceBehavior(MaxItemsInObjectGraph = 2147483646)]
     class userServicesQuery : IuserServicesQuery
     {
-        users usersObject;
+
+        usersBusinessValidation usersBusinessValidationObject;
+        userDTOMapping userDTOMappingObject; 
+
 
 
         public userServicesQuery()
         {
-            usersObject = new users();
+            //TODO DI OR IOC 
+            usersBusinessValidationObject = new usersBusinessValidation();
+            userDTOMappingObject = new userDTOMapping();
+
         }
 
 
@@ -23,24 +34,41 @@ namespace BusinessLogicServicesLayer
 
         public bool doesUserExist(string first, string last, string email)
         {
-            return usersObject.doesUserExist(first, last, email);
+            return usersBusinessValidationObject.doesUserExist(first, last, email);
         }
 
-        public List<userPoco> getAllClient()
+        public List<userDTO> getAllClient()
         {
-            return usersObject.getAllUser();
+            
+            List<userPoco> userObjList  = usersBusinessValidationObject.getAllUser();
+
+            //TODO DTO: Map the DTO to POCO here
+            List<userDTO> userDTOList = null;
+            return userDTOList; 
         }
 
-        public userPoco getClient(string emailAddress)
+        public userDTO getClient(string emailAddress)
         {
-            return usersObject.getUser(emailAddress);
+
+            userPoco userPocoObject = usersBusinessValidationObject.getUser(emailAddress);
+
+            //TODO DTO: Map the DTO to POCO here
+            //userDTO userDTOObject = null;
+            userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
+            return userDTOObject;
+
+
         }
 
-        public userPoco getCompleteUserSnapshot(string emailAddress)
+        public userDTO getCompleteUserSnapshot(string emailAddress)
         {
-            return usersObject.getCompletUserProfile(emailAddress);
-        }
+            userPoco userPocoObject = usersBusinessValidationObject.getCompletUserProfile(emailAddress);
+            userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
 
+            return userDTOObject;
+            
+
+        }
 
     }
 }

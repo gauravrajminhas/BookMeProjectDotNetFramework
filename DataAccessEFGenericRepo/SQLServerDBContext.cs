@@ -16,10 +16,14 @@ namespace DataAccessEFGenericRepo
         private SQLServerDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 
-            //TODO: understand this circular referance isses here 
-            //Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
+            //TODO: understand this circular referance isses here - Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
             //circular referance issues. 
-            Configuration.ProxyCreationEnabled = false;
+
+            //There was an error while trying to serialize parameter http://tempuri.org/:getCompleteUserSnapshotResult. 
+            //The InnerException message was 'Object graph for type 'BookMeProject.medicalRecordsPoco' contains cycles 
+            //and cannot be serialized if reference tracking is disabled.'.  
+
+            base.Configuration.ProxyCreationEnabled = true;
         }
 
 

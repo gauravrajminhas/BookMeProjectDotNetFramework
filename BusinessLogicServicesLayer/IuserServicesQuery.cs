@@ -1,4 +1,5 @@
 ﻿using BookMeProject;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace BusinessLogicServicesLayer
         bool doesUserExist(string first, string last, string email);
 
         [OperationContract]
-        userPoco getClient(string emailAddress);
+        userDTO getClient(string emailAddress);
 
         [OperationContract]
-        List<userPoco> getAllClient();
+        List<userDTO> getAllClient();
 
-        [OperationContract]
-        userPoco getCompleteUserSnapshot(string emailAddress);
+        [OperationContract]     
+        userDTO getCompleteUserSnapshot(string emailAddress);
     }
 }

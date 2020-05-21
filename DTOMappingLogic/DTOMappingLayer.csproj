@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +46,25 @@
   <ItemGroup>
     <Compile Include="baseLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="testing.cs" />
+    <Compile Include="userDTOMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj">
+      <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
+      <Name>BusinessLogicValidationLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\DTOs.csproj">
       <Project>{53f9f825-bdf5-492e-9866-51801d821c07}</Project>
       <Name>DTOs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

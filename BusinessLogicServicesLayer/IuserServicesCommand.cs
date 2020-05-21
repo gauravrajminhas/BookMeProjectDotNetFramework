@@ -9,7 +9,11 @@ using System.Text;
 
 namespace BusinessLogicServicesLayer
 {
-    [ServiceContract(Name = "BookMeUserServices", Namespace = "bookMeNameSpace")]
+    /// <summary>
+    /// Dont change this Service interface often else the clients will break 
+    /// start adding version to the services insead of changing the services 
+    /// </summary>
+    [ServiceContract]
     interface IuserServicesCommand
     {
         

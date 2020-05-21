@@ -69,7 +69,12 @@ namespace DataAccessEFGenericRepo
             where anotherPocoTypePlaceholder : class, iPoco
         {
 
-            IQueryable<anotherPocoTypePlaceholder> queryBuilder = null; 
+            IQueryable<anotherPocoTypePlaceholder> queryBuilder = null;
+
+
+            //trial 
+            _context.Configuration.LazyLoadingEnabled = false;
+
             DbSet<anotherPocoTypePlaceholder> dbSet = _context.Set<anotherPocoTypePlaceholder>();
 
             queryBuilder = dbSet;
