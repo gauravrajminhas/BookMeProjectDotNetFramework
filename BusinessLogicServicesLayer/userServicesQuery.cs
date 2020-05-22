@@ -43,7 +43,7 @@ namespace BusinessLogicServicesLayer
             List<userPoco> userObjList  = usersBusinessValidationObject.getAllUser();
 
             //TODO DTO: Map the DTO to POCO here
-            List<userDTO> userDTOList = null;
+            List<userDTO> userDTOList = userDTOMappingObject.UserMapper().Map< List<userPoco>,List<userDTO> >(userObjList);
             return userDTOList; 
         }
 
@@ -64,6 +64,9 @@ namespace BusinessLogicServicesLayer
         {
             userPoco userPocoObject = usersBusinessValidationObject.getCompletUserProfile(emailAddress);
             userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
+            
+
+
 
             return userDTOObject;
             

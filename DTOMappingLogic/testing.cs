@@ -15,7 +15,7 @@ namespace DTOMappingLogic
         {
             var config = new MapperConfiguration(cfg =>
                 cfg.CreateMap<SourceExamModel, DestinationExamModel>()
-                    .ForMember(dest => dest.DestSections, icfg => icfg.MapFrom(src => src.Sections))
+                      .ForMember(dest => dest.DestSections, icfg => icfg.MapFrom(src => src.Sections))
             );
 
             config.AssertConfigurationIsValid();

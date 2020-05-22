@@ -31,7 +31,8 @@ namespace DTO
 
         //Navigation
         //public userDTO userNavigation { get; set; }
-        //public userStatusDTO statusNavigation { get; set; }
+        [DataMember]
+        public userStatusDTO statusNavigation { get; set; }
 
     }
 }

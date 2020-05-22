@@ -16,13 +16,13 @@ namespace BusinessLogicValidationLayer
             SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
 
             // setup a complete test user
-            if (queryRepo.GetSingle<userPoco>(up => up.emailAddress == "completeUser@qa.com")==null)
+            if (queryRepo.GetSingle<userPoco>(up => up.emailAddress == "completeUser1@qa.com")==null)
             {
                 commandRepo.add<userPoco>(
                     new userPoco {
                         ecifID=Guid.NewGuid(),
                         ecifAlias= "Test QA User",
-                        emailAddress = "completeUser@qa.com",
+                        emailAddress = "completeUser1@qa.com",
                         firstName = "firstName",
                         lastName ="lastName",
                         medicalRecordsListNavigation = null,
@@ -33,7 +33,7 @@ namespace BusinessLogicValidationLayer
 
                 
 
-                userPoco updateTestUserPoco = queryRepo.GetSingle<userPoco>(up=>up.emailAddress== "completeUser@qa.com");
+                userPoco updateTestUserPoco = queryRepo.GetSingle<userPoco>(up=>up.emailAddress== "completeUser1@qa.com");
 
                 updateTestUserPoco.userContactDetailsNavigation = new userContactDetailsPoco {
                     ecifID = updateTestUserPoco.ecifID,

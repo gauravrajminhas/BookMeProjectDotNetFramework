@@ -15,28 +15,21 @@ namespace BookMeProject
     {
 
         //Primark Key
-        [DataMember(IsRequired = true)]
         public Guid ecifID { get; set; }
 
         //Properties
-        
         public string firstName { get; set; }
-        
         public string lastName { get; set; }
-        //this is a required unique Index Property 
-        [DataMember(IsRequired =true)]
-        public string emailAddress { get; set; }
         
+        //this is a required unique Index Property 
+        public string emailAddress { get; set; }
         public string ecifAlias { get; set; }
 
         //navigation
-        
         public virtual userContactDetailsPoco userContactDetailsNavigation { get; set; }
 
         //one-to-many
-        
         public virtual List<userAccessPoco> userAccessListNavigation { get; set; }
-        
         public virtual List<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
 
     }

@@ -14,14 +14,18 @@ namespace DTOMappingLogic
         public Mapper UserMapper()
         {
             MapperConfiguration userMapperConfig = new MapperConfiguration(cfg => {
-                cfg.CreateMap<userPoco, userDTO>();
+            
+                cfg.CreateMap<userPoco, userDTO>()
+                .ForMember(dest => dest.medicalRecordsListNavigation, imce => imce.MapFrom(src => src.medicalRecordsListNavigation))
+                .ForMember(dest => dest.userAccessListNavigation, imce => imce.MapFrom(src => src.userAccessListNavigation));
+                cfg.CreateMap<userAccessPoco, userAccessDTO>();
+                cfg.CreateMap<medicalRecordsPoco, medicalRecordsDTO>();
                 cfg.CreateMap<userContactDetailsPoco, userContactDetailsDTO>();
-                cfg.CreateMap<List<userAccessPoco>, List<userAccessDTO>>();
-                cfg.CreateMap<List<medicalRecordsPoco>, List<medicalRecordsDTO>>();
+
             });
 
-
-
+            
+            //TODO Add iMapper IOC /DI controller here 
             Mapper userMapper = new Mapper(userMapperConfig);
             return userMapper;
         }
