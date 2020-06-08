@@ -13,7 +13,7 @@ namespace BusinessLogicServicesLayer
     /// Dont change this Service interface often else the clients will break 
     /// start adding version to the services insead of changing the services 
     /// </summary>
-    [ServiceContract]
+    [ServiceContract(Namespace = "userNameSpace")]
     interface IuserServicesCommand
     {
         

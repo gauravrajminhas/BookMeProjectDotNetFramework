@@ -11,7 +11,8 @@ namespace DataAccessEFGenericRepo
 {
      class SQLServerDBContext : DbContext
     {
-        
+        private static SQLServerDBContext _singeltonDBContextInstance = null;
+
         //TODO : have to add configration manager and include the connectionsString via configration Manager object
         private SQLServerDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
@@ -26,9 +27,8 @@ namespace DataAccessEFGenericRepo
             base.Configuration.ProxyCreationEnabled = true;
         }
 
-
         // singelton menthod for the only one instance of DB context; this not thread safe however. 
-        private static SQLServerDBContext _singeltonDBContextInstance = null;
+        // this Approach is now causing Threading issues coz multiple threads are trying to do CRUD using one dbContext instance 
         public static SQLServerDBContext SQLServerDBContextSingeltonFactory()
         {
             if (_singeltonDBContextInstance == null)
@@ -42,6 +42,18 @@ namespace DataAccessEFGenericRepo
             }
                 
         }
+
+        //Adding a new Non-singelton FactoryMethod to .solve the Threading isses 
+        public static SQLServerDBContext SQLServerDBContextNonSingeltonFactory()
+        {
+            _singeltonDBContextInstance = new SQLServerDBContext();
+            return _singeltonDBContextInstance;
+        }
+
+
+
+
+
 
 
 

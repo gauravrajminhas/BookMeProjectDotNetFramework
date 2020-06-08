@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICustomFaultsAndExceptions.cs" />
     <Compile Include="missingUserEmailDetails.cs" />
+    <Compile Include="noClientFoundException.cs" />
     <Compile Include="userAlreadyExistsExceptionDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="userNotAddedExceptionDetails.cs" />

@@ -13,14 +13,16 @@ namespace BusinessLogicValidationLayer
     public class usersBusinessValidation
     {
         SQLServerEFDataAccessCommandImplementation<iPoco> commandObject;
-        SQLServerEFDataAccessQueryImplementation<iPoco> queryObject; 
+        SQLServerEFDataAccessQueryImplementation<iPoco> queryObject;
+        
         public usersBusinessValidation()
         {
             //TODO :- add DI/IOC controler here 
             commandObject = new SQLServerEFDataAccessCommandImplementation<iPoco>();
             queryObject = new SQLServerEFDataAccessQueryImplementation<iPoco>();
         }
-
+        
+        // Validate Inputs and other business rules 
         public void addUser (string first, string last, string emailID)
         {
 
@@ -55,7 +57,6 @@ namespace BusinessLogicValidationLayer
                 });
             }
         }
-
         public bool doesUserExist(string firstname, string last, string emailID)
         {
             var result = queryObject.GetSingle<userPoco>(user => (user.firstName == firstname && user.lastName == last && user.emailAddress == emailID));
@@ -64,21 +65,16 @@ namespace BusinessLogicValidationLayer
             else
                 return true;
         }
-
-
-
-
-        // User Query
+        
+        // Convert to DTO Opbejcts for WFC services
         public List<userPoco> getAllUser()
         {
             return queryObject.GetAll<userPoco>();
         }
-
         public userPoco getUser(string emailID)
         {
             return queryObject.GetSingle<userPoco>(up=>up.emailAddress== emailID);
         }
-
         public userPoco getCompletUserProfile(string emailID)
         {
             return queryObject

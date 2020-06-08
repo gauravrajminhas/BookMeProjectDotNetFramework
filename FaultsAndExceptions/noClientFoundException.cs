@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace FaultsAndExceptions
 {
 
-    public class userAlreadyExistsExceptionDetails : ICustomFaultsAndExceptions
+    public class noClientFoundException : ICustomFaultsAndExceptions
     {
-        public string errorMsg { get; set; }
-        public int errorCode { get; set; }
+
+        public string errorMsg { get ; set ; }
+        public int errorCode { get ; set ; }
     }
 }

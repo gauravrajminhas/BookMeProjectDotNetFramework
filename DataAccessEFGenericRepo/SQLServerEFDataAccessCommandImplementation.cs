@@ -28,7 +28,9 @@ namespace DataAccessEFGenericRepo
         public SQLServerEFDataAccessCommandImplementation()
         {
             // DI IOC container will come here 
-            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
+            //_context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
+            _context = SQLServerDBContext.SQLServerDBContextNonSingeltonFactory();
+
             _context.Database.Log = Console.Write;
         }
 

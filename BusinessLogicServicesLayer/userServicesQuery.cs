@@ -13,13 +13,15 @@ using System.Threading.Tasks;
 namespace BusinessLogicServicesLayer
 {
     [ServiceBehavior(MaxItemsInObjectGraph = 2147483646)]
+    
     class userServicesQuery : IuserServicesQuery
     {
 
         usersBusinessValidation usersBusinessValidationObject;
-        userDTOMapping userDTOMappingObject; 
+        userDTOMapping userDTOMappingObject;
 
-
+        
+        public string serviceType = "query";
 
         public userServicesQuery()
         {
@@ -62,16 +64,13 @@ namespace BusinessLogicServicesLayer
 
         public userDTO getCompleteUserSnapshot(string emailAddress)
         {
+            
             userPoco userPocoObject = usersBusinessValidationObject.getCompletUserProfile(emailAddress);
             userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
-            
-
-
-
             return userDTOObject;
-            
 
         }
 
+        
     }
 }

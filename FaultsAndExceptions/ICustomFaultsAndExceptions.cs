@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace FaultsAndExceptions
 {
-
-    public class userAlreadyExistsExceptionDetails : ICustomFaultsAndExceptions
+    
+    public interface ICustomFaultsAndExceptions
     {
-        public string errorMsg { get; set; }
-        public int errorCode { get; set; }
+
+        string errorMsg { get; set; }
+        int errorCode { get; set; }
     }
 }

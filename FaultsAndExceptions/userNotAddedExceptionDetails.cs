@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace FaultsAndExceptions
 {
-    [DataContract]
-    public class userNotAddedExceptionDetails 
+
+    public class userNotAddedExceptionDetails : ICustomFaultsAndExceptions
     {
-        [DataMember]
-        string msg;
+
+        public string errorMsg { get; set; }
+        public int errorCode { get; set; }
     }
 }

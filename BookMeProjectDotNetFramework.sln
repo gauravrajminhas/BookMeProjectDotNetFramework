@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicInterface", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicValidationLayer", "BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj", "{A3876605-BECE-4601-9C62-35C5B980B466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFCServicesLayer", "BusinessLogicServicesLayer\WFCServicesLayer.csproj", "{32B1C62C-D5E0-4EF7-8E27-3785D7076152}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserWFCServices", "BusinessLogicServicesLayer\UserWFCServices.csproj", "{32B1C62C-D5E0-4EF7-8E27-3785D7076152}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTO\DTOs.csproj", "{53F9F825-BDF5-492E-9866-51801D821C07}"
 EndProject

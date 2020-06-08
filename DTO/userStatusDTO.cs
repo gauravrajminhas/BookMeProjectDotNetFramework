@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    [DataContract]
+    [DataContract(Namespace = "DTO")]
     public class userStatusDTO : iDTO
     {
         [DataMember]

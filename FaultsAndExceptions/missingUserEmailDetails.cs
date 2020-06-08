@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace FaultsAndExceptions
 {
-    [DataContract]
-    public class missingUserEmailDetails
-    {
-        [DataMember]
-        public string errorMsg { get; set; }
 
-        [DataMember]
+    public class missingUserEmailDetails : ICustomFaultsAndExceptions
+    {
+
+        public string errorMsg { get; set; }
         public int errorCode { get; set; }
     }
 }

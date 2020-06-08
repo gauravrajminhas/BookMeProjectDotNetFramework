@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    [DataContract]
+    [DataContract(Namespace = "DTO")]
     public class statusDTO : iDTO
     {
         //public key 
