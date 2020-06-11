@@ -27,8 +27,8 @@ namespace DataAccessEFGenericRepo
         {
             //TODO - add dependency injection IOC controller here ! 
 
-            //_context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
-            _context = SQLServerDBContext.SQLServerDBContextNonSingeltonFactory();
+            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
+            //_context = SQLServerDBContext.SQLServerDBContextNonSingeltonFactory();
 
 
             _context.Database.Log = Console.Write;

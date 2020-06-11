@@ -13,27 +13,25 @@ namespace BookMeProject
         // primary Key 
         
         public Guid userID { get; set; }
-
-        //properties 
-        
-        public Guid? producID { get; set; }
-        
-        public string password { get; set; }
-        
-        public DateTime? passwordSetDate { get; set; }
-
+ 
         //Foreign Keys 
-        
         public Guid ecifID { get; set; }
+        //public string status { get; set; }
+
         
-        public string status { get; set; }
+        //properties 
+        //public Guid? producID { get; set; }
+        public string password { get; set; }
+        public DateTime? passwordSetDate { get; set; }
+        public string aliasName { get; set; }
+        
 
 
         //Navigation
         
         public userPoco userNavigation { get; set; }
         
-        public userStatusPoco statusNavigation { get; set; }
+        public List<subscriptionsPoco> subscriptionNavigation { get; set; }
 
 
 

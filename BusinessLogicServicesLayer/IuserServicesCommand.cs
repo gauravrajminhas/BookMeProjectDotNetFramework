@@ -17,14 +17,19 @@ namespace BusinessLogicServicesLayer
     interface IuserServicesCommand
     {
         
-        [OperationContract]
-        void seedTestData();
+
 
         [FaultContract(typeof (userAlreadyExistsExceptionDetails))]
         [FaultContract(typeof (userNotAddedExceptionDetails))]
         [OperationContract]
         void addUser(string first, string last, string email);
 
+
+        [OperationContract]
+        void resetPassword(string emailId, string oldPassword);
+
+        //[OperationContract]
+        //void SendPasswordResetEmail(string emailId, string oldPassword);
 
     }
 }

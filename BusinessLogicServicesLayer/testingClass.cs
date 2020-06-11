@@ -1,4 +1,5 @@
-﻿using FaultsAndExceptions;
+﻿using BusinessLogicValidationLayer;
+using FaultsAndExceptions;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -43,5 +44,14 @@ namespace BusinessLogicServicesLayer
                 errorMsg = "noClientFoundException:- check with your local Administrator"
             }, "noClientFoundException:- check with your local Administrator");
         }
+
+
+
+
+        public void seedTestData()
+        {
+            new SeedDataForTesting().seedData();
+        }
+
     }
 }

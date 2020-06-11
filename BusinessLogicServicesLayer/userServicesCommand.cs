@@ -32,9 +32,11 @@ namespace BusinessLogicServicesLayer
             //}, "See the inner details of the exception bitch !!"); 
         }
 
-        public void seedTestData()
+        public void resetPassword(string emailId, string oldPassword)
         {
-            new SeedDataForTesting().seedData();
+            throw new NotImplementedException();
         }
+
+        
     }
 }

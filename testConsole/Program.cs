@@ -15,12 +15,10 @@ namespace testConsole
     {
         static void Main(string[] args)
         {
-            usersBusinessValidation usersObj = new usersBusinessValidation();
+           
             SeedDataForTesting testObj = new SeedDataForTesting();
-            //testObj.seedData();
-            userPoco result = usersObj.getCompletUserProfile("completeUser@qa.com");
-
-            Console.WriteLine(result.ecifID);
+            testObj.seedData();
+            
 
             Console.WriteLine("\n\n\n --- Terminating --- ");
             Console.Read();

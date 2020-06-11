@@ -28,5 +28,8 @@ namespace BusinessLogicServicesLayer
         [OperationContract]
         string get(int position);
 
+        [OperationContract]
+        void seedTestData();
+
     }
 }

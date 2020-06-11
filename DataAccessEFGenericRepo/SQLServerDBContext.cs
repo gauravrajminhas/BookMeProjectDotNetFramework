@@ -66,25 +66,51 @@ namespace DataAccessEFGenericRepo
                 .HasKey(user => user.ecifID)
                 .ToTable("users", "userSchema");
 
-            modelBuilder.Entity<medicalRecordsPoco>()
-                .HasKey(mrp => mrp.recordID)
-                .ToTable("medicalRecords", "RecordSchema");
-
             modelBuilder.Entity<userContactDetailsPoco>()
                 .HasKey(ucd => ucd.ecifID)      //dont have to mention the FK as PK is the FK too
                 .ToTable("contactDetails", "userSchema");
-
-            modelBuilder.Entity<userStatusPoco>()
-                .HasKey(usp => usp.userID)
-                .ToTable("userStatus", "userSchema");
 
             modelBuilder.Entity<userAccessPoco>()
                 .HasKey(userAccess => userAccess.userID)
                 .ToTable("userAccess", "userSchema");
 
+
+
+                 // Subscriptions 
+            modelBuilder.Entity<subscriptionsPoco>()
+                .HasKey(usp => usp.subscriptionID)
+                .ToTable("subscriptions", "subscriptions");
+
+
+
+
+                 //RecordSchema
+            modelBuilder.Entity<medicalRecordsPoco>()
+                .HasKey(mrp => mrp.recordID)
+                .ToTable("medicalRecords", "RecordSchema");
+
+
+
+                // referenceDataSchema
             modelBuilder.Entity<statusPoco>()
                 .HasKey(sp => sp.statusID)
-                .ToTable("status", "referenceDataSchema");
+                .ToTable("userStatus", "referenceDataSchema");
+
+            modelBuilder.Entity<countryPoco>()
+                .HasKey(cp => cp.countryID)
+                .ToTable("countries", "referenceDataSchema");
+
+            modelBuilder.Entity<cityPoco>()
+                .HasKey(cp => cp.cityID)
+                .ToTable("cities", "referenceDataSchema");
+
+            modelBuilder.Entity<statePoco>()
+                .HasKey(sp => sp.stateID)
+                .ToTable("states", "referenceDataSchema");
+
+
+
+
 
 
             //Additional colomn Properties 
@@ -120,16 +146,38 @@ namespace DataAccessEFGenericRepo
                 .WillCascadeOnDelete();
 
 
-            modelBuilder.Entity<userStatusPoco>()
-                .HasRequired(usp => usp.userAccessNavigation)
-                .WithRequiredDependent(uap => uap.statusNavigation);
-                //.WithRequiredPrincipal(uap => uap.statusNavigation);
 
+            modelBuilder.Entity<userContactDetailsPoco>()
+                .HasOptional(ucdp => ucdp.cityNavigation)
+                .WithMany(cp => cp.userContactDetailNavigation)
+                .HasForeignKey(ucdp => ucdp.cityID);
+
+            modelBuilder.Entity<userContactDetailsPoco>()
+                .HasOptional(ucdp => ucdp.stateNavigation)
+                .WithMany(sp => sp.userContactDetailNavigation)
+                .HasForeignKey(ucdp => ucdp.stateID);
+
+            modelBuilder.Entity<userContactDetailsPoco>()
+                .HasOptional(ucdp => ucdp.countryNavigation)
+                .WithMany(cp => cp.userContactDetailNavigation)
+                .HasForeignKey(ucdp => ucdp.countryID);
+
+
+
+                //subscriptions & status
+            modelBuilder.Entity<subscriptionsPoco>()
+               .HasRequired(sp => sp.userAccessNavigation)
+               .WithMany(uap => uap.subscriptionNavigation)
+               .HasForeignKey(sp => sp.userID);
 
             modelBuilder.Entity<statusPoco>()
                 .HasMany(sp => sp.userStatusNavigation)
-                .WithRequired(us => us.statusNavigation)
-                .HasForeignKey(us => us.statusID);
+                .WithRequired(sp => sp.statusNavigation)
+                .HasForeignKey(sp => sp.statusID);
+
+
+
+
 
 
             base.OnModelCreating(modelBuilder);
@@ -139,6 +187,8 @@ namespace DataAccessEFGenericRepo
 
         public virtual DbSet<userPoco> userDBSetRecord { get; set; }
         public virtual DbSet<userAccessPoco> userCredentialsDBSetRecord { get; set; }
+
+        
         
 
     }
