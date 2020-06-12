@@ -35,7 +35,7 @@ namespace DTO
 
         //one-to-many
         [DataMember]
-        public virtual List<userAccessDTO> userAccessListNavigation { get; set; }
+        public virtual List<userAccessDTO> userCredentialsListNavigation { get; set; }
         [DataMember]
         public virtual List<medicalRecordsDTO> medicalRecordsListNavigation { get; set; }
 

@@ -16,11 +16,8 @@ namespace BusinessLogicValidationLayer
             SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
 
 
-
-
-
             // populating the Referance Datas tables 
-            if (queryRepo.GetAll<statusPoco>() == null)
+            if (queryRepo.GetAll<statusPoco>().Count == 0)
             {
                 commandRepo.add<statusPoco>(new statusPoco
                 {
@@ -42,14 +39,14 @@ namespace BusinessLogicValidationLayer
 
             }
 
-            if (queryRepo.GetAll<countryPoco>() == null)
+            if (queryRepo.GetAll<countryPoco>().Count == 0)
             {
                 commandRepo.add<countryPoco>(new countryPoco {
                     countryID = Guid.NewGuid(),
                     countryName = "India"
                 });
             }
-            if (queryRepo.GetAll<statePoco>() == null)
+            if (queryRepo.GetAll<statePoco>().Count == 0)
             {
                 commandRepo.add<statePoco>(new statePoco
                 {
@@ -57,7 +54,7 @@ namespace BusinessLogicValidationLayer
                     stateName = "Maharashtra"
                 });
             }
-            if (queryRepo.GetAll<cityPoco>() == null)
+            if (queryRepo.GetAll<cityPoco>().Count == 0)
             {
                 commandRepo.add<cityPoco>(new cityPoco
                 {
@@ -65,14 +62,6 @@ namespace BusinessLogicValidationLayer
                     cityName = "Bombay"
                 });
             }
-
-
-
-
-
-
-
-
 
 
             // setup a complete test user
@@ -86,7 +75,7 @@ namespace BusinessLogicValidationLayer
                         firstName = "firstName",
                         lastName ="lastName",
                         medicalRecordsListNavigation = null,
-                        userAccessListNavigation = null,
+                        userCredentialsListNavigation = null,
                         userContactDetailsNavigation = null
                     });
 
@@ -127,8 +116,8 @@ namespace BusinessLogicValidationLayer
                 
                 
 
-                updateTestUserPoco.userAccessListNavigation = new List<userAccessPoco>();
-                updateTestUserPoco.userAccessListNavigation.Add(new userAccessPoco {
+                updateTestUserPoco.userCredentialsListNavigation = new List<userCredentialsPoco>();
+                updateTestUserPoco.userCredentialsListNavigation.Add(new userCredentialsPoco {
                     ecifID = updateTestUserPoco.ecifID,
                     password= "password",
                     passwordSetDate=DateTime.Now,
@@ -136,44 +125,13 @@ namespace BusinessLogicValidationLayer
                     aliasName = "testAccount1",
                     userNavigation = updateTestUserPoco
                 });
-                updateTestUserPoco.userAccessListNavigation.Add(new userAccessPoco {
+                updateTestUserPoco.userCredentialsListNavigation.Add(new userCredentialsPoco {
                     ecifID = updateTestUserPoco.ecifID,
                     password = "password",
                     passwordSetDate = DateTime.Now,
                     userID = Guid.NewGuid(),
                     userNavigation = updateTestUserPoco
                 });
-
-
-
-
-                commandRepo.add<subscriptionsPoco>(
-                    new subscriptionsPoco {
-                        subscriptionID = Guid.NewGuid(),
-                        userID = queryRepo.GetSingle<userAccessPoco>(asp => asp.aliasName == "testAccount1").userID,
-                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
-                        discription = "Subscribed to Crossfit Services",
-                        startDate = DateTime.Now,
-                        endDate = DateTime.Now,
-                        userAccessNavigation= queryRepo.GetSingle<userAccessPoco>(asp => asp.aliasName == "testAccount1"),
-                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
-
-                    });
-
-               
-                commandRepo.add<subscriptionsPoco>(
-                    new subscriptionsPoco {
-                        subscriptionID = Guid.NewGuid(),
-                        userID = queryRepo.GetSingle<userAccessPoco>(asp => asp.aliasName == "testAccount1").userID,
-                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
-                        discription = "Subscribed to weightLifting Services",
-                        startDate = DateTime.Now,
-                        endDate = DateTime.Now,
-                        userAccessNavigation= queryRepo.GetSingle<userAccessPoco>(asp => asp.aliasName == "testAccount1"),
-                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
-
-                    });
-
 
 
                 updateTestUserPoco.medicalRecordsListNavigation = new List<medicalRecordsPoco>();
@@ -196,21 +154,39 @@ namespace BusinessLogicValidationLayer
 
 
 
+                commandRepo.add<subscriptionsPoco>(
+                    new subscriptionsPoco
+                    {
+                        subscriptionID = Guid.NewGuid(),
+
+                        userID = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
+                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
+                        discription = "Subscribed to Crossfit Services",
+                        startDate = DateTime.Now,
+                        endDate = DateTime.Now,
+                        userCredentialsNavigation = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
+                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
+
+                    });
+
+                commandRepo.add<subscriptionsPoco>(
+                    new subscriptionsPoco
+                    {
+                        subscriptionID = Guid.NewGuid(),
+                        userID = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
+                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
+                        discription = "Subscribed to weightLifting Services",
+                        startDate = DateTime.Now,
+                        endDate = DateTime.Now,
+                        userCredentialsNavigation = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
+                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
+
+                    });
+
 
             }
 
-
-
-
-                
-
-
-           
-
-
-
-
-
+            // Other Users
             for (int i = 0; i < 0 ; i++)
             {
 
@@ -221,14 +197,14 @@ namespace BusinessLogicValidationLayer
                     lastName = "minhas",
                     ecifAlias = "login name",
                     emailAddress = "gaurav.minhas@gmail.com" + new Random().Next().ToString(),
-                userAccessListNavigation = new List<userAccessPoco>(),
+                    userCredentialsListNavigation = new List<userCredentialsPoco>(),
                 medicalRecordsListNavigation = new List<medicalRecordsPoco>()
             };
 
 
                 
-            newTruncatedCustomerPoco.userAccessListNavigation
-                .Add(new userAccessPoco
+            newTruncatedCustomerPoco.userCredentialsListNavigation
+                .Add(new userCredentialsPoco
                 {
                     userID = Guid.NewGuid(),
                     password = "TestPassword1",
@@ -253,7 +229,7 @@ namespace BusinessLogicValidationLayer
 
             userPoco minhasUser = queryRepo.GetSingle<userPoco>(
                 cus => cus.lastName == "minhas",
-                cus => cus.userAccessListNavigation,
+                cus => cus.userCredentialsListNavigation,
                 cus => cus.userContactDetailsNavigation);
 
 
@@ -275,9 +251,9 @@ namespace BusinessLogicValidationLayer
             //minhasUser.lastName = "changed";
             commandRepo.update<userPoco>(minhasUser);
 
+           
 
-
-                var userAccessObject = queryRepo.GetSingle<userAccessPoco>(uap => uap.password == "TestPassword1");
+                var userAccessObject = queryRepo.GetSingle<userCredentialsPoco>(uap => uap.password == "TestPassword1");
                 var statusObj = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer");
 
                 //commandRepo.add<userStatusPoco>(new userStatusPoco {
@@ -286,6 +262,8 @@ namespace BusinessLogicValidationLayer
                 //});
 
             }
+
+
         }
     }
 }

@@ -66,7 +66,7 @@ namespace BusinessLogicValidationLayer
                 return true;
         }
         
-        // Convert to DTO Opbejcts for WFC services
+        // Get Methods returning Pocos and not DTOs
         public List<userPoco> getAllUser()
         {
             return queryObject.GetAll<userPoco>();
@@ -82,8 +82,34 @@ namespace BusinessLogicValidationLayer
                     up => up.emailAddress == emailID,
                     up=> up.userContactDetailsNavigation,
                     up=>up.medicalRecordsListNavigation,
-                    up=>up.userAccessListNavigation
+                    up=>up.userCredentialsListNavigation
                     );
+        }
+
+        public List<subscriptionsPoco> getAllUserSubscriptionsPocos(string emailAddress)
+        {
+            List<subscriptionsPoco> resultList = new List<subscriptionsPoco>();
+
+            userPoco userECIFPoco = queryObject.GetSingle<userPoco>(up => up.emailAddress == emailAddress, up =>up.userCredentialsListNavigation.Select(ucn=>ucn.subscriptionListNavigation));
+            
+            if (userECIFPoco !=null) {
+
+                foreach(userCredentialsPoco user in userECIFPoco.userCredentialsListNavigation)
+                {
+
+                    if (user.subscriptionListNavigation.Count != 0 )
+                    {
+                        foreach (subscriptionsPoco subscription in user.subscriptionListNavigation)
+                        {
+                            resultList.Add(subscription);
+                        }
+                    }
+                }
+                return resultList;
+            } else
+            {
+                throw new FaultException<noClientFoundException>(new noClientFoundException(), "user not found");
+            }            
         }
 
 

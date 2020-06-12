@@ -36,6 +36,7 @@ namespace DataAccessEFGenericRepo
 
 
 
+        // This returns the Pocos with all its navigation Properties ----> without a predicate or a Select criterion
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyListPathObject)
           where anotherPocoTypePlaceholder : class, iPoco
         {
@@ -67,6 +68,46 @@ namespace DataAccessEFGenericRepo
                 return pocoList;
             }
         }
+
+
+        // This returns the Pocos with all its navigation Properties ----> with a predicate or a Selection Criterion
+        public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate,params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyListPathObject)
+          where anotherPocoTypePlaceholder : class, iPoco
+        {
+
+            IQueryable<anotherPocoTypePlaceholder> queryBuilder = _context.Set<anotherPocoTypePlaceholder>();
+
+
+            foreach (Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject in navigationPropertyListPathObject)
+            {
+                queryBuilder = queryBuilder
+                    .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject);
+            }
+
+            List<anotherPocoTypePlaceholder> pocoList = queryBuilder
+                .Where<anotherPocoTypePlaceholder>(wherePredicate)
+                .ToList<anotherPocoTypePlaceholder>();
+
+
+
+            if (pocoList == null)
+            {
+                return null;
+            }
+            else
+            {
+                // to see the DBContext tracking state of Poco 
+                foreach (anotherPocoTypePlaceholder poco in pocoList)
+                {
+                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                }
+
+                return pocoList;
+            }
+        }
+
+
+
 
         public anotherPocoTypePlaceholder GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
             where anotherPocoTypePlaceholder : class, iPoco

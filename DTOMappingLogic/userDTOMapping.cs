@@ -17,10 +17,11 @@ namespace DTOMappingLogic
             
                 cfg.CreateMap<userPoco, userDTO>()
                 .ForMember(dest => dest.medicalRecordsListNavigation, imce => imce.MapFrom(src => src.medicalRecordsListNavigation))
-                .ForMember(dest => dest.userAccessListNavigation, imce => imce.MapFrom(src => src.userAccessListNavigation));
-                cfg.CreateMap<userAccessPoco, userAccessDTO>();
+                .ForMember(dest => dest.userCredentialsListNavigation, imce => imce.MapFrom(src => src.userCredentialsListNavigation));
+                cfg.CreateMap<userCredentialsPoco, userAccessDTO>();
                 cfg.CreateMap<medicalRecordsPoco, medicalRecordsDTO>();
                 cfg.CreateMap<userContactDetailsPoco, userContactDetailsDTO>();
+                cfg.CreateMap<subscriptionsPoco, subscriptionsDTO>();
 
             });
 

@@ -23,7 +23,7 @@ namespace BookMeProject
         
         // Navigation 
         
-        public userAccessPoco userAccessNavigation { get; set; }
+        public userCredentialsPoco userCredentialsNavigation { get; set; }
         public statusPoco statusNavigation { get; set; }
 
     }

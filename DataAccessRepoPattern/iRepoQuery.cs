@@ -32,9 +32,15 @@ namespace DataAccessRepoPattern
         // now that will be a Poco for 1-1 and List for 1-many 
         // ref https://docs.microsoft.com/en-us/dotnet/api/system.data.entity.queryableextensions.include?view=entity-framework-6.2.0#System_Data_Entity_QueryableExtensions_Include__2_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0___1___
 
-        //GetAll with Params for Func<pocotype, Object> is to return a Poco with 0 or many properties 
+        //GetAll with Params - Func<pocotype, Object> navigationObjectPath  i.e return getAll Pocos and include the Navigation Paths 
         List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
             where anotherPocoTypePlaceholder : class, iPoco;
+
+
+        //GetAll with Params - Func<pocotype, Object> navigationObjectPath  &&  where Predicate 
+        //TODO : test this function properly 
+        List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression< Func<anotherPocoTypePlaceholder, object> >[] navigationObjectPath)
+            where anotherPocoTypePlaceholder : class , iPoco;
 
 
         //// does not load the navigation properties 

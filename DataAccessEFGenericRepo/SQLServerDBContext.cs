@@ -70,7 +70,7 @@ namespace DataAccessEFGenericRepo
                 .HasKey(ucd => ucd.ecifID)      //dont have to mention the FK as PK is the FK too
                 .ToTable("contactDetails", "userSchema");
 
-            modelBuilder.Entity<userAccessPoco>()
+            modelBuilder.Entity<userCredentialsPoco>()
                 .HasKey(userAccess => userAccess.userID)
                 .ToTable("userAccess", "userSchema");
 
@@ -127,7 +127,7 @@ namespace DataAccessEFGenericRepo
 
             //Constraints decleration
             modelBuilder.Entity<userPoco>()
-                .HasMany(user => user.userAccessListNavigation)
+                .HasMany(user => user.userCredentialsListNavigation)
                 .WithRequired(credentails => credentails.userNavigation)
                 .HasForeignKey(ucl =>ucl.ecifID)
                 .WillCascadeOnDelete();
@@ -166,8 +166,8 @@ namespace DataAccessEFGenericRepo
 
                 //subscriptions & status
             modelBuilder.Entity<subscriptionsPoco>()
-               .HasRequired(sp => sp.userAccessNavigation)
-               .WithMany(uap => uap.subscriptionNavigation)
+               .HasRequired(sp => sp.userCredentialsNavigation)
+               .WithMany(uap => uap.subscriptionListNavigation)
                .HasForeignKey(sp => sp.userID);
 
             modelBuilder.Entity<statusPoco>()
@@ -186,10 +186,18 @@ namespace DataAccessEFGenericRepo
 
 
         public virtual DbSet<userPoco> userDBSetRecord { get; set; }
-        public virtual DbSet<userAccessPoco> userCredentialsDBSetRecord { get; set; }
+        public virtual DbSet<userCredentialsPoco> userCredentialsDBSetRecord { get; set; }
+        public virtual DbSet<userContactDetailsPoco> userContactDetailDBSetRecord { get; set; }
+        public virtual DbSet<cityPoco> cityDBSetRecord { get; set; }
+        public virtual DbSet<countryPoco> countryDBSetRecord { get; set; }
+        public virtual DbSet<medicalRecordsPoco> medicalRecordsDBSetRecord { get; set; }
+        public virtual DbSet<statePoco> stateDBSetRecord { get; set; }
+        public virtual DbSet<statusPoco> statusDBSetRecord { get; set; }
+        public virtual DbSet<subscriptionsPoco> subscriptionDBSetRecord { get; set; }
 
-        
-        
+
+
+
 
     }
 }

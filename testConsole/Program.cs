@@ -15,7 +15,12 @@ namespace testConsole
     {
         static void Main(string[] args)
         {
-           
+            usersBusinessValidation obj = new usersBusinessValidation();
+            var result = obj.getAllUserSubscriptionsPocos("completeUser1@qa.com");
+
+
+
+
             SeedDataForTesting testObj = new SeedDataForTesting();
             testObj.seedData();
             

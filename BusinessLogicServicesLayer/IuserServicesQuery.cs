@@ -28,6 +28,10 @@ namespace BusinessLogicServicesLayer
         userDTO getCompleteUserSnapshot(string emailAddress);
 
 
+        [OperationContract]
+        List<subscriptionsDTO> getAllUserSubscriptions(string emailAddress);
+
+
 
     }
 

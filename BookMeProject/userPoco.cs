@@ -29,7 +29,7 @@ namespace BookMeProject
         public virtual userContactDetailsPoco userContactDetailsNavigation { get; set; }
 
         //one-to-many
-        public virtual List<userAccessPoco> userAccessListNavigation { get; set; }
+        public virtual List<userCredentialsPoco> userCredentialsListNavigation { get; set; }
         public virtual List<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
 
     }

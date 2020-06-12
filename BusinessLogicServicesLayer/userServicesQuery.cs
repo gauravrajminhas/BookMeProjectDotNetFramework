@@ -71,6 +71,11 @@ namespace BusinessLogicServicesLayer
 
         }
 
-        
+        public List<subscriptionsDTO> getAllUserSubscriptions(string emailAddress)
+        {
+            List<subscriptionsPoco> restulPocoList = usersBusinessValidationObject.getAllUserSubscriptionsPocos(emailAddress);
+            List<subscriptionsDTO> subscriptionDTO = userDTOMappingObject.UserMapper().Map<List<subscriptionsPoco>, List<subscriptionsDTO>>(restulPocoList);
+            return subscriptionDTO;
+        }
     }
 }

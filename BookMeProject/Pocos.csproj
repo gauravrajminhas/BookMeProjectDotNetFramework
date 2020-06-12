@@ -60,7 +60,7 @@
     <Compile Include="userPoco.cs" />
     <Compile Include="userContactDetailsPoco.cs" />
     <Compile Include="iPoco.cs" />
-    <Compile Include="userAccessPoco.cs" />
+    <Compile Include="userCredentialsPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="subscriptionsPoco.cs" />
   </ItemGroup>
