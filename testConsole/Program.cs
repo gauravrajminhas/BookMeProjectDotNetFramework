@@ -19,8 +19,6 @@ namespace testConsole
             var result = obj.getAllUserSubscriptionsPocos("completeUser1@qa.com");
 
 
-
-
             SeedDataForTesting testObj = new SeedDataForTesting();
             testObj.seedData();
             

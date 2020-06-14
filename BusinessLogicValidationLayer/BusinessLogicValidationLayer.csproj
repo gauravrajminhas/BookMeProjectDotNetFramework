@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeedDataForTesting.cs" />
+    <Compile Include="subscriptionsBusinessValidation.cs" />
     <Compile Include="usersBusinessValidation.cs" />
   </ItemGroup>
   <ItemGroup>
