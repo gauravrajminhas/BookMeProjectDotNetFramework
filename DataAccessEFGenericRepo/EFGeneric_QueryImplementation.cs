@@ -19,16 +19,16 @@ using System.Linq.Expressions;
 
 namespace DataAccessEFGenericRepo
 {
-    public class SQLServerEFDataAccessQueryImplementation<TypePlaceholder> : iRepoQuery<TypePlaceholder>
+    public class EFGeneric_QueryImplementation<TypePlaceholder> : iRepoQuery<TypePlaceholder>
         where TypePlaceholder : class, BookMeProject.iPoco
     {
-        private SQLServerDBContext _context;
-        public SQLServerEFDataAccessQueryImplementation()
+        private bookMeDBContext _context;
+        public EFGeneric_QueryImplementation()
         {
             //TODO - add dependency injection IOC controller here ! 
 
-            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
-            //_context = SQLServerDBContext.SQLServerDBContextNonSingeltonFactory();
+            _context = bookMeDBContext.bookMeDBContextSingeltonFactory();
+            //_context = bookMeDBContext.bookMeDBContextNonSingeltonFactory();
 
 
             _context.Database.Log = Console.Write;
@@ -40,32 +40,36 @@ namespace DataAccessEFGenericRepo
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyListPathObject)
           where anotherPocoTypePlaceholder : class, iPoco
         {
-
-            IQueryable<anotherPocoTypePlaceholder> queryBuilder = _context.Set<anotherPocoTypePlaceholder>();
-
-
-            foreach (Expression <Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject  in navigationPropertyListPathObject)
+            using (_context)
             {
-                queryBuilder = queryBuilder
-                    .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject);
-            }
-         
-            List<anotherPocoTypePlaceholder> pocoList = queryBuilder.ToList<anotherPocoTypePlaceholder>();
 
+                IQueryable<anotherPocoTypePlaceholder> queryBuilder = _context.Set<anotherPocoTypePlaceholder>();
 
-
-            if (pocoList == null)
-            {
-                return null;
-            }
-            else
-            {
-                // to see the DBContext tracking state of Poco 
-                foreach (anotherPocoTypePlaceholder poco in pocoList){
-                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                foreach (Expression<Func<anotherPocoTypePlaceholder, object>> navigationPropertyPathObject in navigationPropertyListPathObject)
+                {
+                    queryBuilder = queryBuilder
+                        .Include<anotherPocoTypePlaceholder, object>(navigationPropertyPathObject);
                 }
 
-                return pocoList;
+                List<anotherPocoTypePlaceholder> pocoList = queryBuilder.ToList<anotherPocoTypePlaceholder>();
+
+
+
+                if (pocoList == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    // to see the DBContext tracking state of Poco 
+                    foreach (anotherPocoTypePlaceholder poco in pocoList)
+                    {
+                        Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                    }
+
+                    return pocoList;
+                }
+
             }
         }
 

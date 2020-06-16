@@ -10,6 +10,7 @@ namespace BusinessLogicServicesLayer
     [ServiceContract]
     interface IsubscriptionCommandServices
     {
+        [OperationContract]
         bool addUserSubscription(string userid, DateTime startDate, DateTime endDate);
     }
 }

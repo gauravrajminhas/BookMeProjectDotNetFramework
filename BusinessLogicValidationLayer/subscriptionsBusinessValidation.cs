@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookMeProject;
+using DataAccessRepoPattern;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace BusinessLogicValidationLayer
 {
     class subscriptionsBusinessValidation
     {
+        iRepoCommand<iPoco> commandObject;
+        iRepoQuery<iPoco> queryObject;
     }
 }

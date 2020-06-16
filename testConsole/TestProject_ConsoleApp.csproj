@@ -101,13 +101,13 @@
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj">
+    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogicValidationLayer</Name>
+      <Name>BusinessLogic_ValidationLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj">
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericReppsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
-      <Name>DataAccessEFGenericReppsitoryImplementation</Name>
+      <Name>DataAccess_EFGenericReppsitoryImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

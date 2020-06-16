@@ -9,12 +9,12 @@ using System.Data.Entity.Infrastructure.Annotations;
 
 namespace DataAccessEFGenericRepo
 {
-     class SQLServerDBContext : DbContext
+     class bookMeDBContext : DbContext
     {
-        private static SQLServerDBContext _singeltonDBContextInstance = null;
+        private static bookMeDBContext _singeltonDBContextInstance = null;
 
         //TODO : have to add configration manager and include the connectionsString via configration Manager object
-        private SQLServerDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
+        private bookMeDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 
             //TODO: understand this circular referance isses here - Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
@@ -29,11 +29,11 @@ namespace DataAccessEFGenericRepo
 
         // singelton menthod for the only one instance of DB context; this not thread safe however. 
         // this Approach is now causing Threading issues coz multiple threads are trying to do CRUD using one dbContext instance 
-        public static SQLServerDBContext SQLServerDBContextSingeltonFactory()
+        public static bookMeDBContext bookMeDBContextSingeltonFactory()
         {
             if (_singeltonDBContextInstance == null)
             {
-                _singeltonDBContextInstance = new SQLServerDBContext();
+                _singeltonDBContextInstance = new bookMeDBContext();
                 return _singeltonDBContextInstance;
             }
             else
@@ -44,9 +44,9 @@ namespace DataAccessEFGenericRepo
         }
 
         //Adding a new Non-singelton FactoryMethod to .solve the Threading isses 
-        public static SQLServerDBContext SQLServerDBContextNonSingeltonFactory()
+        public static bookMeDBContext bookMeDBContextNonSingeltonFactory()
         {
-            _singeltonDBContextInstance = new SQLServerDBContext();
+            _singeltonDBContextInstance = new bookMeDBContext();
             return _singeltonDBContextInstance;
         }
 

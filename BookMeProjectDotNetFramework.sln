@@ -5,15 +5,15 @@ VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pocos", "BookMeProject\Pocos.csproj", "{A33387AF-5686-4C4A-BEE4-0B3A01FCB71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessRepositoryInterface", "DataAccessRepoPattern\DataAccessRepositoryInterface.csproj", "{0206F859-3D5E-48DF-A9C6-40B2003F91F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess_IRepositoryInterface", "DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj", "{0206F859-3D5E-48DF-A9C6-40B2003F91F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessEFGenericReppsitoryImplementation", "DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj", "{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess_EFGenericRepsitoryImplementation", "DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj", "{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestProject", "testConsole\ConsoleTestProject.csproj", "{AFD2C711-2717-4A67-A4AC-738A0363A502}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject_ConsoleApp", "testConsole\TestProject_ConsoleApp.csproj", "{AFD2C711-2717-4A67-A4AC-738A0363A502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicInterface", "BusinessLogicPatterns\BusinessLogicInterface.csproj", "{EF2E3144-44D8-49C8-A532-24C44BB82375}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic_Interface", "BusinessLogicPatterns\BusinessLogic_Interface.csproj", "{EF2E3144-44D8-49C8-A532-24C44BB82375}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicValidationLayer", "BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj", "{A3876605-BECE-4601-9C62-35C5B980B466}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic_ValidationLayer", "BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj", "{A3876605-BECE-4601-9C62-35C5B980B466}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFC_SOAPServices", "BusinessLogicServicesLayer\WFC_SOAPServices.csproj", "{32B1C62C-D5E0-4EF7-8E27-3785D7076152}"
 EndProject
@@ -21,9 +21,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTO\DTOs.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOMappingLayer", "DTOMappingLogic\DTOMappingLayer.csproj", "{7B984C43-6407-405D-87CC-5240BB38D40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFaultsAndExceptions", "FaultsAndExceptions\CustomFaultsAndExceptions.csproj", "{237815EE-94F3-41E3-8B74-3E3D0E9DE523}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaultsAndExceptions_Customs", "FaultsAndExceptions\FaultsAndExceptions_Customs.csproj", "{237815EE-94F3-41E3-8B74-3E3D0E9DE523}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI_ReSTServices", "WebAPI_ReSTServices\WebAPI_ReSTServices.csproj", "{258B3594-5FB9-4089-9128-AF48BF0DEF43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Wiki", "Project Wiki", "{7F926473-30C7-4916-9920-F733AF096A61}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

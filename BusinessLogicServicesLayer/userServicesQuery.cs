@@ -14,13 +14,12 @@ namespace BusinessLogicServicesLayer
 {
     [ServiceBehavior(MaxItemsInObjectGraph = 2147483646)]
     
-    class userServicesQuery : IuserServicesQuery
+    public class userServicesQuery : IuserServicesQuery
     {
 
         usersBusinessValidation usersBusinessValidationObject;
         userDTOMapping userDTOMappingObject;
-
-        
+  
         public string serviceType = "query";
 
         public userServicesQuery()
@@ -32,8 +31,6 @@ namespace BusinessLogicServicesLayer
         }
 
 
-        
-
         public bool doesUserExist(string first, string last, string email)
         {
             return usersBusinessValidationObject.doesUserExist(first, last, email);
@@ -42,6 +39,7 @@ namespace BusinessLogicServicesLayer
         public List<userDTO> getAllClient()
         {
             
+           
             List<userPoco> userObjList  = usersBusinessValidationObject.getAllUser();
 
             //TODO DTO: Map the DTO to POCO here

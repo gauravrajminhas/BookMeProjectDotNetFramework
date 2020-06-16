@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A3876605-BECE-4601-9C62-35C5B980B466}</ProjectGuid>
+    <ProjectGuid>{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogicValidationLayer</RootNamespace>
-    <AssemblyName>BusinessLogicValidationLayer</AssemblyName>
+    <RootNamespace>DataAccessEFGenericRepo</RootNamespace>
+    <AssemblyName>DataAccessEFGenericRepo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,7 +43,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,27 +52,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeedDataForTesting.cs" />
-    <Compile Include="subscriptionsBusinessValidation.cs" />
-    <Compile Include="usersBusinessValidation.cs" />
+    <Compile Include="bookMeDBContext.cs" />
+    <Compile Include="EFGeneric_CommandImplementation.cs" />
+    <Compile Include="EFGeneric_QueryImplementation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccessEFGenericReppsitoryImplementation.csproj">
-      <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
-      <Name>DataAccessEFGenericReppsitoryImplementation</Name>
+    <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
+      <Project>{0206f859-3d5e-48df-a9c6-40b2003f91f2}</Project>
+      <Name>DataAccess_IRepositoryInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FaultsAndExceptions\CustomFaultsAndExceptions.csproj">
-      <Project>{237815EE-94F3-41E3-8B74-3E3D0E9DE523}</Project>
-      <Name>CustomFaultsAndExceptions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

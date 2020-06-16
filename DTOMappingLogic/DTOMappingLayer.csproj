@@ -54,9 +54,9 @@
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj">
+    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogicValidationLayer</Name>
+      <Name>BusinessLogic_ValidationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTOs.csproj">
       <Project>{53f9f825-bdf5-492e-9866-51801d821c07}</Project>

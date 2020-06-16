@@ -18,18 +18,18 @@ using System.Linq.Expressions;
 namespace DataAccessEFGenericRepo
 {
    
-    public class SQLServerEFDataAccessCommandImplementation<TypePlaceholder> : iRepoCommand <TypePlaceholder>
+    public class EFGeneric_CommandImplementation<TypePlaceholder> : iRepoCommand <TypePlaceholder>
         where TypePlaceholder : class, BookMeProject.iPoco
        
     {
 
-        private SQLServerDBContext _context;
+        private bookMeDBContext _context;
 
-        public SQLServerEFDataAccessCommandImplementation()
+        public EFGeneric_CommandImplementation()
         {
             // DI IOC container will come here 
-            _context = SQLServerDBContext.SQLServerDBContextSingeltonFactory();
-            //_context = SQLServerDBContext.SQLServerDBContextNonSingeltonFactory();
+            _context = bookMeDBContext.bookMeDBContextSingeltonFactory();
+            //_context = bookMeDBContext.bookMeDBContextNonSingeltonFactory();
 
             _context.Database.Log = Console.Write;
         }
@@ -77,10 +77,10 @@ namespace DataAccessEFGenericRepo
         public void update<TypePlaceholder>(params TypePlaceholder[] pocosToBeUpdated)
             where TypePlaceholder : class, BookMeProject.iPoco
         {
-            //SQLServerDBContext _updateContext = null;
+            //bookMeDBContext _updateContext = null;
 
             //doubt :-  Should this be per CRUD method or per request ? 
-            //using(_updateContext= new SQLServerDBContext())
+            //using(_updateContext= new bookMeDBContext())
             //{
                 foreach (TypePlaceholder poco in pocosToBeUpdated)
                 {

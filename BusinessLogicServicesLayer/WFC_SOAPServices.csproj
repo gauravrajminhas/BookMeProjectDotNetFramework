@@ -78,9 +78,9 @@
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogicValidationLayer.csproj">
+    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogicValidationLayer</Name>
+      <Name>BusinessLogic_ValidationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTOMappingLogic\DTOMappingLayer.csproj">
       <Project>{7b984c43-6407-405d-87cc-5240bb38d40f}</Project>
@@ -90,9 +90,9 @@
       <Project>{53F9F825-BDF5-492E-9866-51801D821C07}</Project>
       <Name>DTOs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FaultsAndExceptions\CustomFaultsAndExceptions.csproj">
+    <ProjectReference Include="..\FaultsAndExceptions\FaultsAndExceptions_Customs.csproj">
       <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
-      <Name>CustomFaultsAndExceptions</Name>
+      <Name>FaultsAndExceptions_Customs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

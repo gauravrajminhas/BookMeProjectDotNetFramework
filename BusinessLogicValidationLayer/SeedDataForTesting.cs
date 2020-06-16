@@ -12,8 +12,8 @@ namespace BusinessLogicValidationLayer
     {
         public void seedData()
         {
-            SQLServerEFDataAccessCommandImplementation<iPoco> commandRepo = new SQLServerEFDataAccessCommandImplementation<iPoco>();
-            SQLServerEFDataAccessQueryImplementation<iPoco> queryRepo = new SQLServerEFDataAccessQueryImplementation<iPoco>();
+            EFGeneric_CommandImplementation<iPoco> commandRepo = new EFGeneric_CommandImplementation<iPoco>();
+            EFGeneric_QueryImplementation<iPoco> queryRepo = new EFGeneric_QueryImplementation<iPoco>();
 
 
             // populating the Referance Datas tables 
