@@ -34,30 +34,44 @@ namespace DataAccessEFGenericRepo
             _context.Database.Log = Console.Write;
         }
 
-        public void add<TypePlaceholder>(params TypePlaceholder[] pocosToBeAdded)
-            where TypePlaceholder : class, BookMeProject.iPoco
+        public void add<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeAdded)
+            where anotherPocoTypePlaceholder : class, BookMeProject.iPoco
 
         {
-            foreach (TypePlaceholder poco in pocosToBeAdded)
+            foreach (anotherPocoTypePlaceholder poco in pocosToBeAdded)
             {
-                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<TypePlaceholder>(poco).State);
-                _context.Entry<TypePlaceholder>(poco).State = System.Data.Entity.EntityState.Added;
+                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                _context.Entry<anotherPocoTypePlaceholder>(poco).State = System.Data.Entity.EntityState.Added;
+            }
+
+
+            // Trying a Transaction Code here
+            using (DbContextTransaction dbTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    dbTransaction.Rollback();
+                }
+
+                dbTransaction.Commit();
+            }
+         
+        }
+    
+        public void delete<anotherPocoTypePlaceholder> (params anotherPocoTypePlaceholder[] pocosToBeDeleted)
+            where anotherPocoTypePlaceholder : class, BookMeProject.iPoco
+        {
+            foreach(anotherPocoTypePlaceholder poco in pocosToBeDeleted)
+            {
+                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();
         }
-
-        public void delete<TypePlaceholder> (params TypePlaceholder[] pocosToBeDeleted)
-            where TypePlaceholder : class, BookMeProject.iPoco
-        {
-            foreach(TypePlaceholder poco in pocosToBeDeleted)
-            {
-                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<TypePlaceholder>(poco).State);
-                _context.Entry<TypePlaceholder>(poco).State = EntityState.Deleted;
-            }
-            _context.SaveChanges();
-        }
-
-
         // this will not work for entities with navigation Properties. 
         // FIx this 
         public void delete<anotherPocoTypePlaceholder> (Expression <Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
@@ -73,21 +87,18 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
-       
-        public void update<TypePlaceholder>(params TypePlaceholder[] pocosToBeUpdated)
-            where TypePlaceholder : class, BookMeProject.iPoco
+        public void update<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeUpdated)
+            where anotherPocoTypePlaceholder : class, BookMeProject.iPoco
         {
-            //bookMeDBContext _updateContext = null;
-
+            
             //doubt :-  Should this be per CRUD method or per request ? 
             //using(_updateContext= new bookMeDBContext())
-            //{
-                foreach (TypePlaceholder poco in pocosToBeUpdated)
+            foreach (anotherPocoTypePlaceholder poco in pocosToBeUpdated)
                 {
 
 
-                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n"+ _context.Entry<TypePlaceholder>(poco).State);
-                    _context.Entry<TypePlaceholder>(poco).State = EntityState.Added;
+                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n"+ _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                    _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Added;
 
                     foreach (var entity in _context.ChangeTracker.Entries())
                     {
@@ -95,11 +106,25 @@ namespace DataAccessEFGenericRepo
                     }
 
 
-                _context.Entry<TypePlaceholder>(poco).State = EntityState.Modified;
+                _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Modified;
                 }
-                _context.SaveChanges();
 
-            //}
+            // Trying a Transaction Code here
+            using (var dbTransaction = _context.Database.BeginTransaction())
+            {
+
+                try
+                {
+                    _context.SaveChanges();
+                }catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    dbTransaction.Rollback();
+                }
+
+                dbTransaction.Commit();
+
+            } 
             
         }
     }

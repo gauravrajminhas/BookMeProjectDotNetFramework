@@ -40,8 +40,7 @@ namespace DataAccessEFGenericRepo
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyListPathObject)
           where anotherPocoTypePlaceholder : class, iPoco
         {
-            using (_context)
-            {
+            
 
                 IQueryable<anotherPocoTypePlaceholder> queryBuilder = _context.Set<anotherPocoTypePlaceholder>();
 
@@ -70,7 +69,7 @@ namespace DataAccessEFGenericRepo
                     return pocoList;
                 }
 
-            }
+            
         }
 
 
