@@ -16,7 +16,7 @@ using System.Linq.Expressions;
 
 
 namespace DataAccessEFGenericRepo
-{
+{ 
    
     public class EFGeneric_CommandImplementation<TypePlaceholder> : iRepoCommand <TypePlaceholder>
         where TypePlaceholder : class, BookMeProject.iPoco
