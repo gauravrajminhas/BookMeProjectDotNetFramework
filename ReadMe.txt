@@ -27,6 +27,21 @@ Challenges Faced
 	5. Multi-Db Context Implementation 
 
 
+
+
+Learnings 
+	1. Why should the DBcontext not be instanciated in repo Project or EF projects and rather in Business logic layers 
+		- To manage the db contect lifecycle effectly and dispose the dbContext as soon as it has been used up 
+		- If the Db contect persists for long there will be concurrency problems;
+		- dont new up a instance, instead inject a dependency using factory methode ! 
+
+
+
+
+
+
+
+
 Research 
 	1. Database Isolation levels & transactions support 
 	2. transaction isolation level

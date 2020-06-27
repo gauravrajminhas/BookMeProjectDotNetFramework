@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using BookMeProject;
 using DataAccessEFGenericRepo;
 using DataAccessRepoPattern;
+using DTO;
 using FaultsAndExceptions;
 
 
 namespace BusinessLogicValidationLayer
 {
-    public class usersBusinessValidation 
+    public class usersBusinessValidation : Ivalidation
     {
         iRepoCommand<iPoco> commandObject;
         iRepoQuery<iPoco> queryObject;
@@ -35,8 +36,6 @@ namespace BusinessLogicValidationLayer
             // Validate If user Exists 
             isDuplicateUser(first, last, emailID);
             
-           
-            
             // Add user 
             commandObject.add<userPoco>(new userPoco{
                     ecifID = Guid.NewGuid(),
@@ -53,7 +52,7 @@ namespace BusinessLogicValidationLayer
                 isDuplicateUser(firstName, lastName, emailID);
             }
             catch (Exception e)
-            {
+            { 
                 return false;
             }
             return true;
@@ -139,4 +138,8 @@ namespace BusinessLogicValidationLayer
 
 
     }
+
+
+
+    
 }

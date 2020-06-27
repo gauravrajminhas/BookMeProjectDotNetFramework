@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicValidationLayer
 {
-    public class SeedDataForTesting
+    public class SeedDataForTesting : Ivalidation
     {
         public void seedData()
         {
@@ -187,7 +187,7 @@ namespace BusinessLogicValidationLayer
             }
 
             // Other Users
-            for (int i = 0; i < 100000 ; i++)
+            for (int i = 0; i < 10 ; i++)
             {
 
                 userPoco newTruncatedCustomerPoco = new userPoco

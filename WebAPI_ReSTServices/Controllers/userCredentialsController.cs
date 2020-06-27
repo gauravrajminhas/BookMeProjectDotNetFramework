@@ -7,9 +7,16 @@ using System.Web.Http;
 
 namespace WebAPI_ReSTServices.Controllers
 {
-    [RoutePrefix("api/bookMe/user/v1")]
+    [RoutePrefix("api/bookMe/userCredentials/v1")]
     public class userCredentialsController : ApiController
     {
+
+        [HttpGet]
+        [Route("setPassword")]
+        public IHttpActionResult setPassword()
+        {
+            return Ok();
+        }
     }
 }
  
