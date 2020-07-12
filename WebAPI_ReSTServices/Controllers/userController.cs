@@ -50,9 +50,9 @@ namespace WebAPI_ReSTServices.Controllers
 
         [HttpDelete]
         [Route("DeleteUser")]
-        public IHttpActionResult deleteUser ([FromBody] string id)
+        public IHttpActionResult deleteUser (string id)
         {
-            
+            _usersBusinessValidationObj.deleteUser(null, null, id);
             return Ok(id);
         }
 

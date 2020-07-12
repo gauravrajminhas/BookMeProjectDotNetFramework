@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess_IRepositoryInter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess_EFGenericRepsitoryImplementation", "DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj", "{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject_ConsoleApp", "testConsole\TestProject_ConsoleApp.csproj", "{AFD2C711-2717-4A67-A4AC-738A0363A502}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic_Interface", "BusinessLogicPatterns\BusinessLogic_Interface.csproj", "{EF2E3144-44D8-49C8-A532-24C44BB82375}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic_ValidationLayer", "BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj", "{A3876605-BECE-4601-9C62-35C5B980B466}"
@@ -30,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Wiki", "Project Wik
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_MockerLibraries", "Test_MockerLibraries\Test_MockerLibraries.csproj", "{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,10 +48,6 @@ Global
 		{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE6F704-76BB-4F7D-B75D-E4D447E04DE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFD2C711-2717-4A67-A4AC-738A0363A502}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2E3144-44D8-49C8-A532-24C44BB82375}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,6 +76,10 @@ Global
 		{258B3594-5FB9-4089-9128-AF48BF0DEF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258B3594-5FB9-4089-9128-AF48BF0DEF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{258B3594-5FB9-4089-9128-AF48BF0DEF43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

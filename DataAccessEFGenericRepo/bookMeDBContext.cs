@@ -14,6 +14,8 @@ namespace DataAccessEFGenericRepo
         private static bookMeDBContext _singeltonDBContextInstance = null;
 
         //TODO : have to add configration manager and include the connectionsString via configration Manager object
+        // Server=tcp:bookmeazuredb.database.windows.net,1433;Initial Catalog=bookMeAzureDB;Persist Security Info=False;User ID=gaurav.minhas;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+        // @"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True"
         private bookMeDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 

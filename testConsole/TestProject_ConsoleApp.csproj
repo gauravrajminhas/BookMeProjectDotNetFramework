@@ -88,26 +88,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="mock_EFGeneric_CommandImplementation.cs" />
+    <Compile Include="mock_EFGeneric_QueryImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="testConsole_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
-      <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogic_ValidationLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericReppsitoryImplementation.csproj">
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
       <Name>DataAccess_EFGenericReppsitoryImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
+      <Project>{0206f859-3d5e-48df-a9c6-40b2003f91f2}</Project>
+      <Name>DataAccess_IRepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -15,13 +15,15 @@ namespace DataAccessRepoPattern
     /// <summary>
     /// changes May-4-2020 :- making this repo non Generic and but all the interface mentho
     /// </summary>
-    // 
-    public interface iRepo<pocoTypePlaceholder>
+   
+
+    //this interface add the iDisposable interface for managing the DBContext Properly 
+    public interface iRepo<pocoTypePlaceholder> : IDisposable
         where pocoTypePlaceholder : iPoco
     {
-      
-      
 
+
+       
 
     }
 }

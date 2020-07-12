@@ -79,6 +79,10 @@
       <Project>{237815EE-94F3-41E3-8B74-3E3D0E9DE523}</Project>
       <Name>FaultsAndExceptions_Customs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Test_MockerLibraries\Test_MockerLibraries.csproj">
+      <Project>{9bd19065-a48a-4048-884d-acdae4b7b9f4}</Project>
+      <Name>Test_MockerLibraries</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

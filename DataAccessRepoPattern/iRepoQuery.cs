@@ -22,7 +22,7 @@ namespace DataAccessRepoPattern
     /// </summary>
     // do not need PocoTypePlacolder here
     public interface iRepoQuery<pocoTypePlaceholder> : iRepo<pocoTypePlaceholder>
-        where pocoTypePlaceholder : class, iPoco
+        where pocoTypePlaceholder : iPoco
     {
 
         // loding of the entity with Properties 

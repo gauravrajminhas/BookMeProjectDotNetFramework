@@ -9,7 +9,7 @@ using DataAccessEFGenericRepo;
 using DataAccessRepoPattern;
 using DTO;
 using FaultsAndExceptions;
-
+using Test_MockerLibraries;
 
 namespace BusinessLogicValidationLayer
 {
@@ -23,8 +23,14 @@ namespace BusinessLogicValidationLayer
             //TODO :- add DI/IOC controler here 
             commandObject = new EFGeneric_CommandImplementation<iPoco>();
             queryObject = new EFGeneric_QueryImplementation<iPoco>();
+
+
+            //mocking Test Framework 
+            commandObject = new mock_EFGeneric_CommandImplementation<iPoco>();
+            queryObject = new mock_EFGeneric_QueryImplementation<iPoco>();
+
         }
-        
+
 
         // Validate Inputs and other business rules 
         public void addUser (string first, string last, string emailID)
@@ -35,15 +41,22 @@ namespace BusinessLogicValidationLayer
 
             // Validate If user Exists 
             isDuplicateUser(first, last, emailID);
-            
-            // Add user 
-            commandObject.add<userPoco>(new userPoco{
+
+
+            using (commandObject)
+            {
+                // Add user 
+                commandObject.add<userPoco>(new userPoco
+                {
                     ecifID = Guid.NewGuid(),
                     firstName = first,
                     lastName = last,
                     emailAddress = emailID
                 });
-            
+            }
+
+
+
         }
         public bool doesUserExist(string firstName, string lastName, string emailID)
         {
@@ -87,53 +100,79 @@ namespace BusinessLogicValidationLayer
         }
 
         
-
+        //Command menthods 
+        public void deleteUser(string firstName, string lastName, string emailAddress)
+        {
+            doesUserExist(firstName, lastName, emailAddress);
+            using (commandObject)
+            {
+                commandObject.delete<iPoco>(getUser(emailAddress));
+            }
+                
+        }
 
 
         // Get Methods returning Pocos and not DTOs
         public List<userPoco> getAllUser()
         {
-            return queryObject.GetAll<userPoco>();
+            using (queryObject)
+            {
+                return queryObject.GetAll<userPoco>();
+            }
+                
         }
         public userPoco getUser(string emailID)
         {
-            return queryObject.GetSingle<userPoco>(up=>up.emailAddress== emailID);
+            using (queryObject)
+            {
+                return queryObject.GetSingle<userPoco>(up => up.emailAddress == emailID);
+            }
+               
         }
         public userPoco getCompletUserProfile(string emailID)
         {
-            return queryObject
-                .GetSingle<userPoco>(
-                    up => up.emailAddress == emailID,
-                    up=> up.userContactDetailsNavigation,
-                    up=>up.medicalRecordsListNavigation,
-                    up=>up.userCredentialsListNavigation
-                    );
+            using (queryObject)
+            {
+                return queryObject
+                    .GetSingle<userPoco>(
+                        up => up.emailAddress == emailID,
+                        up => up.userContactDetailsNavigation,
+                        up => up.medicalRecordsListNavigation,
+                        up => up.userCredentialsListNavigation
+                        );
+            }
+                
         }
 
         public List<subscriptionsPoco> getAllUserSubscriptionsPocos(string emailAddress)
         {
             List<subscriptionsPoco> resultList = new List<subscriptionsPoco>();
+            using (queryObject)
+            {
+                userPoco userECIFPoco = queryObject.GetSingle<userPoco>(up => up.emailAddress == emailAddress, up => up.userCredentialsListNavigation.Select(ucn => ucn.subscriptionListNavigation));
 
-            userPoco userECIFPoco = queryObject.GetSingle<userPoco>(up => up.emailAddress == emailAddress, up =>up.userCredentialsListNavigation.Select(ucn=>ucn.subscriptionListNavigation));
-            
-            if (userECIFPoco !=null) {
-
-                foreach(userCredentialsPoco user in userECIFPoco.userCredentialsListNavigation)
+                if (userECIFPoco != null)
                 {
 
-                    if (user.subscriptionListNavigation.Count != 0 )
+                    foreach (userCredentialsPoco user in userECIFPoco.userCredentialsListNavigation)
                     {
-                        foreach (subscriptionsPoco subscription in user.subscriptionListNavigation)
+
+                        if (user.subscriptionListNavigation.Count != 0)
                         {
-                            resultList.Add(subscription);
+                            foreach (subscriptionsPoco subscription in user.subscriptionListNavigation)
+                            {
+                                resultList.Add(subscription);
+                            }
                         }
                     }
+                    return resultList;
                 }
-                return resultList;
-            } else
-            {
-                throw new FaultException<noClientFoundException>(new noClientFoundException(), "user not found");
-            }            
+                else
+                {
+                    throw new FaultException<noClientFoundException>(new noClientFoundException(), "user not found");
+                }
+            }
+                
         }
 
 

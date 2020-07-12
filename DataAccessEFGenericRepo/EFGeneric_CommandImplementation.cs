@@ -87,6 +87,12 @@ namespace DataAccessEFGenericRepo
             _context.SaveChanges();
         }
 
+       
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+
         public void update<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeUpdated)
             where anotherPocoTypePlaceholder : class, BookMeProject.iPoco
         {

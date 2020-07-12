@@ -35,6 +35,12 @@ namespace DataAccessEFGenericRepo
         }
 
 
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+
+
 
         // This returns the Pocos with all its navigation Properties ----> without a predicate or a Select criterion
         public List<anotherPocoTypePlaceholder> GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyListPathObject)
