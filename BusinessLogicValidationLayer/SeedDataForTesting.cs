@@ -1,4 +1,5 @@
 ﻿using BookMeProject;
+using Castle.Windsor;
 using DataAccessEFGenericRepo;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,19 @@ namespace BusinessLogicValidationLayer
 {
     public class SeedDataForTesting : Ivalidation
     {
+
+        EFGeneric_CommandImplementation<iPoco> commandRepo;
+        EFGeneric_QueryImplementation<iPoco> queryRepo;
+
+        public SeedDataForTesting(EFGeneric_CommandImplementation<iPoco> commandRepoInjection, EFGeneric_QueryImplementation<iPoco> queryRepoInjection)
+        {
+            commandRepo = commandRepoInjection;
+            queryRepo = queryRepoInjection;
+        }
+
         public void seedData()
         {
-            EFGeneric_CommandImplementation<iPoco> commandRepo = new EFGeneric_CommandImplementation<iPoco>();
-            EFGeneric_QueryImplementation<iPoco> queryRepo = new EFGeneric_QueryImplementation<iPoco>();
-
-
+            
             // populating the Referance Datas tables 
             if (queryRepo.GetAll<statusPoco>().Count == 0)
             {

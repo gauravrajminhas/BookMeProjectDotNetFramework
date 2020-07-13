@@ -23,15 +23,18 @@ namespace DataAccessEFGenericRepo
         where TypePlaceholder : class, BookMeProject.iPoco
     {
         private bookMeDBContext _context;
-        public EFGeneric_QueryImplementation()
+        public EFGeneric_QueryImplementation(bookMeDBContext dbContextInjection)
         {
-            //TODO - add dependency injection IOC controller here ! 
 
-            _context = bookMeDBContext.bookMeDBContextSingeltonFactory();
+            _context = dbContextInjection;
+            _context.Database.Log = Console.Write;
+
+            //TODO - add dependency injection IOC controller here ! 
+            //_context = bookMeDBContext.bookMeDBContextSingeltonFactory();
             //_context = bookMeDBContext.bookMeDBContextNonSingeltonFactory();
 
 
-            _context.Database.Log = Console.Write;
+
         }
 
 

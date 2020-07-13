@@ -1,5 +1,7 @@
 ﻿using BookMeProject;
 using BusinessLogicValidationLayer;
+using Castle.Windsor;
+using DataAccessRepoPattern;
 using DTO;
 using DTOMappingLogic;
 using System;
@@ -9,6 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebAPI_ReSTServices.App_Start;
 
 namespace WebAPI_ReSTServices.Controllers
 {   
@@ -18,9 +21,12 @@ namespace WebAPI_ReSTServices.Controllers
         private usersBusinessValidation _usersBusinessValidationObj;
         private userDTOMapping _userDTOMappingObject;
 
+        IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
+
+
         public userController()
         {
-            _usersBusinessValidationObj = new usersBusinessValidation();
+            _usersBusinessValidationObj = new usersBusinessValidation( container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>() );
             _userDTOMappingObject = new userDTOMapping();
         }
 

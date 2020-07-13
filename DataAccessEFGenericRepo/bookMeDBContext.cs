@@ -9,14 +9,14 @@ using System.Data.Entity.Infrastructure.Annotations;
 
 namespace DataAccessEFGenericRepo
 {
-     class bookMeDBContext : DbContext
+    public class bookMeDBContext : DbContext
     {
-        private static bookMeDBContext _singeltonDBContextInstance = null;
+        
 
         //TODO : have to add configration manager and include the connectionsString via configration Manager object
         // Server=tcp:bookmeazuredb.database.windows.net,1433;Initial Catalog=bookMeAzureDB;Persist Security Info=False;User ID=gaurav.minhas;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
         // @"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True"
-        private bookMeDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
+        public bookMeDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
         {
 
             //TODO: understand this circular referance isses here - Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
@@ -28,6 +28,9 @@ namespace DataAccessEFGenericRepo
 
             base.Configuration.ProxyCreationEnabled = true;
         }
+
+
+        private static bookMeDBContext _singeltonDBContextInstance = null;
 
         // singelton menthod for the only one instance of DB context; this not thread safe however. 
         // this Approach is now causing Threading issues coz multiple threads are trying to do CRUD using one dbContext instance 

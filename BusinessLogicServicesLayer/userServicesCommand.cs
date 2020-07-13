@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BookMeProject;
 using BusinessLogicValidationLayer;
+using Castle.Windsor;
+using DataAccessRepoPattern;
 using FaultsAndExceptions;
+using WebAPI_ReSTServices.App_Start;
 
 namespace BusinessLogicServicesLayer
 {
@@ -14,11 +17,12 @@ namespace BusinessLogicServicesLayer
     class userServicesCommand : IuserServicesCommand
     {
         usersBusinessValidation usersObject;
+        IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
 
         public userServicesCommand()
         {
             //TODO add CI/IOC  container here 
-            usersObject = new usersBusinessValidation();
+            usersObject = new usersBusinessValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>());
         }
 
         public void addUser(string first, string last, string email)

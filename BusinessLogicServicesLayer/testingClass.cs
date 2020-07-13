@@ -1,7 +1,11 @@
-﻿using BusinessLogicValidationLayer;
+﻿using BookMeProject;
+using BusinessLogicValidationLayer;
+using Castle.Windsor;
+using DataAccessRepoPattern;
 using FaultsAndExceptions;
 using System.Collections.Generic;
 using System.ServiceModel;
+using WebAPI_ReSTServices.App_Start;
 
 namespace BusinessLogicServicesLayer
 {
@@ -9,6 +13,9 @@ namespace BusinessLogicServicesLayer
     public class testingClass : iTest
     {
         private List<string> _stringList = new List<string>();
+        IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
+
+
 
         public testingClass()
         {
@@ -50,7 +57,7 @@ namespace BusinessLogicServicesLayer
 
         public void seedTestData()
         {
-            new SeedDataForTesting().seedData();
+            //new SeedDataForTesting (container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedData();
         }
 
     }

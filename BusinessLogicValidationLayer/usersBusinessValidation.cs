@@ -18,16 +18,22 @@ namespace BusinessLogicValidationLayer
         iRepoCommand<iPoco> commandObject;
         iRepoQuery<iPoco> queryObject;
         
-        public usersBusinessValidation()
+
+        public usersBusinessValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection)
         {
+
+            commandObject = commandObjectInjection;
+            queryObject = queryObjectInjection; 
+
+
             //TODO :- add DI/IOC controler here 
-            commandObject = new EFGeneric_CommandImplementation<iPoco>();
-            queryObject = new EFGeneric_QueryImplementation<iPoco>();
+            //commandObject = new EFGeneric_CommandImplementation<iPoco>();
+            //queryObject = new EFGeneric_QueryImplementation<iPoco>();
 
 
             //mocking Test Framework 
-            commandObject = new mock_EFGeneric_CommandImplementation<iPoco>();
-            queryObject = new mock_EFGeneric_QueryImplementation<iPoco>();
+            //commandObject = new mock_EFGeneric_CommandImplementation<iPoco>();
+            //queryObject = new mock_EFGeneric_QueryImplementation<iPoco>();
 
         }
 

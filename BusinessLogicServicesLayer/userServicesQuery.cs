@@ -1,5 +1,7 @@
 ﻿using BookMeProject;
 using BusinessLogicValidationLayer;
+using Castle.Windsor;
+using DataAccessRepoPattern;
 using DTO;
 using DTOMappingLogic;
 using System;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI_ReSTServices.App_Start;
 
 namespace BusinessLogicServicesLayer
 {
@@ -19,13 +22,14 @@ namespace BusinessLogicServicesLayer
 
         usersBusinessValidation usersBusinessValidationObject;
         userDTOMapping userDTOMappingObject;
+        IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
   
         public string serviceType = "query";
 
         public userServicesQuery()
         {
             //TODO DI OR IOC 
-            usersBusinessValidationObject = new usersBusinessValidation();
+            usersBusinessValidationObject = new usersBusinessValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>());
             userDTOMappingObject = new userDTOMapping();
 
         }

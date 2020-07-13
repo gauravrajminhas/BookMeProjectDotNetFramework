@@ -37,8 +37,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -49,10 +55,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -66,6 +75,7 @@
     <Compile Include="testingClass.cs" />
     <Compile Include="userServicesCommand.cs" />
     <Compile Include="userServicesQuery.cs" />
+    <Compile Include="IOC_WFCDependencyInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -82,6 +92,10 @@
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
       <Name>BusinessLogic_ValidationLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj">
+      <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
+      <Name>DataAccess_EFGenericRepsitoryImplementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
       <Project>{0206F859-3D5E-48DF-A9C6-40B2003F91F2}</Project>
       <Name>DataAccess_IRepositoryInterface</Name>
@@ -97,6 +111,10 @@
     <ProjectReference Include="..\FaultsAndExceptions\FaultsAndExceptions_Customs.csproj">
       <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
       <Name>FaultsAndExceptions_Customs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPI_ReSTServices\WebAPI_ReSTServices.csproj">
+      <Project>{258B3594-5FB9-4089-9128-AF48BF0DEF43}</Project>
+      <Name>WebAPI_ReSTServices</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

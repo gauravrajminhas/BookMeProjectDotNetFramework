@@ -25,13 +25,17 @@ namespace DataAccessEFGenericRepo
 
         private bookMeDBContext _context;
 
-        public EFGeneric_CommandImplementation()
+        public EFGeneric_CommandImplementation (bookMeDBContext dbContextInjection)
         {
+
+            _context = dbContextInjection;
+            _context.Database.Log = Console.Write;
+
             // DI IOC container will come here 
-            _context = bookMeDBContext.bookMeDBContextSingeltonFactory();
+            //_context = bookMeDBContext.bookMeDBContextSingeltonFactory();
             //_context = bookMeDBContext.bookMeDBContextNonSingeltonFactory();
 
-            _context.Database.Log = Console.Write;
+
         }
 
         public void add<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeAdded)
