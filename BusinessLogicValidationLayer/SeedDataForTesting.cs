@@ -1,6 +1,7 @@
 ﻿using BookMeProject;
 using Castle.Windsor;
 using DataAccessEFGenericRepo;
+using DataAccessRepoPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,16 @@ namespace BusinessLogicValidationLayer
     public class SeedDataForTesting : Ivalidation
     {
 
-        EFGeneric_CommandImplementation<iPoco> commandRepo;
-        EFGeneric_QueryImplementation<iPoco> queryRepo;
-
-        public SeedDataForTesting(EFGeneric_CommandImplementation<iPoco> commandRepoInjection, EFGeneric_QueryImplementation<iPoco> queryRepoInjection)
+        iRepoCommand<iPoco> commandRepo;
+        iRepoQuery<iPoco> queryRepo;
+        
+        public SeedDataForTesting(iRepoCommand<iPoco> commandRepoInjection, iRepoQuery<iPoco> queryRepoInjection)
         {
             commandRepo = commandRepoInjection;
             queryRepo = queryRepoInjection;
         }
+
+        
 
         public void seedData()
         {
@@ -195,7 +198,7 @@ namespace BusinessLogicValidationLayer
             }
 
             // Other Users
-            for (int i = 0; i < 10 ; i++)
+            for (int i = 0; i < 30 ; i++)
             {
 
                 userPoco newTruncatedCustomerPoco = new userPoco

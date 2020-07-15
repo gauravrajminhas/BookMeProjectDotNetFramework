@@ -27,7 +27,7 @@ namespace WebAPI_ReSTServices.Controllers
         public userController()
         {
             _usersBusinessValidationObj = new usersBusinessValidation( container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>() );
-            _userDTOMappingObject = new userDTOMapping();
+            _userDTOMappingObject = container.Resolve<userDTOMapping>();
         }
 
   

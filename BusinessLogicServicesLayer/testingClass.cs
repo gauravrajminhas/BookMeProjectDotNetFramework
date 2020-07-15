@@ -57,7 +57,7 @@ namespace BusinessLogicServicesLayer
 
         public void seedTestData()
         {
-            //new SeedDataForTesting (container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedData();
+            new SeedDataForTesting (container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedData();
         }
 
     }

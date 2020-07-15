@@ -121,7 +121,7 @@ namespace BusinessLogicValidationLayer
         // Get Methods returning Pocos and not DTOs
         public List<userPoco> getAllUser()
         {
-            using (queryObject)
+            //using (queryObject)
             {
                 return queryObject.GetAll<userPoco>();
             }

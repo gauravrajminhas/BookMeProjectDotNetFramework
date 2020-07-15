@@ -21,12 +21,13 @@ namespace WebAPI_ReSTServices.App_Start
             return Container
                 .Install(
                     //new iControllerInstallers(),
-                    //new iRepoInstallers()
+                    //new iRepoInstallers(),
                     //Configuration.FromAppConfig(),
-                    FromAssembly.This(),
-                    FromAssembly.Named("BusinessLogicServicesLayer"),
-                    FromAssembly.Named("DataAccessEFGenericRepo"),
-                    FromAssembly.Named("BusinessLogicValidationLayer")
+                    FromAssembly.This()
+                    //FromAssembly.Named("BusinessLogicValidationLayer"),
+                    //FromAssembly.Named("BusinessLogicServicesLayer"),
+                    //FromAssembly.Named("DataAccessEFGenericRepo")
+                    
                 );
         }
 
