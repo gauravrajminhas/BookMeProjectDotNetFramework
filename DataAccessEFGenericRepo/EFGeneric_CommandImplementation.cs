@@ -58,6 +58,7 @@ namespace DataAccessEFGenericRepo
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                     dbTransaction.Rollback();
                 }
 

@@ -12,5 +12,10 @@ namespace BusinessLogicValidationLayer
     {
         iRepoCommand<iPoco> commandObject;
         iRepoQuery<iPoco> queryObject;
+        public subscriptionsBusinessValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection)
+        {
+            commandObject = commandObjectInjection;
+            queryObject = queryObjectInjection;
+        }
     }
 }

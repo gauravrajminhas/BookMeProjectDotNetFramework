@@ -165,6 +165,10 @@
       <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
       <Name>FaultsAndExceptions_Customs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Test_MockerLibraries\Test_MockerLibraries.csproj">
+      <Project>{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}</Project>
+      <Name>Test_MockerLibraries</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

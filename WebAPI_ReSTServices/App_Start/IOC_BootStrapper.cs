@@ -24,10 +24,11 @@ namespace WebAPI_ReSTServices.App_Start
                     //new iRepoInstallers(),
                     //Configuration.FromAppConfig(),
                     FromAssembly.This()
+                    //FromAssembly.Named(@"DataAccessEFGenericRepo.bookMeDBContext, DataAccessEFGenericRepo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
                     //FromAssembly.Named("BusinessLogicValidationLayer"),
                     //FromAssembly.Named("BusinessLogicServicesLayer"),
                     //FromAssembly.Named("DataAccessEFGenericRepo")
-                    
+
                 );
         }
 

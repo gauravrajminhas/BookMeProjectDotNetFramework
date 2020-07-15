@@ -71,7 +71,8 @@ namespace BusinessLogicValidationLayer
                 isDuplicateUser(firstName, lastName, emailID);
             }
             catch (Exception e)
-            { 
+            {
+                Console.WriteLine(e.Message);
                 return false;
             }
             return true;

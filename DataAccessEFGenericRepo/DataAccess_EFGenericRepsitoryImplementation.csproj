@@ -64,7 +64,6 @@
     <Compile Include="bookMeDBContext.cs" />
     <Compile Include="EFGeneric_CommandImplementation.cs" />
     <Compile Include="EFGeneric_QueryImplementation.cs" />
-    <Compile Include="IOC_repoDependencyInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
