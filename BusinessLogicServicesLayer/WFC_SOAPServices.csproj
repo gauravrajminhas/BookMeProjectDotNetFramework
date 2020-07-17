@@ -76,7 +76,7 @@
     <Compile Include="testingClass.cs" />
     <Compile Include="userServicesCommand.cs" />
     <Compile Include="userServicesQuery.cs" />
-    <Compile Include="IOC_WFCDependencyInstaller.cs" />
+    <Compile Include="IOC_WFCDependency_Installer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -14,27 +14,27 @@ namespace Test_MockerLibraries
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         void iRepoCommand<pocoType>.add<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeAdded)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         void iRepoCommand<pocoType>.delete<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosTobeDeleted)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         void iRepoCommand<pocoType>.delete<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         void iRepoCommand<pocoType>.update<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeUpdated)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
     }
 }

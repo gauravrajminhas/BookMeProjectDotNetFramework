@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IOC_repoDependency_Installer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="bookMeDBContext.cs" />
     <Compile Include="EFGeneric_CommandImplementation.cs" />
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
       <Project>{0206f859-3d5e-48df-a9c6-40b2003f91f2}</Project>
       <Name>DataAccess_IRepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test_MockerLibraries\Test_MockerLibraries.csproj">
+      <Project>{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}</Project>
+      <Name>Test_MockerLibraries</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

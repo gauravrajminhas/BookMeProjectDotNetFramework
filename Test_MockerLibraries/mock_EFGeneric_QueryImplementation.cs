@@ -14,22 +14,22 @@ namespace Test_MockerLibraries
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         List<anotherPocoTypePlaceholder> iRepoQuery<pocoType>.GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         List<anotherPocoTypePlaceholder> iRepoQuery<pocoType>.GetAll<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
 
         anotherPocoTypePlaceholder iRepoQuery<pocoType>.GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("service under maintenance");
         }
     }
 }

@@ -25,16 +25,6 @@ namespace BusinessLogicValidationLayer
             commandObject = commandObjectInjection;
             queryObject = queryObjectInjection; 
 
-
-            //TODO :- add DI/IOC controler here 
-            //commandObject = new EFGeneric_CommandImplementation<iPoco>();
-            //queryObject = new EFGeneric_QueryImplementation<iPoco>();
-
-
-            //mocking Test Framework 
-            //commandObject = new mock_EFGeneric_CommandImplementation<iPoco>();
-            //queryObject = new mock_EFGeneric_QueryImplementation<iPoco>();
-
         }
 
 
@@ -48,8 +38,8 @@ namespace BusinessLogicValidationLayer
             // Validate If user Exists 
             isDuplicateUser(first, last, emailID);
 
-
-            using (commandObject)
+            //Bug dBcontext is a singelton and is getting disposed 
+            //using (commandObject)
             {
                 // Add user 
                 commandObject.add<userPoco>(new userPoco
@@ -111,7 +101,8 @@ namespace BusinessLogicValidationLayer
         public void deleteUser(string firstName, string lastName, string emailAddress)
         {
             doesUserExist(firstName, lastName, emailAddress);
-            using (commandObject)
+            //Bug: dbContext is getting disposed even before the delete is happening. 
+            //using (commandObject)
             {
                 commandObject.delete<iPoco>(getUser(emailAddress));
             }
@@ -130,7 +121,8 @@ namespace BusinessLogicValidationLayer
         }
         public userPoco getUser(string emailID)
         {
-            using (queryObject)
+            //Bug dBcontext is a singelton and is getting disposed 
+            //using (queryObject)
             {
                 return queryObject.GetSingle<userPoco>(up => up.emailAddress == emailID);
             }
@@ -138,7 +130,8 @@ namespace BusinessLogicValidationLayer
         }
         public userPoco getCompletUserProfile(string emailID)
         {
-            using (queryObject)
+            //Bug dBcontext is a singelton and is getting disposed 
+            //using (queryObject)
             {
                 return queryObject
                     .GetSingle<userPoco>(
@@ -154,7 +147,9 @@ namespace BusinessLogicValidationLayer
         public List<subscriptionsPoco> getAllUserSubscriptionsPocos(string emailAddress)
         {
             List<subscriptionsPoco> resultList = new List<subscriptionsPoco>();
-            using (queryObject)
+            
+            //Bug dBcontext is a singelton and is getting disposed 
+            //using (queryObject)
             {
                 userPoco userECIFPoco = queryObject.GetSingle<userPoco>(up => up.emailAddress == emailAddress, up => up.userCredentialsListNavigation.Select(ucn => ucn.subscriptionListNavigation));
 

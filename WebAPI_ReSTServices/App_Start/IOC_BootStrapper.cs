@@ -23,8 +23,9 @@ namespace WebAPI_ReSTServices.App_Start
                     //new iControllerInstallers(),
                     //new iRepoInstallers(),
                     //Configuration.FromAppConfig(),
-                    FromAssembly.This()
-                    //FromAssembly.Named(@"DataAccessEFGenericRepo.bookMeDBContext, DataAccessEFGenericRepo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+                    FromAssembly.This(),
+                    FromAssembly.Named("DataAccessEFGenericRepo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
+                    FromAssembly.Named("DTOMappingLogic, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null")
                     //FromAssembly.Named("BusinessLogicValidationLayer"),
                     //FromAssembly.Named("BusinessLogicServicesLayer"),
                     //FromAssembly.Named("DataAccessEFGenericRepo")

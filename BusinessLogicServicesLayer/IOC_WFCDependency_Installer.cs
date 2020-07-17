@@ -4,15 +4,16 @@ using Castle.Windsor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebAPI_ReSTServices.App_Start
+namespace BusinessLogicServicesLayer
 {
-    public class IOC_ControllerInstaller : IWindsorInstaller
+    class IOC_WFCDependency_Installer : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            
+            Console.WriteLine("Installer Called");
         }
     }
 }

@@ -72,7 +72,7 @@ namespace DataAccessEFGenericRepo
         {
             foreach(anotherPocoTypePlaceholder poco in pocosToBeDeleted)
             {
-                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                //Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
                 _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
             }
             _context.SaveChanges();

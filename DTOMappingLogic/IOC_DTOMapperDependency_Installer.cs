@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPI_ReSTServices.App_Start
+namespace DTOMappingLogic
 {
-    public class IOC_DTOMapperInstaller : IWindsorInstaller
+    public class IOC_DTOMapperDependency_Installer : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
