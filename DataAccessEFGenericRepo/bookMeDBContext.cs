@@ -77,7 +77,7 @@ namespace DataAccessEFGenericRepo
 
             modelBuilder.Entity<userCredentialsPoco>()
                 .HasKey(userAccess => userAccess.userID)
-                .ToTable("userAccess", "userSchema");
+                .ToTable("userCredentials", "userSchema");
 
 
 

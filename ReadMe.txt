@@ -1,3 +1,9 @@
+Sprint Planning : - 
+https://dev.azure.com/gauravminhas/BookMe%20(.Net%20Framework)/_boards/board/t/BookMe%20(.Net%20Framework)%20Team/Issues
+
+
+
+
 Doubts:- 
     1. how and when To dispose of the dbContext correctly? 
     
@@ -45,3 +51,16 @@ Learnings
 Research 
 	1. Database Isolation levels & transactions support 
 	2. transaction isolation level
+
+
+
+
+
+
+Useful links 
+	Table Structure : 
+		C:\Users\rainbow train\Dropbox1\Dropbox\100. BookMeApp
+
+	MindBody 
+		https://developers.mindbodyonline.com/PublicDocumentation/V6?csharp#endpoints
+

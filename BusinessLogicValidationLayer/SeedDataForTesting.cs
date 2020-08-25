@@ -198,7 +198,7 @@ namespace BusinessLogicValidationLayer
             }
 
             // Other Users
-            for (int i = 0; i < 30 ; i++)
+            for (int i = 0; i < 3000 ; i++)
             {
 
                 userPoco newTruncatedCustomerPoco = new userPoco
