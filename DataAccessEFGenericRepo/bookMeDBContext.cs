@@ -70,6 +70,7 @@ namespace DataAccessEFGenericRepo
             modelBuilder.Entity<userPoco>()
                 .HasKey(user => user.ecifID)
                 .ToTable("users", "userSchema");
+                
 
             modelBuilder.Entity<userContactDetailsPoco>()
                 .HasKey(ucd => ucd.ecifID)      //dont have to mention the FK as PK is the FK too
@@ -78,6 +79,7 @@ namespace DataAccessEFGenericRepo
             modelBuilder.Entity<userCredentialsPoco>()
                 .HasKey(userAccess => userAccess.userID)
                 .ToTable("userCredentials", "userSchema");
+
 
 
 
@@ -95,8 +97,25 @@ namespace DataAccessEFGenericRepo
                 .ToTable("medicalRecords", "RecordSchema");
 
 
+                //Schedule Schema
+            modelBuilder.Entity<classPoco>()
+                .HasKey<Guid>(cp => cp.classID)
+                .ToTable("class", "Schedule");
 
-                // referenceDataSchema
+            modelBuilder.Entity<programPoco>()
+                .HasKey<Guid>(pp => pp.programID)
+                .ToTable("program","Schedule");
+
+            modelBuilder.Entity<bookingPoco>()
+                .HasKey<Guid>(sp => sp.bookingID)
+                .ToTable("booking", "Schedule");
+
+           
+
+
+
+
+            // referenceDataSchema
             modelBuilder.Entity<statusPoco>()
                 .HasKey(sp => sp.statusID)
                 .ToTable("userStatus", "referenceDataSchema");
@@ -181,8 +200,36 @@ namespace DataAccessEFGenericRepo
                 .HasForeignKey(sp => sp.statusID);
 
 
+            // schedule and classes 
+            modelBuilder.Entity<classPoco>()
+                .HasRequired<programPoco>(cp => cp.programNavigation)
+                .WithMany(pp => pp.classesNavigation)
+                .HasForeignKey(pp => pp.programID)
+                .WillCascadeOnDelete();
 
 
+            modelBuilder.Entity<bookingPoco>()
+                .HasRequired<classPoco>(bp => bp.classNavigation)
+                .WithMany(cp => cp.bookingListNavigation)
+                .HasForeignKey<Guid>(cp=>cp.classID);
+
+
+            modelBuilder.Entity<bookingPoco>()
+                .HasRequired<userCredentialsPoco>(bp => bp.userNavigation)
+                .WithMany(up => up.bookingListNavigation)
+                .HasForeignKey<Guid>(bp => bp.UserID)
+                .WillCascadeOnDelete(true);
+
+                
+
+            //modelBuilder.Entity<classPoco>()
+            //   .HasMany<userCredentialsPoco>(cp => cp.userListNaviagation)
+            //   .WithMany(ucp => ucp.classesListNavigation)
+            //   .Map(m =>
+            //   {
+            //       m.ToTable("usersRegisteredForClass", "Schedule");
+
+            //   });
 
 
             base.OnModelCreating(modelBuilder);

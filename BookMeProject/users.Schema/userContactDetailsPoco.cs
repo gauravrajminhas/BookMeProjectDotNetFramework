@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace BookMeProject
 {  
     
-    public class userContactDetailsPoco :iPoco
+    public class userContactDetailsPoco :commonProperties, iPoco
     {
 
         //Public Key Attribute 
@@ -31,9 +31,6 @@ namespace BookMeProject
         public string emergencyContactInfoName { get; set; }
         public double? emergencyContactInfoPhone { get; set; }
         public string emergencyContactInfoRelationship { get; set; }
-
-        
-
 
 
 

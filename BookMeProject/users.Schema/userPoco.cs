@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BookMeProject
 {
     
-    public class userPoco : iPoco
+    public class userPoco : commonProperties, iPoco
     {
 
         //Primark Key
@@ -31,6 +31,6 @@ namespace BookMeProject
         //one-to-many
         public virtual List<userCredentialsPoco> userCredentialsListNavigation { get; set; }
         public virtual List<medicalRecordsPoco> medicalRecordsListNavigation { get; set; }
-
+       
     }
 }

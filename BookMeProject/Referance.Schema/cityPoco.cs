@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    public class countryPoco : iPoco
+    public class cityPoco : commonProperties, iPoco
     {
 
         //Public Key 
-        public Guid countryID { get; set; }
-        public string countryName { get; set; }
+        public Guid cityID { get; set; }
+        public string cityName { get; set; }
 
 
-        //Navigation Property
+
+        //Navigation Property 
         public virtual List<userContactDetailsPoco> userContactDetailNavigation { get; set; }
 
     }

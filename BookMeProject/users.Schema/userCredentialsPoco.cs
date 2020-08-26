@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BookMeProject
 {
     
-    public class userCredentialsPoco : iPoco
+    public class userCredentialsPoco : commonProperties, iPoco
     {
         // primary Key 
         
@@ -31,8 +31,8 @@ namespace BookMeProject
         
         public userPoco userNavigation { get; set; }
         
-        public List<subscriptionsPoco> subscriptionListNavigation { get; set; }
-
+        public virtual List<subscriptionsPoco> subscriptionListNavigation { get; set; }
+        public virtual List<bookingPoco> bookingListNavigation { get; set; }
 
 
     }

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace BookMeProject
 {
     
-    public class subscriptionsPoco : iPoco
+    public class subscriptionsPoco : commonProperties, iPoco
     {
         // Primary Key 
         public Guid subscriptionID { get; set; }

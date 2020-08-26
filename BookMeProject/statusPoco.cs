@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace BookMeProject
 {
     
-    public class statusPoco : iPoco
+    public class statusPoco : commonProperties, iPoco
     {
         //public key 
         public Guid statusID { get; set; }

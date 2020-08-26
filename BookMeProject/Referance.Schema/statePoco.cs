@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    public class statePoco : iPoco
+    public class statePoco : commonProperties, iPoco
     {
 
         //Public Key 

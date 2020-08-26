@@ -80,13 +80,14 @@ namespace BusinessLogicValidationLayer
             {
                 commandRepo.add<userPoco>(
                     new userPoco {
-                        ecifID=Guid.NewGuid(),
-                        ecifAlias= "Test QA User",
+                        ecifID = Guid.NewGuid(),
+                        ecifAlias = "Test QA User",
                         emailAddress = "completeUser1@qa.com",
                         firstName = "firstName",
-                        lastName ="lastName",
+                        lastName = "lastName",
                         medicalRecordsListNavigation = null,
                         userCredentialsListNavigation = null,
+                        timeStamp = DateTime.Now,
                         userContactDetailsNavigation = null
                     });
 

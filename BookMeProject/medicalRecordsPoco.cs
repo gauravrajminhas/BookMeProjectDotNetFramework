@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BookMeProject
 {
     
-    public class medicalRecordsPoco : iPoco
+    public class medicalRecordsPoco : commonProperties, iPoco
     {
         
         public Guid recordID { get; set; }

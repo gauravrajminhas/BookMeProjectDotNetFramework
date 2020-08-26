@@ -17,7 +17,7 @@ namespace DataAccessEFGenericRepo
         {
             container.Register(
                 //open generic type
-                Component.For<bookMeDBContext>(),
+                Component.For<bookMeDBContext>().ImplementedBy(typeof(bookMeDBContext)),
 
                 //for Mocker APIs
                 //Component.For(typeof(iRepoCommand<>)).ImplementedBy(typeof(mock_EFGeneric_CommandImplementation<>)),

@@ -70,12 +70,20 @@ namespace DataAccessEFGenericRepo
         public void delete<anotherPocoTypePlaceholder> (params anotherPocoTypePlaceholder[] pocosToBeDeleted)
             where anotherPocoTypePlaceholder : class, BookMeProject.iPoco
         {
-            foreach(anotherPocoTypePlaceholder poco in pocosToBeDeleted)
-            {
-                //Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
-                _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
-            }
-            _context.SaveChanges();
+            
+                foreach (anotherPocoTypePlaceholder poco in pocosToBeDeleted)
+                {
+                    if (poco != null)
+                    {
+                        //Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                        _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
+                    }
+                    else{
+                        throw new Exception("EF Implementation Layer:- A Null Record was Found");
+                    }
+                }
+                _context.SaveChanges();
+            
         }
         // this will not work for entities with navigation Properties. 
         // FIx this 
@@ -86,8 +94,15 @@ namespace DataAccessEFGenericRepo
 
             foreach (anotherPocoTypePlaceholder poco in pocosTobeDeleted)
             {
-                Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
-                _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
+                if (poco != null)
+                {
+                    Console.WriteLine("\n\n\n current state of the Poco :- \n\n\n" + _context.Entry<anotherPocoTypePlaceholder>(poco).State);
+                    _context.Entry<anotherPocoTypePlaceholder>(poco).State = EntityState.Deleted;
+                }
+                else {
+                    throw new Exception("EF Implementation Layer:- A Null Record was Found");
+                }
+
             }
             _context.SaveChanges();
         }

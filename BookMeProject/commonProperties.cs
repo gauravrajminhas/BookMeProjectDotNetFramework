@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookMeProject
 {
-    public interface iPoco
+    public class commonProperties : iPoco
     {
-        //Guid? pocoID { get; set; }
+        public DateTime timeStamp { get; set; }
         
-
     }
 }

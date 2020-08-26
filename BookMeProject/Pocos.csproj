@@ -54,15 +54,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cityPoco.cs" />
-    <Compile Include="countryPoco.cs" />
+    <Compile Include="commonProperties.cs" />
+    <Compile Include="Referance.Schema\cityPoco.cs" />
+    <Compile Include="Scheduler.Schema\userClassSchedulePoco.cs" />
+    <Compile Include="Scheduler.Schema\classPoco.cs" />
+    <Compile Include="Referance.Schema\countryPoco.cs" />
     <Compile Include="medicalRecordsPoco.cs" />
-    <Compile Include="statePoco.cs" />
+    <Compile Include="Referance.Schema\statePoco.cs" />
+    <Compile Include="Scheduler.Schema\programPoco.cs" />
+    <Compile Include="Scheduler.Schema\bookingPoco.cs" />
     <Compile Include="statusPoco.cs" />
-    <Compile Include="userPoco.cs" />
-    <Compile Include="userContactDetailsPoco.cs" />
+    <Compile Include="users.Schema\userPoco.cs" />
+    <Compile Include="users.Schema\userContactDetailsPoco.cs" />
     <Compile Include="iPoco.cs" />
-    <Compile Include="userCredentialsPoco.cs" />
+    <Compile Include="users.Schema\userCredentialsPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="subscriptionsPoco.cs" />
   </ItemGroup>
