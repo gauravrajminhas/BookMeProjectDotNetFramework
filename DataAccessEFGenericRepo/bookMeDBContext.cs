@@ -16,7 +16,7 @@ namespace DataAccessEFGenericRepo
         //TODO : have to add configration manager and include the connectionsString via configration Manager object
         // Server=tcp:bookmeazuredb.database.windows.net,1433;Initial Catalog=bookMeAzureDB;Persist Security Info=False;User ID=gaurav.minhas;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
         // @"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True"
-        public bookMeDBContext() : base (@"Data Source=LAPTOP-RP1PV1SH\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework ;Integrated Security=True")
+        public bookMeDBContext() : base (@"Data Source=DESKTOP-8CDDIFO\HUMBERBRIDGING;Initial Catalog=BookMeDBDotNetFramework;Integrated Security=True")
         {
 
             //TODO: understand this circular referance isses here - Got it!! as there are navigation properties on pocos that are interrelated, serilization will have a endless 
