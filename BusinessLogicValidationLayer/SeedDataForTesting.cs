@@ -87,7 +87,6 @@ namespace BusinessLogicValidationLayer
                         lastName = "lastName",
                         medicalRecordsListNavigation = null,
                         userCredentialsListNavigation = null,
-                        timeStamp = DateTime.Now,
                         userContactDetailsNavigation = null
                     });
 
@@ -199,7 +198,7 @@ namespace BusinessLogicValidationLayer
             }
 
             // Other Users
-            for (int i = 0; i < 3000 ; i++)
+            for (int i = 0; i < 30 ; i++)
             {
 
                 userPoco newTruncatedCustomerPoco = new userPoco
@@ -208,7 +207,7 @@ namespace BusinessLogicValidationLayer
                     firstName = "Truncated Test User - No Contact Details",
                     lastName = "minhas",
                     ecifAlias = "login name",
-                    emailAddress = "gaurav.minhas@gmail.com" + new Random().Next().ToString(),
+                    emailAddress = "gaurav.minhas@gmail.com" + i.ToString(),
                     userCredentialsListNavigation = new List<userCredentialsPoco>(),
                 medicalRecordsListNavigation = new List<medicalRecordsPoco>()
             };

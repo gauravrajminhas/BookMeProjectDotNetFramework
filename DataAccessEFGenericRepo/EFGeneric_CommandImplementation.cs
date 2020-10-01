@@ -55,14 +55,17 @@ namespace DataAccessEFGenericRepo
                 try
                 {
                     _context.SaveChanges();
+                    
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     dbTransaction.Rollback();
                 }
-
+                
                 dbTransaction.Commit();
+
+
             }
          
         }
@@ -142,13 +145,15 @@ namespace DataAccessEFGenericRepo
                 try
                 {
                     _context.SaveChanges();
-                }catch (Exception e)
+                    dbTransaction.Commit();
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     dbTransaction.Rollback();
                 }
 
-                dbTransaction.Commit();
+                
 
             } 
             
