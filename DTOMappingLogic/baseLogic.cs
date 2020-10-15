@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTOMappingLogic
+namespace DTOMappingLayer
 {
     public class baseLogic
     {

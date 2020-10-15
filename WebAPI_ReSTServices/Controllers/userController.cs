@@ -3,7 +3,7 @@ using BusinessLogicValidationLayer;
 using Castle.Windsor;
 using DataAccessRepoPattern;
 using DTO;
-using DTOMappingLogic;
+using DTOMappingLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace WebAPI_ReSTServices.Controllers
     [RoutePrefix("api/bookMe/user/v1")]
     public class userController : ApiController
     {
-        private usersBusinessValidation _usersBusinessValidationObj;
+        private userCRUDValidation _userCRUDValidationObj;
         private userDTOMapping _userDTOMappingObject;
 
         IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
@@ -26,7 +26,7 @@ namespace WebAPI_ReSTServices.Controllers
 
         public userController()
         {
-            _usersBusinessValidationObj = new usersBusinessValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>() );
+            _userCRUDValidationObj = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
             _userDTOMappingObject = container.Resolve<userDTOMapping>();
         }
 
@@ -38,7 +38,7 @@ namespace WebAPI_ReSTServices.Controllers
         {
             try
             {
-                List<userPoco> userObjList = _usersBusinessValidationObj.getAllUser();
+                List<userPoco> userObjList = _userCRUDValidationObj.getAllUser();
                 List<userDTO> userDTOList = _userDTOMappingObject.UserMapper().Map<List<userPoco>, List<userDTO>>(userObjList);
                 if (userDTOList == null)
                 {
@@ -58,9 +58,21 @@ namespace WebAPI_ReSTServices.Controllers
         [Route("DeleteUser")]
         public IHttpActionResult deleteUser (string id)
         {
-            _usersBusinessValidationObj.deleteUser(null, null, id);
+            _userCRUDValidationObj.deleteUser(null, null, id);
             return Ok(id);
         }
+
+
+        [HttpGet]
+        [Route("GetSingleUser")]
+        [ResponseType(typeof(userDTO))]
+        public IHttpActionResult GetSingleUser([FromUri] string emailAddress)
+        {
+            userDTO result = _userCRUDValidationObj.getUserDTO(emailAddress);
+            
+            return Ok(result);
+        }
+
 
 
         

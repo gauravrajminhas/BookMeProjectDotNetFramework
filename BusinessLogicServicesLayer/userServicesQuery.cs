@@ -3,7 +3,7 @@ using BusinessLogicValidationLayer;
 using Castle.Windsor;
 using DataAccessRepoPattern;
 using DTO;
-using DTOMappingLogic;
+using DTOMappingLayer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace BusinessLogicServicesLayer
     public class userServicesQuery : IuserServicesQuery
     {
 
-        usersBusinessValidation usersBusinessValidationObject;
+        userCRUDValidation userCRUDValidationObject;
         userDTOMapping userDTOMappingObject;
         IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
   
@@ -29,7 +29,7 @@ namespace BusinessLogicServicesLayer
         public userServicesQuery()
         {
             //TODO DI OR IOC 
-            usersBusinessValidationObject = new usersBusinessValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>());
+            userCRUDValidationObject = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
             userDTOMappingObject = new userDTOMapping();
 
         }
@@ -37,14 +37,14 @@ namespace BusinessLogicServicesLayer
 
         public bool doesUserExist(string first, string last, string email)
         {
-            return usersBusinessValidationObject.doesUserExist(first, last, email);
+            return userCRUDValidationObject.doesUserExist(first, last, email);
         }
 
         public List<userDTO> getAllClient()
         {
             
            
-            List<userPoco> userObjList  = usersBusinessValidationObject.getAllUser();
+            List<userPoco> userObjList  = userCRUDValidationObject.getAllUser();
 
             
 
@@ -54,15 +54,15 @@ namespace BusinessLogicServicesLayer
             return userDTOList; 
         }
 
-        public userDTO getClient(string emailAddress)
+        public userDTO getUser(string emailAddress)
         {
 
-            userPoco userPocoObject = usersBusinessValidationObject.getUser(emailAddress);
+            userDTO resultDTO = userCRUDValidationObject.getUserDTO(emailAddress);
 
             //TODO DTO: Map the DTO to POCO here
             //userDTO userDTOObject = null;
-            userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
-            return userDTOObject;
+            //userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
+            return resultDTO;
 
 
         }
@@ -70,7 +70,7 @@ namespace BusinessLogicServicesLayer
         public userDTO getCompleteUserSnapshot(string emailAddress)
         {
             
-            userPoco userPocoObject = usersBusinessValidationObject.getCompletUserProfile(emailAddress);
+            userPoco userPocoObject = userCRUDValidationObject.getCompletUserProfile(emailAddress);
             userDTO userDTOObject = userDTOMappingObject.UserMapper().Map<userDTO>(userPocoObject);
             return userDTOObject;
 
@@ -78,7 +78,7 @@ namespace BusinessLogicServicesLayer
 
         public List<subscriptionsDTO> getAllUserSubscriptions(string emailAddress)
         {
-            List<subscriptionsPoco> restulPocoList = usersBusinessValidationObject.getAllUserSubscriptionsPocos(emailAddress);
+            List<subscriptionsPoco> restulPocoList = userCRUDValidationObject.getAllUserSubscriptionsPocos(emailAddress);
             List<subscriptionsDTO> subscriptionDTO = userDTOMappingObject.UserMapper().Map<List<subscriptionsPoco>, List<subscriptionsDTO>>(restulPocoList);
             return subscriptionDTO;
         }

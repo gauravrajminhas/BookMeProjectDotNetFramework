@@ -8,6 +8,7 @@ using BookMeProject;
 using DataAccessEFGenericRepo;
 using DataAccessRepoPattern;
 using DTO;
+using DTOMappingLayer;
 using FaultsAndExceptions;
 using Test_MockerLibraries;
 
@@ -17,14 +18,14 @@ namespace BusinessLogicValidationLayer
     {
         iRepoCommand<iPoco> commandObject;
         iRepoQuery<iPoco> queryObject;
-        
+        userDTOMapping _userDTOMappingObject;
 
-        public userCRUDValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection)
+        public userCRUDValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection, userDTOMapping userDTOMappingObject)
         {
 
             commandObject = commandObjectInjection;
-            queryObject = queryObjectInjection; 
-
+            queryObject = queryObjectInjection;
+            _userDTOMappingObject = userDTOMappingObject;
         }
 
 
@@ -128,6 +129,14 @@ namespace BusinessLogicValidationLayer
             }
                
         }
+        public userDTO  getUserDTO(string emailID)
+        {
+            userPoco result = this.getUser(emailID);
+            userDTO resultDTO = _userDTOMappingObject.UserMapper().Map<userDTO>(result);
+            return resultDTO;
+
+        }
+        
         public userPoco getCompletUserProfile(string emailID)
         {
             //Bug dBcontext is a singelton and is getting disposed 
@@ -143,6 +152,8 @@ namespace BusinessLogicValidationLayer
             }
                 
         }
+
+
 
         public List<subscriptionsPoco> getAllUserSubscriptionsPocos(string emailAddress)
         {

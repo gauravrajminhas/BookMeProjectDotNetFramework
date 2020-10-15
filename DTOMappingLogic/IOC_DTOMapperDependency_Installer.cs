@@ -1,13 +1,13 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using DTOMappingLogic;
+using DTOMappingLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DTOMappingLogic
+namespace DTOMappingLayer
 {
     public class IOC_DTOMapperDependency_Installer : IWindsorInstaller
     {

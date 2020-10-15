@@ -8,6 +8,7 @@ using BookMeProject;
 using BusinessLogicValidationLayer;
 using Castle.Windsor;
 using DataAccessRepoPattern;
+using DTOMappingLayer;
 using FaultsAndExceptions;
 using WebAPI_ReSTServices.App_Start;
 
@@ -16,13 +17,13 @@ namespace BusinessLogicServicesLayer
     [ServiceBehavior(MaxItemsInObjectGraph = 2147483646)]
     class userServicesCommand : IuserServicesCommand
     {
-        usersBusinessValidation usersObject;
+        userCRUDValidation usersObject;
         IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
 
         public userServicesCommand()
         {
             //TODO add CI/IOC  container here 
-            usersObject = new usersBusinessValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>());
+            usersObject = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
         }
 
         public void addUser(string first, string last, string email)

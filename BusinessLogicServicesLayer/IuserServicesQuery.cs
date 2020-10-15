@@ -19,7 +19,7 @@ namespace BusinessLogicServicesLayer
 
         [OperationContract]
         [FaultContract(typeof(noClientFoundException))]
-        userDTO getClient(string emailAddress);
+        userDTO getUser(string emailAddress);
 
         [OperationContract]
         List<userDTO> getAllClient();

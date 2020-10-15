@@ -8,8 +8,8 @@
     <ProjectGuid>{7B984C43-6407-405D-87CC-5240BB38D40F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DTOMappingLogic</RootNamespace>
-    <AssemblyName>DTOMappingLogic</AssemblyName>
+    <RootNamespace>DTOMappingLayer</RootNamespace>
+    <AssemblyName>DTOMappingLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -73,10 +73,6 @@
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
-      <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogic_ValidationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTOs.csproj">
       <Project>{53f9f825-bdf5-492e-9866-51801d821c07}</Project>

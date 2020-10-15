@@ -37,6 +37,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005" />
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -68,7 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeedDataForTesting.cs" />
     <Compile Include="subscriptionsBusinessValidation.cs" />
-    <Compile Include="usersBusinessValidation.cs" />
+    <Compile Include="userCRUDValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
@@ -82,6 +83,10 @@
     <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
       <Project>{0206f859-3d5e-48df-a9c6-40b2003f91f2}</Project>
       <Name>DataAccess_IRepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTOMappingLogic\DTOMappingLayer.csproj">
+      <Project>{7b984c43-6407-405d-87cc-5240bb38d40f}</Project>
+      <Name>DTOMappingLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTOs.csproj">
       <Project>{53F9F825-BDF5-492E-9866-51801D821C07}</Project>
