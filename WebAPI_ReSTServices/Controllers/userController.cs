@@ -5,6 +5,7 @@ using DataAccessRepoPattern;
 using DTO;
 using DTOMappingLayer;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -38,8 +39,8 @@ namespace WebAPI_ReSTServices.Controllers
         {
             try
             {
-                List<userPoco> userObjList = _userCRUDValidationObj.getAllUser();
-                List<userDTO> userDTOList = _userDTOMappingObject.UserMapper().Map<List<userPoco>, List<userDTO>>(userObjList);
+                List<userDTO> userDTOList = _userCRUDValidationObj.getAllUserDTOs();
+                //List<userDTO> userDTOList = _userDTOMappingObject.UserMapper().Map<List<userPoco>, List<userDTO>>(userObjList);
                 if (userDTOList == null)
                 {
                     return NotFound();
@@ -71,6 +72,17 @@ namespace WebAPI_ReSTServices.Controllers
             userDTO result = _userCRUDValidationObj.getUserDTO(emailAddress);
             
             return Ok(result);
+        }
+
+
+        [HttpPost]
+        [Route("addUser")]
+        [ResponseType(typeof(IHttpActionResult))]
+        public IHttpActionResult addUser([FromBody] string first, string last, string emailID)
+        {
+            _userCRUDValidationObj.addUser(first, last, emailID);
+
+            return Ok();
         }
 
 

@@ -41,16 +41,10 @@ namespace BusinessLogicServicesLayer
         }
 
         public List<userDTO> getAllClient()
-        {
-            
-           
-            List<userPoco> userObjList  = userCRUDValidationObject.getAllUser();
-
-            
-
-
+        {      
+            List<userDTO> userDTOList  = userCRUDValidationObject.getAllUserDTOs();
             //TODO DTO: Map the DTO to POCO here
-            List<userDTO> userDTOList = userDTOMappingObject.UserMapper().Map< List<userPoco>,List<userDTO> >(userObjList);
+            //List<userDTO> userDTOList = userDTOMappingObject.UserMapper().Map< List<userPoco>,List<userDTO> >(userObjList);
             return userDTOList; 
         }
 

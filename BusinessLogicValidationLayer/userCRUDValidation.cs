@@ -16,8 +16,8 @@ namespace BusinessLogicValidationLayer
 {
     public class userCRUDValidation : Ivalidation
     {
-        iRepoCommand<iPoco> commandObject;
-        iRepoQuery<iPoco> queryObject;
+        private iRepoCommand<iPoco> commandObject;
+        private iRepoQuery<iPoco> queryObject;
         userDTOMapping _userDTOMappingObject;
 
         public userCRUDValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection, userDTOMapping userDTOMappingObject)
@@ -112,7 +112,7 @@ namespace BusinessLogicValidationLayer
 
 
         // Get Methods returning Pocos and not DTOs
-        public List<userPoco> getAllUser()
+        private List<userPoco> getAllUser()
         {
             //using (queryObject)
             {
@@ -120,7 +120,17 @@ namespace BusinessLogicValidationLayer
             }
                 
         }
-        public userPoco getUser(string emailID)
+        public List <userDTO> getAllUserDTOs()
+        {
+            List<userPoco> allUserList = getAllUser();
+            List<userDTO> allUserDTOsList = _userDTOMappingObject.UserMapper().Map< List<userPoco>, List<userDTO>>(allUserList);
+
+            return allUserDTOsList;
+        }
+
+
+
+        private userPoco getUser(string emailID)
         {
             //Bug dBcontext is a singelton and is getting disposed 
             //using (queryObject)
