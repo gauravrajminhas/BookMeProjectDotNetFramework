@@ -14,11 +14,11 @@ using Test_MockerLibraries;
 
 namespace BusinessLogicValidationLayer
 {
-    public class userCRUDValidation : Ivalidation
+    public class userCRUDValidation : IbusinessValidation
     {
         private iRepoCommand<iPoco> commandObject;
         private iRepoQuery<iPoco> queryObject;
-        userDTOMapping _userDTOMappingObject;
+        private userDTOMapping _userDTOMappingObject;
 
         public userCRUDValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection, userDTOMapping userDTOMappingObject)
         {
@@ -163,6 +163,21 @@ namespace BusinessLogicValidationLayer
                 
         }
 
+        public userDTO getCompletUserDTOProfile(string emailID)
+        {
+            //Bug dBcontext is a singelton and is getting disposed 
+            //using (queryObject)
+            {
+                userDTO completeUserDTOResult;
+                userPoco completeUserResult = getCompletUserProfile(emailID);
+
+                completeUserDTOResult = _userDTOMappingObject.UserMapper().Map<userDTO>(completeUserResult);
+
+
+                return completeUserDTOResult;
+            }
+
+        }
 
 
         public List<subscriptionsPoco> getAllUserSubscriptionsPocos(string emailAddress)

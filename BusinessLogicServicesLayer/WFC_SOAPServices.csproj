@@ -113,6 +113,10 @@
       <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
       <Name>FaultsAndExceptions_Customs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MockData_TestingLibraries\Mock_POCO_TestingLibraries.csproj">
+      <Project>{3d671366-90e4-4208-91e4-0c9f33be1f6b}</Project>
+      <Name>Mock_POCO_TestingLibraries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI_ReSTServices\WebAPI_ReSTServices.csproj">
       <Project>{258B3594-5FB9-4089-9128-AF48BF0DEF43}</Project>
       <Name>WebAPI_ReSTServices</Name>

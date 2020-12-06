@@ -97,6 +97,7 @@ namespace DataAccessEFGenericRepo
                 .ToTable("medicalRecords", "RecordSchema");
 
 
+
                 //Schedule Schema
             modelBuilder.Entity<classPoco>()
                 .HasKey<Guid>(cp => cp.classID)
@@ -111,6 +112,7 @@ namespace DataAccessEFGenericRepo
                 .ToTable("booking", "Schedule");
 
            
+
 
 
 
@@ -131,6 +133,7 @@ namespace DataAccessEFGenericRepo
             modelBuilder.Entity<statePoco>()
                 .HasKey(sp => sp.stateID)
                 .ToTable("states", "referenceDataSchema");
+
 
 
 

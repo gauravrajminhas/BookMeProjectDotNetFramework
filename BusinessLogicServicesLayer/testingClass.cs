@@ -6,6 +6,7 @@ using FaultsAndExceptions;
 using System.Collections.Generic;
 using System.ServiceModel;
 using WebAPI_ReSTServices.App_Start;
+using Mock_POCO_TestingLibraries;
 
 namespace BusinessLogicServicesLayer
 {
@@ -57,7 +58,9 @@ namespace BusinessLogicServicesLayer
 
         public void seedTestData()
         {
-            new SeedDataForTesting (container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedData();
+            new SeedProgramDataForTesting(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedProgram(10);
+            new SeedUserDataForTesting (container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>()).seedData();
+
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicValidationLayer
 {
-    interface Ivalidation
+    public interface IbusinessValidation
     {
     }
 }

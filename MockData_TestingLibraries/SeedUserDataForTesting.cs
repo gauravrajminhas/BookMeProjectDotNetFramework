@@ -2,24 +2,23 @@
 using Castle.Windsor;
 using DataAccessEFGenericRepo;
 using DataAccessRepoPattern;
+using Mock_POCO_TestingLibraries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogicValidationLayer
+namespace Mock_POCO_TestingLibraries
 {
-    public class SeedDataForTesting : Ivalidation
+    public class SeedUserDataForTesting : BaseIOCDependencyClass, IMockDataTestingValidation
     {
 
-        iRepoCommand<iPoco> commandRepo;
-        iRepoQuery<iPoco> queryRepo;
         
-        public SeedDataForTesting(iRepoCommand<iPoco> commandRepoInjection, iRepoQuery<iPoco> queryRepoInjection)
-        {
-            commandRepo = commandRepoInjection;
-            queryRepo = queryRepoInjection;
+       
+        
+        public SeedUserDataForTesting(iRepoCommand<iPoco> commandRepoInjection, iRepoQuery<iPoco> queryRepoInjection): base(commandRepoInjection, queryRepoInjection)
+        {           
         }
 
         
@@ -28,21 +27,21 @@ namespace BusinessLogicValidationLayer
         {
             
             // populating the Referance Datas tables 
-            if (queryRepo.GetAll<statusPoco>().Count == 0)
+            if (queryObjectReferace.GetAll<statusPoco>().Count == 0)
             {
-                commandRepo.add<statusPoco>(new statusPoco
+                commandObjectReferance.add<statusPoco>(new statusPoco
                 {
                     statusID = Guid.NewGuid(),
                     statusName = "customer",
                 });
 
-                commandRepo.add<statusPoco>(new statusPoco
+                commandObjectReferance.add<statusPoco>(new statusPoco
                 {
                     statusID = Guid.NewGuid(),
                     statusName = "Prospect",
                 });
 
-                commandRepo.add<statusPoco>(new statusPoco
+                commandObjectReferance.add<statusPoco>(new statusPoco
                 {
                     statusID = Guid.NewGuid(),
                     statusName = "staff",
@@ -50,24 +49,24 @@ namespace BusinessLogicValidationLayer
 
             }
 
-            if (queryRepo.GetAll<countryPoco>().Count == 0)
+            if (queryObjectReferace.GetAll<countryPoco>().Count == 0)
             {
-                commandRepo.add<countryPoco>(new countryPoco {
+                commandObjectReferance.add<countryPoco>(new countryPoco {
                     countryID = Guid.NewGuid(),
                     countryName = "India"
                 });
             }
-            if (queryRepo.GetAll<statePoco>().Count == 0)
+            if (queryObjectReferace.GetAll<statePoco>().Count == 0)
             {
-                commandRepo.add<statePoco>(new statePoco
+                commandObjectReferance.add<statePoco>(new statePoco
                 {
                     stateID = Guid.NewGuid(),
                     stateName = "Maharashtra"
                 });
             }
-            if (queryRepo.GetAll<cityPoco>().Count == 0)
+            if (queryObjectReferace.GetAll<cityPoco>().Count == 0)
             {
-                commandRepo.add<cityPoco>(new cityPoco
+                commandObjectReferance.add<cityPoco>(new cityPoco
                 {
                     cityID = Guid.NewGuid(),
                     cityName = "Bombay"
@@ -76,9 +75,9 @@ namespace BusinessLogicValidationLayer
 
 
             // setup a complete test user
-            if (queryRepo.GetSingle<userPoco>(up => up.emailAddress == "completeUser1@qa.com")==null)
+            if (queryObjectReferace.GetSingle<userPoco>(up => up.emailAddress == "completeUser1@qa.com")==null)
             {
-                commandRepo.add<userPoco>(
+                commandObjectReferance.add<userPoco>(
                     new userPoco {
                         ecifID = Guid.NewGuid(),
                         ecifAlias = "Test QA User",
@@ -93,7 +92,7 @@ namespace BusinessLogicValidationLayer
 
                 
 
-                userPoco updateTestUserPoco = queryRepo.GetSingle<userPoco>(up=>up.emailAddress== "completeUser1@qa.com");
+                userPoco updateTestUserPoco = queryObjectReferace.GetSingle<userPoco>(up=>up.emailAddress== "completeUser1@qa.com");
 
                 updateTestUserPoco.userContactDetailsNavigation = new userContactDetailsPoco {
                     ecifID = updateTestUserPoco.ecifID,
@@ -161,36 +160,36 @@ namespace BusinessLogicValidationLayer
 
 
 
-                commandRepo.update<userPoco>(updateTestUserPoco);
+                commandObjectReferance.update<userPoco>(updateTestUserPoco);
 
 
 
-                commandRepo.add<subscriptionsPoco>(
+                commandObjectReferance.add<subscriptionsPoco>(
                     new subscriptionsPoco
                     {
                         subscriptionID = Guid.NewGuid(),
 
-                        userID = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
-                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
+                        userID = queryObjectReferace.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
+                        statusID = queryObjectReferace.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
                         discription = "Subscribed to Crossfit Services",
                         startDate = DateTime.Now,
                         endDate = DateTime.Now,
-                        userCredentialsNavigation = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
-                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
+                        userCredentialsNavigation = queryObjectReferace.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
+                        statusNavigation = queryObjectReferace.GetSingle<statusPoco>(sp => sp.statusName == "customer")
 
                     });
 
-                commandRepo.add<subscriptionsPoco>(
+                commandObjectReferance.add<subscriptionsPoco>(
                     new subscriptionsPoco
                     {
                         subscriptionID = Guid.NewGuid(),
-                        userID = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
-                        statusID = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
+                        userID = queryObjectReferace.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1").userID,
+                        statusID = queryObjectReferace.GetSingle<statusPoco>(sp => sp.statusName == "customer").statusID,
                         discription = "Subscribed to weightLifting Services",
                         startDate = DateTime.Now,
                         endDate = DateTime.Now,
-                        userCredentialsNavigation = queryRepo.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
-                        statusNavigation = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer")
+                        userCredentialsNavigation = queryObjectReferace.GetSingle<userCredentialsPoco>(asp => asp.aliasName == "testAccount1"),
+                        statusNavigation = queryObjectReferace.GetSingle<statusPoco>(sp => sp.statusName == "customer")
 
                     });
 
@@ -233,12 +232,12 @@ namespace BusinessLogicValidationLayer
                         //ecifID = newTruncatedCustomerPoco.ecifID
                     });
 
-            commandRepo.add<userPoco>(newTruncatedCustomerPoco);
+                commandObjectReferance.add<userPoco>(newTruncatedCustomerPoco);
 
             
 
 
-            userPoco minhasUser = queryRepo.GetSingle<userPoco>(
+            userPoco minhasUser = queryObjectReferace.GetSingle<userPoco>(
                 cus => cus.lastName == "minhas",
                 cus => cus.userCredentialsListNavigation,
                 cus => cus.userContactDetailsNavigation);
@@ -259,13 +258,13 @@ namespace BusinessLogicValidationLayer
 
 
 
-            //minhasUser.lastName = "changed";
-            commandRepo.update<userPoco>(minhasUser);
+                //minhasUser.lastName = "changed";
+                commandObjectReferance.update<userPoco>(minhasUser);
 
            
 
-                var userAccessObject = queryRepo.GetSingle<userCredentialsPoco>(uap => uap.password == "TestPassword1");
-                var statusObj = queryRepo.GetSingle<statusPoco>(sp => sp.statusName == "customer");
+                var userAccessObject = queryObjectReferace.GetSingle<userCredentialsPoco>(uap => uap.password == "TestPassword1");
+                var statusObj = queryObjectReferace.GetSingle<statusPoco>(sp => sp.statusName == "customer");
 
                 //commandRepo.add<userStatusPoco>(new userStatusPoco {
                 //    userAccessNavigation = userAccessObject,

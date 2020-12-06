@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicValidationLayer
 {
-    class subscriptionsBusinessValidation : Ivalidation
+    class subscriptionsBusinessValidation : IbusinessValidation
     {
         iRepoCommand<iPoco> commandObject;
         iRepoQuery<iPoco> queryObject;

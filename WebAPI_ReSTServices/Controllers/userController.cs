@@ -15,7 +15,7 @@ using System.Web.Http.Description;
 using WebAPI_ReSTServices.App_Start;
 
 namespace WebAPI_ReSTServices.Controllers
-{   
+{
     [RoutePrefix("api/bookMe/user/v1")]
     public class userController : ApiController
     {
@@ -31,7 +31,7 @@ namespace WebAPI_ReSTServices.Controllers
             _userDTOMappingObject = container.Resolve<userDTOMapping>();
         }
 
-  
+
         [HttpGet]
         [Route("GetAllUsers")]
         [ResponseType(typeof(List<userDTO>))]
@@ -51,13 +51,13 @@ namespace WebAPI_ReSTServices.Controllers
             {
                 return InternalServerError(e);
             }
-            
-            
+
+
         }
 
         [HttpDelete]
         [Route("DeleteUser")]
-        public IHttpActionResult deleteUser (string id)
+        public IHttpActionResult deleteUser(string id)
         {
             _userCRUDValidationObj.deleteUser(null, null, id);
             return Ok(id);
@@ -70,7 +70,7 @@ namespace WebAPI_ReSTServices.Controllers
         public IHttpActionResult GetSingleUser([FromUri] string emailAddress)
         {
             userDTO result = _userCRUDValidationObj.getUserDTO(emailAddress);
-            
+
             return Ok(result);
         }
 
@@ -86,8 +86,15 @@ namespace WebAPI_ReSTServices.Controllers
         }
 
 
+        [HttpGet]
+        [Route("getCompleteUserProfile")]
+        [ResponseType(typeof(userDTO))]
+        public userDTO getCompleteUserProfile([FromUri] string emailID)
+        {
+            return _userCRUDValidationObj.getCompletUserDTOProfile(emailID);
+        }
 
-        
+
 
     }
 }

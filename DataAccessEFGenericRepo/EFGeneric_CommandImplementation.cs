@@ -50,23 +50,23 @@ namespace DataAccessEFGenericRepo
 
 
             // Trying a Transaction Code here
-            using (DbContextTransaction dbTransaction = _context.Database.BeginTransaction())
+            DbContextTransaction dbTransaction = _context.Database.BeginTransaction();
+            
+            try
             {
-                try
-                {
                     _context.SaveChanges();
                     
                 }
-                catch (Exception e)
+            catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     dbTransaction.Rollback();
                 }
                 
-                dbTransaction.Commit();
+            dbTransaction.Commit();
 
 
-            }
+            
          
         }
     
@@ -139,9 +139,8 @@ namespace DataAccessEFGenericRepo
                 }
 
             // Trying a Transaction Code here
-            using (var dbTransaction = _context.Database.BeginTransaction())
-            {
-
+            var dbTransaction = _context.Database.BeginTransaction();
+            
                 try
                 {
                     _context.SaveChanges();
@@ -155,7 +154,7 @@ namespace DataAccessEFGenericRepo
 
                 
 
-            } 
+             
             
         }
     }
