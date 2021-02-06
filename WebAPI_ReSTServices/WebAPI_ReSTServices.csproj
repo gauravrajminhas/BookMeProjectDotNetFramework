@@ -132,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookMeProject\Pocos.csproj">
@@ -150,6 +149,10 @@
     <ProjectReference Include="..\DataAccessRepoPattern\DataAccess_IRepositoryInterface.csproj">
       <Project>{0206F859-3D5E-48DF-A9C6-40B2003F91F2}</Project>
       <Name>DataAccess_IRepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess_RedisCache_RepositoryAccess\DataAccess_RedisCache_RepositoryAccess.csproj">
+      <Project>{6d4deb92-d5a5-4c46-ba6c-6042078052f4}</Project>
+      <Name>DataAccess_RedisCache_RepositoryAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTOMappingLogic\DTOMappingLayer.csproj">
       <Project>{7B984C43-6407-405D-87CC-5240BB38D40F}</Project>

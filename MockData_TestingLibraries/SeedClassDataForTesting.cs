@@ -4,7 +4,7 @@ using System.Text;
 using DataAccessRepoPattern;
 using BookMeProject;
 
-namespace Mock_POCO_TestingLibraries
+namespace Test_Poco_seedData_mockData
 {
     class SeedClassDataForTesting : BaseIOCDependencyClass, IMockDataTestingValidation
     {

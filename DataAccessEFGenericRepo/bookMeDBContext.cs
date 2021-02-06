@@ -32,7 +32,7 @@ namespace DataAccessEFGenericRepo
 
         private static bookMeDBContext _singeltonDBContextInstance = null;
 
-        // singelton menthod for the only one instance of DB context; this not thread safe however. 
+        // singelton menthod for the only one instance of DB context; this thread safe however. 
         // this Approach is now causing Threading issues coz multiple threads are trying to do CRUD using one dbContext instance 
         public static bookMeDBContext bookMeDBContextSingeltonFactory()
         {

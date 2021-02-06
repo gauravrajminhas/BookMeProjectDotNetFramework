@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1321
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pocos", "BookMeProject\Pocos.csproj", "{A33387AF-5686-4C4A-BEE4-0B3A01FCB71A}"
 EndProject
@@ -30,7 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Wiki", "Project Wik
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_MockerLibraries", "Test_MockerLibraries\Test_MockerLibraries.csproj", "{9BD19065-A48A-4048-884D-ACDAE4B7B9F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mock_POCO_TestingLibraries", "MockData_TestingLibraries\Mock_POCO_TestingLibraries.csproj", "{3D671366-90E4-4208-91E4-0C9F33BE1F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Poco_seedData_mockData", "MockData_TestingLibraries\Test_Poco_seedData_mockData.csproj", "{3D671366-90E4-4208-91E4-0C9F33BE1F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess_RedisCache_RepositoryAccess", "DataAccess_RedisCache_RepositoryAccess\DataAccess_RedisCache_RepositoryAccess.csproj", "{6D4DEB92-D5A5-4C46-BA6C-6042078052F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +88,10 @@ Global
 		{3D671366-90E4-4208-91E4-0C9F33BE1F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D671366-90E4-4208-91E4-0C9F33BE1F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D671366-90E4-4208-91E4-0C9F33BE1F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4DEB92-D5A5-4C46-BA6C-6042078052F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4DEB92-D5A5-4C46-BA6C-6042078052F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4DEB92-D5A5-4C46-BA6C-6042078052F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4DEB92-D5A5-4C46-BA6C-6042078052F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

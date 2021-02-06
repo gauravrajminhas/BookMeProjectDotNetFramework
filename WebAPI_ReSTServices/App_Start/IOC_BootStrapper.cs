@@ -15,6 +15,8 @@ namespace WebAPI_ReSTServices.App_Start
     {
         public IWindsorContainer Container => new WindsorContainer();
 
+        //how to get the assembly name ? 
+        // http://inoteitdown.blogspot.com/2011/07/get-assembly-fully-qualified-name.html
 
         public IWindsorContainer bootstrapContainer()
         {
@@ -24,6 +26,7 @@ namespace WebAPI_ReSTServices.App_Start
                     //new iRepoInstallers(),
                     //Configuration.FromAppConfig(),
                     FromAssembly.This(),
+                     FromAssembly.Named("DataAccess_RedisCache_RepositoryAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
                     FromAssembly.Named("DataAccessEFGenericRepo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
                     FromAssembly.Named("DTOMappingLayer, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null")
                     //FromAssembly.Named("BusinessLogicValidationLayer"),

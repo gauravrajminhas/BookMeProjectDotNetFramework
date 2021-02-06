@@ -28,10 +28,10 @@ namespace DataAccessEFGenericRepo
         public EFGeneric_CommandImplementation (bookMeDBContext dbContextInjection)
         {
 
+            // DI IOC container will come here 
             _context = dbContextInjection;
             _context.Database.Log = Console.Write;
 
-            // DI IOC container will come here 
             //_context = bookMeDBContext.bookMeDBContextSingeltonFactory();
             //_context = bookMeDBContext.bookMeDBContextNonSingeltonFactory();
 
@@ -56,12 +56,12 @@ namespace DataAccessEFGenericRepo
             {
                     _context.SaveChanges();
                     
-                }
+            }
             catch (Exception e)
-                {
+            {
                     Console.WriteLine(e.Message);
                     dbTransaction.Rollback();
-                }
+            }
                 
             dbTransaction.Commit();
 

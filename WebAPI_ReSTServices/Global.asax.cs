@@ -20,7 +20,7 @@ namespace WebAPI_ReSTServices
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            Console.WriteLine(Container);
+           // Console.WriteLine(Container);
 
 
         }

@@ -2,14 +2,14 @@
 using Castle.Windsor;
 using DataAccessEFGenericRepo;
 using DataAccessRepoPattern;
-using Mock_POCO_TestingLibraries;
+using Test_Poco_seedData_mockData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mock_POCO_TestingLibraries
+namespace Test_Poco_seedData_mockData
 {
     public class SeedUserDataForTesting : BaseIOCDependencyClass, IMockDataTestingValidation
     {

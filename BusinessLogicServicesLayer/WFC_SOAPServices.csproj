@@ -101,6 +101,10 @@
       <Project>{0206F859-3D5E-48DF-A9C6-40B2003F91F2}</Project>
       <Name>DataAccess_IRepositoryInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccess_RedisCache_RepositoryAccess\DataAccess_RedisCache_RepositoryAccess.csproj">
+      <Project>{6d4deb92-d5a5-4c46-ba6c-6042078052f4}</Project>
+      <Name>DataAccess_RedisCache_RepositoryAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTOMappingLogic\DTOMappingLayer.csproj">
       <Project>{7b984c43-6407-405d-87cc-5240bb38d40f}</Project>
       <Name>DTOMappingLayer</Name>
@@ -113,9 +117,9 @@
       <Project>{237815ee-94f3-41e3-8b74-3e3d0e9de523}</Project>
       <Name>FaultsAndExceptions_Customs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MockData_TestingLibraries\Mock_POCO_TestingLibraries.csproj">
+    <ProjectReference Include="..\MockData_TestingLibraries\Test_Poco_seedData_mockData.csproj">
       <Project>{3d671366-90e4-4208-91e4-0c9f33be1f6b}</Project>
-      <Name>Mock_POCO_TestingLibraries</Name>
+      <Name>Test_Poco_seedData_mockData</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebAPI_ReSTServices\WebAPI_ReSTServices.csproj">
       <Project>{258B3594-5FB9-4089-9128-AF48BF0DEF43}</Project>

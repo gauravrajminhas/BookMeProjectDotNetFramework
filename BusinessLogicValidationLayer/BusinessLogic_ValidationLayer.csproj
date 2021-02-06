@@ -68,6 +68,7 @@
     <Compile Include="IbusinessValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="subscriptionsBusinessValidation.cs" />
+    <Compile Include="testClass.cs" />
     <Compile Include="userCRUDValidation.cs" />
   </ItemGroup>
   <ItemGroup>
