@@ -26,7 +26,7 @@ namespace WebAPI_ReSTServices.App_Start
                     //new iRepoInstallers(),
                     //Configuration.FromAppConfig(),
                     FromAssembly.This(),
-                     FromAssembly.Named("DataAccess_RedisCache_RepositoryAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
+                    FromAssembly.Named("DataAccess_RedisCache_RepositoryAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
                     FromAssembly.Named("DataAccessEFGenericRepo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
                     FromAssembly.Named("DTOMappingLayer, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null")
                     //FromAssembly.Named("BusinessLogicValidationLayer"),

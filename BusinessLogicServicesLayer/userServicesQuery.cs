@@ -22,14 +22,14 @@ namespace BusinessLogicServicesLayer
 
         userCRUDValidation userCRUDValidationObject;
         userDTOMapping userDTOMappingObject;
-        IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
+        public IWindsorContainer container = new IOC_BootStrapper().bootstrapContainer();
   
         public string serviceType = "query";
 
         public userServicesQuery()
         {
             //TODO DI OR IOC 
-            userCRUDValidationObject = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
+            userCRUDValidationObject = new userCRUDValidation(container.Resolve<iCachedCommandRepo<iPoco>>(), container.Resolve<iCachedQueryRepo<iPoco>>(), container.Resolve<userDTOMapping>());
             userDTOMappingObject = new userDTOMapping();
 
         }

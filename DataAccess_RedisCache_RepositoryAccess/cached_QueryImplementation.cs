@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 
 namespace DataAccess_RedisCache_RepositoryAccess
 {
-    class cached_QueryImplementation<iAnotherPocotype> : iRepoQuery<iPoco>
+    class cached_QueryImplementation<iPocoType> : iCachedQueryRepo<iPocoType>
+        where iPocoType : iPoco
     {
-        public cached_QueryImplementation()
-        {
 
+        private iRepoQuery<iPocoType> _iRepoQueryInjection; 
+
+        public cached_QueryImplementation( iRepoQuery<iPocoType> iRepoQueryInjection)
+        {
+            _iRepoQueryInjection = iRepoQueryInjection;
         }
 
         public void Dispose()
@@ -22,19 +26,19 @@ namespace DataAccess_RedisCache_RepositoryAccess
             throw new NotImplementedException();
         }
 
-        List<anotherPocoTypePlaceholder> iRepoQuery<iPoco>.GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
+        List<anotherPocoTypePlaceholder> iRepoQuery<iPocoType>.GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
         {
-            throw new NotImplementedException();
+            return _iRepoQueryInjection.GetAll<anotherPocoTypePlaceholder>(navigationObjectPath);
         }
 
-        List<anotherPocoTypePlaceholder> iRepoQuery<iPoco>.GetAll<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
+        List<anotherPocoTypePlaceholder> iRepoQuery<iPocoType>.GetAll<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
         {
-            throw new NotImplementedException();
+            return _iRepoQueryInjection.GetAll<anotherPocoTypePlaceholder>(wherePredicate, navigationObjectPath);
         }
 
-        anotherPocoTypePlaceholder iRepoQuery<iPoco>.GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
+        anotherPocoTypePlaceholder iRepoQuery<iPocoType>.GetSingle<anotherPocoTypePlaceholder>(Func<anotherPocoTypePlaceholder, bool> wherePredicate, params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationPropertyPathObjectList)
         {
-            throw new NotImplementedException();
+            return _iRepoQueryInjection.GetSingle<anotherPocoTypePlaceholder>(wherePredicate, navigationPropertyPathObjectList);
         }
     }
 }

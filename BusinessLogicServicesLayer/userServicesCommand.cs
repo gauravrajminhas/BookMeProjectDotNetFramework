@@ -23,7 +23,7 @@ namespace BusinessLogicServicesLayer
         public userServicesCommand()
         {
             //TODO add CI/IOC  container here 
-            usersObject = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
+            usersObject = new userCRUDValidation(container.Resolve<iCachedCommandRepo<iPoco>>(), container.Resolve<iCachedQueryRepo<iPoco>>(), container.Resolve<userDTOMapping>());
         }
 
         public void addUser(string first, string last, string email)

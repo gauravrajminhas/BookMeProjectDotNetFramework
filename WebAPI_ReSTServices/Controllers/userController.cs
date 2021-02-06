@@ -27,7 +27,7 @@ namespace WebAPI_ReSTServices.Controllers
 
         public userController()
         {
-            _userCRUDValidationObj = new userCRUDValidation(container.Resolve<iRepoCommand<iPoco>>(), container.Resolve<iRepoQuery<iPoco>>(), container.Resolve<userDTOMapping>());
+            _userCRUDValidationObj = new userCRUDValidation(container.Resolve<iCachedCommandRepo<iPoco>>(), container.Resolve<iCachedQueryRepo<iPoco>>(), container.Resolve<userDTOMapping>());
             _userDTOMappingObject = container.Resolve<userDTOMapping>();
         }
 

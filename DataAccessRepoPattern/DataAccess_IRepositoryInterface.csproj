@@ -106,6 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iCachedCommandRepo.cs" />
+    <Compile Include="iCachedQueryRepo.cs" />
     <Compile Include="iRepo.cs" />
     <Compile Include="iRepoCommand.cs" />
     <Compile Include="iRepoQuery.cs" />

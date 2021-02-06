@@ -16,11 +16,11 @@ namespace BusinessLogicValidationLayer
 {
     public class userCRUDValidation : IbusinessValidation
     {
-        private iRepoCommand<iPoco> commandObject;
-        private iRepoQuery<iPoco> queryObject;
+        private iCachedCommandRepo<iPoco> commandObject;
+        private iCachedQueryRepo<iPoco> queryObject;
         private userDTOMapping _userDTOMappingObject;
 
-        public userCRUDValidation(iRepoCommand<iPoco> commandObjectInjection, iRepoQuery<iPoco> queryObjectInjection, userDTOMapping userDTOMappingObject)
+        public userCRUDValidation(iCachedCommandRepo<iPoco> commandObjectInjection, iCachedQueryRepo<iPoco> queryObjectInjection, userDTOMapping userDTOMappingObject)
         {
 
             commandObject = commandObjectInjection;

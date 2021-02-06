@@ -21,15 +21,15 @@ namespace DataAccess_RedisCache_RepositoryAccess
 
             container.Register(
 
-                Component.For<bookMeDBContext>().ImplementedBy(typeof(bookMeDBContext)),
+                //Component.For<bookMeDBContext>().ImplementedBy(typeof(bookMeDBContext)),
 
                 //for Mocker APIs
                 //Component.For(typeof(iRepoCommand<>)).ImplementedBy(typeof(mock_EFGeneric_CommandImplementation<>)),
                 //Component.For(typeof(iRepoQuery<>)).ImplementedBy(typeof(mock_EFGeneric_QueryImplementation<>))
 
                 //For Actual Repository 
-                Component.For(typeof(iRepoCommand<>)).ImplementedBy(typeof(cached_CommandImplementation<>)),
-                Component.For(typeof(iRepoQuery<>)).ImplementedBy(typeof(cached_QueryImplementation<>))
+                Component.For(typeof(iCachedCommandRepo<>)).ImplementedBy(typeof(cached_CommandImplementation<>)),
+                Component.For(typeof(iCachedQueryRepo<>)).ImplementedBy(typeof(cached_QueryImplementation<>))
                 );
         }
     }

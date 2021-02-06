@@ -9,31 +9,47 @@ using System.Threading.Tasks;
 
 namespace DataAccess_RedisCache_RepositoryAccess
 {
-    class cached_CommandImplementation<iAnotherPoco> : iRepoCommand<iPoco>
+    class cached_CommandImplementation<iPocoType> : iCachedCommandRepo<iPocoType>
+        where iPocoType : iPoco
     {
+
+        private iRepoCommand<iPoco> _iRepoCommandInjection;
+    
+                          
+        public cached_CommandImplementation( iRepoCommand<iPoco> iRepoCommandInjection )
+        { 
+            _iRepoCommandInjection = iRepoCommandInjection;
+           
+        }
+
+        
         public void Dispose()
         {
             throw new NotImplementedException();
         }
 
-        void iRepoCommand<iPoco>.add<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeAdded)
+        void iRepoCommand<iPocoType>.add<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeAdded)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Cached Repo");
+            _iRepoCommandInjection.add<anotherPocoTypePlaceholder>(pocosToBeAdded);
         }
 
-        void iRepoCommand<iPoco>.delete<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosTobeDeleted)
+        void iRepoCommand<iPocoType>.delete<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosTobeDeleted)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Cached Repo");
+            _iRepoCommandInjection.delete<anotherPocoTypePlaceholder>(pocosTobeDeleted);
         }
 
-        void iRepoCommand<iPoco>.delete<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
+        void iRepoCommand<iPocoType>.delete<anotherPocoTypePlaceholder>(Expression<Func<anotherPocoTypePlaceholder, bool>> wherePredicate)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Cached Repo");
+            _iRepoCommandInjection.delete<anotherPocoTypePlaceholder>(wherePredicate);
         }
 
-        void iRepoCommand<iPoco>.update<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeUpdated)
+        void iRepoCommand<iPocoType>.update<anotherPocoTypePlaceholder>(params anotherPocoTypePlaceholder[] pocosToBeUpdated)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Cached Repo");
+            _iRepoCommandInjection.update<anotherPocoTypePlaceholder>(pocosToBeUpdated);
         }
     }
 }
