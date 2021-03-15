@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Test_Poco_seedData_mockData
 {
-    public class SeedProgramDataForTesting : BaseIOCDependencyClass
+    public class SeedProgramDataForTesting : BaseIOCDependencyClass, IMockDataTestingValidation
     {
         public SeedProgramDataForTesting (iRepoCommand<iPoco> IOCommandObjectReferance, iRepoQuery<iPoco> IOCQueryObjectReferance) : base(IOCommandObjectReferance, IOCQueryObjectReferance)
         {

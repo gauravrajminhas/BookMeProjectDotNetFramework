@@ -40,7 +40,7 @@ namespace WebAPI_ReSTServices.App_Start
 
         public void Dispose()
         {
-            Container.Dispose();
+            //Container.Dispose();
         }
     }
 }

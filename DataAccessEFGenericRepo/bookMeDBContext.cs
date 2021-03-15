@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookMeProject;
 using System.Data.Entity.Infrastructure.Annotations;
+using BookMeProject.Staff.Schema;
 
 namespace DataAccessEFGenericRepo
 {
@@ -81,15 +82,23 @@ namespace DataAccessEFGenericRepo
                 .ToTable("userCredentials", "userSchema");
 
 
+            //Staff Schema 
+            modelBuilder.Entity<staffPoco>()
+                .HasKey<Guid>(sp => sp.ecifID)
+                .ToTable("staff","staffSchema");
+
+            
 
 
+                
+            
                  // Subscriptions 
             modelBuilder.Entity<subscriptionsPoco>()
                 .HasKey(usp => usp.subscriptionID)
                 .ToTable("subscriptions", "subscriptions");
 
 
-
+                
 
                  //RecordSchema
             modelBuilder.Entity<medicalRecordsPoco>()
@@ -152,7 +161,7 @@ namespace DataAccessEFGenericRepo
  
 
 
-            //Constraints decleration
+            //                --------------- Constraints Decleration ----------------
             modelBuilder.Entity<userPoco>()
                 .HasMany(user => user.userCredentialsListNavigation)
                 .WithRequired(credentails => credentails.userNavigation)
@@ -203,14 +212,19 @@ namespace DataAccessEFGenericRepo
                 .HasForeignKey(sp => sp.statusID);
 
 
-            // schedule and classes 
+                // schedule and classes 
             modelBuilder.Entity<classPoco>()
                 .HasRequired<programPoco>(cp => cp.programNavigation)
                 .WithMany(pp => pp.classesNavigation)
                 .HasForeignKey(pp => pp.programID)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<classPoco>()
+                .HasRequired<staffPoco>(cp => cp.instructorNavigation)
+                .WithMany(sp => sp.classPocoListNavigation)
+                .HasForeignKey<Guid>(cp => cp.instructorID);
 
+            
             modelBuilder.Entity<bookingPoco>()
                 .HasRequired<classPoco>(bp => bp.classNavigation)
                 .WithMany(cp => cp.bookingListNavigation)
@@ -223,7 +237,25 @@ namespace DataAccessEFGenericRepo
                 .HasForeignKey<Guid>(bp => bp.UserID)
                 .WillCascadeOnDelete(true);
 
-                
+
+
+                // Staff Pocos 
+            modelBuilder.Entity<staffPoco>()
+                .HasOptional<cityPoco>(sp => sp.cityPocoNavigation)
+                .WithMany()
+                .HasForeignKey<Guid?>(sp=> sp.cityID);
+
+
+            modelBuilder.Entity<staffPoco>()
+                .HasRequired<statePoco>(sp => sp.statePocoNavigation)
+                .WithMany(sp => sp.staffPocosListNavigation)
+                .HasForeignKey<Guid?>(sp => sp.stateID);
+
+            modelBuilder.Entity<staffPoco>()
+                .HasRequired<countryPoco>(sp => sp.countryPocoNavigation)
+                .WithMany(cp => cp.staffPocoListNavigation)
+                .HasForeignKey<Guid?>(sp => sp.stateID);
+
 
             //modelBuilder.Entity<classPoco>()
             //   .HasMany<userCredentialsPoco>(cp => cp.userListNaviagation)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookMeProject.Staff.Schema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BookMeProject
 
         //foreign key 
         public Guid programID { get; set; }
+        public Guid instructorID { get; set; }
 
 
         public DateTime startTime { get; set; }
@@ -28,7 +30,7 @@ namespace BookMeProject
         // navigation property
         public programPoco programNavigation { get; set; }
         public List<bookingPoco> bookingListNavigation { get; set; }
-
+        public staffPoco instructorNavigation { get; set; }
 
 
     }

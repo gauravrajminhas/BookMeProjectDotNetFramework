@@ -64,6 +64,7 @@
     <Compile Include="Scheduler.Schema\programPoco.cs" />
     <Compile Include="Scheduler.Schema\bookingPoco.cs" />
     <Compile Include="statusPoco.cs" />
+    <Compile Include="Staff.Schema\staffPoco.cs" />
     <Compile Include="users.Schema\userPoco.cs" />
     <Compile Include="users.Schema\userContactDetailsPoco.cs" />
     <Compile Include="iPoco.cs" />
@@ -75,5 +76,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

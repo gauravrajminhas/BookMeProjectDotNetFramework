@@ -11,7 +11,9 @@ namespace Test_Poco_seedData_mockData
         protected iRepoCommand<iPoco> commandObjectReferance;
         protected iRepoQuery<iPoco> queryObjectReferace;
 
-       public BaseIOCDependencyClass (iRepoCommand<iPoco> IOCommandObjectReferance, iRepoQuery<iPoco> IOCQueryObjectReferance)
+       
+
+        public BaseIOCDependencyClass (iRepoCommand<iPoco> IOCommandObjectReferance, iRepoQuery<iPoco> IOCQueryObjectReferance)
         {
             commandObjectReferance = IOCommandObjectReferance;
             queryObjectReferace = IOCQueryObjectReferance;

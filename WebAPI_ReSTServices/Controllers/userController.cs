@@ -37,8 +37,6 @@ namespace WebAPI_ReSTServices.Controllers
         [ResponseType(typeof(List<userDTO>))]
         public IHttpActionResult getAllUsers()
         {
-            try
-            {
                 List<userDTO> userDTOList = _userCRUDValidationObj.getAllUserDTOs();
                 //List<userDTO> userDTOList = _userDTOMappingObject.UserMapper().Map<List<userPoco>, List<userDTO>>(userObjList);
                 if (userDTOList == null)
@@ -47,10 +45,10 @@ namespace WebAPI_ReSTServices.Controllers
                 }
                 return Ok(userDTOList);
 
-            } catch (Exception e)
-            {
-                return InternalServerError(e);
-            }
+            //} catch (Exception e)
+            //{
+            //    return InternalServerError(e);
+            //}
 
 
         }

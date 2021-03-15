@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookMeProject.Staff.Schema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace BookMeProject
 
         //Navigation Property
         public virtual List<userContactDetailsPoco> userContactDetailNavigation { get; set; }
+        public virtual List<staffPoco> staffPocoListNavigation { get; set; }
+
 
     }
 }
