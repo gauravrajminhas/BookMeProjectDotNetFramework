@@ -17,7 +17,7 @@ namespace BookMeProject
 
         //Navigation Property
         public virtual List<userContactDetailsPoco> userContactDetailNavigation { get; set; }
-        public virtual List<staffPoco> staffPocoListNavigation { get; set; }
+        public virtual List<staffPoco> staffPocosListNavigation { get; set; }
 
 
     }

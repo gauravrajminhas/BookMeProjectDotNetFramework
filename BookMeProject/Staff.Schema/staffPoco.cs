@@ -29,19 +29,19 @@ namespace BookMeProject.Staff.Schema
 
 
         //foreigh keys 
-        public Guid? cityID { get; set; }   
-        public Guid? countryID { get; set; }
-        public Guid? stateID { get; set; }
+        public virtual Guid? cityID { get; set; }   
+        public virtual Guid? countryID { get; set; }
+        public virtual Guid? stateID { get; set; }
 
 
 
 
         
         //Navigation 
-        public cityPoco cityPocoNavigation { get; set; }
-        public countryPoco countryPocoNavigation { get; set; }
-        public statePoco statePocoNavigation { get; set; }
-        public List<classPoco> classPocoListNavigation { get; set; }
+        public virtual cityPoco cityPocoNavigation { get; set; }
+        public virtual countryPoco countryPocoNavigation { get; set; }
+        public virtual statePoco statePocoNavigation { get; set; }
+        public virtual List<classPoco> classPocoListNavigation { get; set; }
 
     }
 }

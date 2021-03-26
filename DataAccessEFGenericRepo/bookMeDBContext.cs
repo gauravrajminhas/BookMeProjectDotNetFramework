@@ -161,6 +161,21 @@ namespace DataAccessEFGenericRepo
  
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //                --------------- Constraints Decleration ----------------
             modelBuilder.Entity<userPoco>()
                 .HasMany(user => user.userCredentialsListNavigation)
@@ -239,22 +254,52 @@ namespace DataAccessEFGenericRepo
 
 
 
-                // Staff Pocos 
-            modelBuilder.Entity<staffPoco>()
-                .HasOptional<cityPoco>(sp => sp.cityPocoNavigation)
-                .WithMany()
-                .HasForeignKey<Guid?>(sp=> sp.cityID);
 
 
-            modelBuilder.Entity<staffPoco>()
-                .HasRequired<statePoco>(sp => sp.statePocoNavigation)
-                .WithMany(sp => sp.staffPocosListNavigation)
+
+            // Staff -> city, country & state Navigation and FK Properties 
+
+            modelBuilder.Entity<cityPoco>()
+                .HasMany<staffPoco>(cp => cp.staffPocosListNavigation)
+                .WithOptional(sp => sp.cityPocoNavigation)
+                .HasForeignKey<Guid?>(sp => sp.cityID);
+
+
+
+            modelBuilder.Entity<countryPoco>()
+                .HasMany<staffPoco>(cp => cp.staffPocosListNavigation)
+                .WithOptional(sp => sp.countryPocoNavigation)
+                .HasForeignKey<Guid?>(sp => sp.countryID);
+
+
+
+            modelBuilder.Entity<statePoco>()
+                .HasMany<staffPoco>(sp => sp.staffPocosListNavigation)
+                .WithOptional(sp => sp.statePocoNavigation)
                 .HasForeignKey<Guid?>(sp => sp.stateID);
 
-            modelBuilder.Entity<staffPoco>()
-                .HasRequired<countryPoco>(sp => sp.countryPocoNavigation)
-                .WithMany(cp => cp.staffPocoListNavigation)
-                .HasForeignKey<Guid?>(sp => sp.stateID);
+
+            // Staff Pocos 
+            //modelBuilder.Entity<staffPoco>()
+            //    .HasOptional<cityPoco>(sp => sp.cityPocoNavigation)
+            //    .WithOptionalDependent();
+
+
+
+
+
+
+
+
+            //modelBuilder.Entity<staffPoco>()
+            //    .HasRequired<statePoco>(sp => sp.statePocoNavigation)
+            //    .WithMany(sp => sp.staffPocosListNavigation)
+            //    .HasForeignKey<Guid?>(sp => sp.stateID);
+
+            //modelBuilder.Entity<staffPoco>()
+            //    .HasRequired<countryPoco>(sp => sp.countryPocoNavigation)
+            //    .WithMany(cp => cp.staffPocoListNavigation)
+            //    .HasForeignKey<Guid?>(sp => sp.stateID);
 
 
             //modelBuilder.Entity<classPoco>()
