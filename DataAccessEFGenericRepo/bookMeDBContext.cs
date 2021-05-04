@@ -230,7 +230,7 @@ namespace DataAccessEFGenericRepo
                 // schedule and classes 
             modelBuilder.Entity<classPoco>()
                 .HasRequired<programPoco>(cp => cp.programNavigation)
-                .WithMany(pp => pp.classesNavigation)
+                .WithMany(pp => pp.classesListNavigation)
                 .HasForeignKey(pp => pp.programID)
                 .WillCascadeOnDelete();
 

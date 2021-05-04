@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Test_Poco_seedData_mockData
 {
-    public class SeedStaff :BaseIOCDependencyClass, IMockDataTestingValidation
+    public class SeedStaffForTesting :BaseIOCDependencyClass, IMockDataTestingValidation
     {
-        public SeedStaff(iRepoCommand<iPoco> commandRepoInjection, iRepoQuery<iPoco> queryRepoInjection) : base(commandRepoInjection, queryRepoInjection)
+        public SeedStaffForTesting(iRepoCommand<iPoco> commandRepoInjection, iRepoQuery<iPoco> queryRepoInjection) : base(commandRepoInjection, queryRepoInjection)
         {
 
         }
@@ -20,9 +20,18 @@ namespace Test_Poco_seedData_mockData
             
             staffPoco[] staffmembersArray = new staffPoco[count];
 
+            if (queryObjectReferace.GetSingle<cityPoco>(cp => cp.cityName == "Toronto") ==null && queryObjectReferace.GetSingle<statePoco>(sp => sp.stateName == "Ontario")== null && queryObjectReferace.GetSingle<countryPoco>(cp => cp.countryName == "Canada")==null)
+            {
+                new SeedLocationsForTesting(commandObjectReferance, queryObjectReferace).seedLocationData();
+            }
+
+
             cityPoco cityPoco = queryObjectReferace.GetSingle<cityPoco>(cp => cp.cityName == "Toronto");
             statePoco statePoco = queryObjectReferace.GetSingle<statePoco>(sp => sp.stateName == "Ontario");
             countryPoco countryPoco = queryObjectReferace.GetSingle<countryPoco>(cp => cp.countryName == "Canada");
+            
+
+            //seed class schema 
 
 
             for (int i=0; i<count; i++)

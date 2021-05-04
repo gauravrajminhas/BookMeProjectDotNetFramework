@@ -16,7 +16,7 @@ namespace BookMeProject
         
 
         //navigation 
-        public List<classPoco> classesNavigation { get; set; }
+        public List<classPoco> classesListNavigation { get; set; }
 
     }
 }
