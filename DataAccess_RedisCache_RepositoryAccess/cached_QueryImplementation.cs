@@ -1,5 +1,6 @@
 ﻿using BookMeProject;
 using DataAccessRepoPattern;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,11 @@ namespace DataAccess_RedisCache_RepositoryAccess
         where iPocoType : iPoco
     {
 
-        private iRepoQuery<iPocoType> _iRepoQueryInjection; 
+        private iRepoQuery<iPocoType> _iRepoQueryInjection;
+
+        //conver to the IOC controller 
+
+        
 
         public cached_QueryImplementation( iRepoQuery<iPocoType> iRepoQueryInjection)
         {
@@ -28,6 +33,9 @@ namespace DataAccess_RedisCache_RepositoryAccess
 
         List<anotherPocoTypePlaceholder> iRepoQuery<iPocoType>.GetAll<anotherPocoTypePlaceholder>(params Expression<Func<anotherPocoTypePlaceholder, object>>[] navigationObjectPath)
         {
+
+            ConnectionMultiplexer  cacheConnection = redisConnectionHelper.connection;
+            
             return _iRepoQueryInjection.GetAll<anotherPocoTypePlaceholder>(navigationObjectPath);
         }
 

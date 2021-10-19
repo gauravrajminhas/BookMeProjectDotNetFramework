@@ -138,9 +138,9 @@
       <Project>{A33387AF-5686-4C4A-BEE4-0B3A01FCB71A}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
+    <ProjectReference Include="..\BusinessLogicValidationLayer\CoreBusinessServices_ValidationLayer.csproj">
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogic_ValidationLayer</Name>
+      <Name>CoreBusinessServices_ValidationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>

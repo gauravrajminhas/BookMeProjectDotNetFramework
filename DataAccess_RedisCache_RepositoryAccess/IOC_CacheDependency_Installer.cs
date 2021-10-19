@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DataAccess_RedisCache_RepositoryAccess
 {
     public class IOC_CacheDependency_Installer : IWindsorInstaller
@@ -30,6 +31,7 @@ namespace DataAccess_RedisCache_RepositoryAccess
                 //For Actual Repository 
                 Component.For(typeof(iCachedCommandRepo<>)).ImplementedBy(typeof(cached_CommandImplementation<>)),
                 Component.For(typeof(iCachedQueryRepo<>)).ImplementedBy(typeof(cached_QueryImplementation<>))
+                
                 );
         }
     }

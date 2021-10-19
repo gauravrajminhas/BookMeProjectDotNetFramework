@@ -92,9 +92,9 @@
       <Project>{a33387af-5686-4c4a-bee4-0b3a01fcb71a}</Project>
       <Name>Pocos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicValidationLayer\BusinessLogic_ValidationLayer.csproj">
+    <ProjectReference Include="..\BusinessLogicValidationLayer\CoreBusinessServices_ValidationLayer.csproj">
       <Project>{a3876605-bece-4601-9c62-35c5b980b466}</Project>
-      <Name>BusinessLogic_ValidationLayer</Name>
+      <Name>CoreBusinessServices_ValidationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccessEFGenericRepo\DataAccess_EFGenericRepsitoryImplementation.csproj">
       <Project>{dfe6f704-76bb-4f7d-b75d-e4d447e04de3}</Project>
@@ -124,9 +124,9 @@
       <Project>{3d671366-90e4-4208-91e4-0c9f33be1f6b}</Project>
       <Name>Test_Poco_seedData_mockData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebAPI_ReSTServices\WebAPI_ReSTServices.csproj">
+    <ProjectReference Include="..\WebAPI_ReSTServices\CoreBusinessServices_WebAPI_ReST.csproj">
       <Project>{258B3594-5FB9-4089-9128-AF48BF0DEF43}</Project>
-      <Name>WebAPI_ReSTServices</Name>
+      <Name>CoreBusinessServices_WebAPI_ReST</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
